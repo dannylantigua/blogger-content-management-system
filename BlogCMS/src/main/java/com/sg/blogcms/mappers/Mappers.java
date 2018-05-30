@@ -27,13 +27,14 @@ public class Mappers {
         public Entity mapRow(ResultSet rs, int i) throws SQLException {
             //converting entity from rows of database into an object
             Entity currentEntityFromRow = new Entity();
+            currentEntityFromRow.setEntityId(rs.getInt("recordId"));
             currentEntityFromRow.setFirstName(rs.getString("FirstName"));
             currentEntityFromRow.setLastName(rs.getString("LastName"));
             currentEntityFromRow.setEmail(rs.getString("EMAIL"));
             currentEntityFromRow.setPhoneNumber(rs.getString("PhoneNumber"));
             currentEntityFromRow.setUserName(rs.getString("AboutMe"));
             currentEntityFromRow.setPassword(rs.getString("passwd"));
-            currentEntityFromRow.setIsAdmin(rs.getBoolean("isAdmit"));
+            currentEntityFromRow.setIsAdmin(rs.getBoolean("isAdmin"));
             return currentEntityFromRow;
         }
 
