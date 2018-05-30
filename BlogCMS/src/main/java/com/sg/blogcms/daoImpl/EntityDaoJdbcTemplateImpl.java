@@ -9,6 +9,8 @@ import com.sg.blogcms.dao.EntityDao;
 import com.sg.blogcms.model.Entity;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -20,13 +22,13 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
     JdbcTemplate jdbcTemplate;
     
     //using setter injection to set the template
-    void setJdbcTemplate(JdbcTemplate jdbcTemplate){
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
     
     private static final String SQL_INSERT_ENTITY = 
             " INSERT INTO Entity (FirstName, LastName, EMAIL , PhoneNumber,AboutMe,UserName,passwd,isAdmin) "
-            + " VALUES ( ? , ? , ? , ? , ? , ? , ?)";
+            + " VALUES ( ? , ? , ? , ? , ? , ? , ?, ?)";
     
     @Override
     public Entity getEntityById(int entityId) {
@@ -54,8 +56,20 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Entity addEntity(Entity entity) {
-        jdbcTemplate.update(SQL_INSERT_ENTITY);
+        jdbcTemplate.update(SQL_INSERT_ENTITY,
+                entity.getAboutMe(),
+                entity.getEmail(),
+                entity.getFirstName(),
+                entity.getLastName(),
+                entity.getPassword(),
+                entity.getPhoneNumber(),
+                entity.getUserName());
+        
+        int entityId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        entity.setEntityId(entityId);
+        
         return null;
     }
     

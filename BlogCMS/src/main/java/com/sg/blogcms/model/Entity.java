@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author kmlnd
  */
 public class Entity {
+    private int EntityId;
     private String firstName;
     private String lastName;
     private String email;
@@ -20,6 +21,14 @@ public class Entity {
     private String userName;
     private String password;
     private boolean isAdmin;
+
+    public int getEntityId() {
+        return EntityId;
+    }
+
+    public void setEntityId(int EntityId) {
+        this.EntityId = EntityId;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -87,15 +96,16 @@ public class Entity {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.firstName);
-        hash = 29 * hash + Objects.hashCode(this.lastName);
-        hash = 29 * hash + Objects.hashCode(this.email);
-        hash = 29 * hash + Objects.hashCode(this.phoneNumber);
-        hash = 29 * hash + Objects.hashCode(this.aboutMe);
-        hash = 29 * hash + Objects.hashCode(this.userName);
-        hash = 29 * hash + Objects.hashCode(this.password);
-        hash = 29 * hash + (this.isAdmin ? 1 : 0);
+        int hash = 3;
+        hash = 67 * hash + this.EntityId;
+        hash = 67 * hash + Objects.hashCode(this.firstName);
+        hash = 67 * hash + Objects.hashCode(this.lastName);
+        hash = 67 * hash + Objects.hashCode(this.email);
+        hash = 67 * hash + Objects.hashCode(this.phoneNumber);
+        hash = 67 * hash + Objects.hashCode(this.aboutMe);
+        hash = 67 * hash + Objects.hashCode(this.userName);
+        hash = 67 * hash + Objects.hashCode(this.password);
+        hash = 67 * hash + (this.isAdmin ? 1 : 0);
         return hash;
     }
 
@@ -111,6 +121,9 @@ public class Entity {
             return false;
         }
         final Entity other = (Entity) obj;
+        if (this.EntityId != other.EntityId) {
+            return false;
+        }
         if (this.isAdmin != other.isAdmin) {
             return false;
         }
@@ -137,6 +150,7 @@ public class Entity {
         }
         return true;
     }
+
     
     
 }
