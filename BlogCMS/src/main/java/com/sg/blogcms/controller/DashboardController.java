@@ -7,6 +7,7 @@ package com.sg.blogcms.controller;
 
 import com.sg.blogcms.dao.EntityDao;
 import com.sg.blogcms.model.Entity;
+import com.sg.blogcms.service.EntityService;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -19,25 +20,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class DashboardController {
-    
-    EntityDao entityDao;
-    
+
+    EntityService ServiceDao;
+
     @Inject
-    public DashboardController (EntityDao entityDao){
-        this.entityDao = entityDao;
+    public DashboardController(EntityService ServiceDao) {
+        this.ServiceDao = ServiceDao;
     }
-    
-    
-    @RequestMapping(value="/dashboard", method=RequestMethod.GET)
-    public String dashboard(HttpServletRequest request){
-        
-        
-        
+
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public String dashboard(HttpServletRequest request) {
+
         return "dashboard";
     }
-    
 
-    
-
-  
 }
