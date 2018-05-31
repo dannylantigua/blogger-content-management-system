@@ -15,6 +15,7 @@ public class EntitySocialProfiles {
 
     private String webSite;
     private String websiteName;
+    private int EntityId;
 
     public String getWebSite() {
         return webSite;
@@ -32,11 +33,20 @@ public class EntitySocialProfiles {
         this.websiteName = websiteName;
     }
 
+    public int getEntityId() {
+        return EntityId;
+    }
+
+    public void setEntityId(int EntityId) {
+        this.EntityId = EntityId;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.webSite);
-        hash = 23 * hash + Objects.hashCode(this.websiteName);
+        hash = 47 * hash + Objects.hashCode(this.webSite);
+        hash = 47 * hash + Objects.hashCode(this.websiteName);
+        hash = 47 * hash + this.EntityId;
         return hash;
     }
 
@@ -52,6 +62,9 @@ public class EntitySocialProfiles {
             return false;
         }
         final EntitySocialProfiles other = (EntitySocialProfiles) obj;
+        if (this.EntityId != other.EntityId) {
+            return false;
+        }
         if (!Objects.equals(this.webSite, other.webSite)) {
             return false;
         }
@@ -60,5 +73,7 @@ public class EntitySocialProfiles {
         }
         return true;
     }
-
+   
+    
+    
 }

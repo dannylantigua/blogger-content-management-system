@@ -12,7 +12,17 @@ import java.util.Objects;
  * @author kmlnd
  */
 public class postsTags {
+    
+    private int postId;
     private String tag;
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
+    }
 
     public String getTag() {
         return tag;
@@ -24,8 +34,9 @@ public class postsTags {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.tag);
+        int hash = 5;
+        hash = 43 * hash + this.postId;
+        hash = 43 * hash + Objects.hashCode(this.tag);
         return hash;
     }
 
@@ -41,10 +52,15 @@ public class postsTags {
             return false;
         }
         final postsTags other = (postsTags) obj;
+        if (this.postId != other.postId) {
+            return false;
+        }
         if (!Objects.equals(this.tag, other.tag)) {
             return false;
         }
         return true;
     }
     
+    
+
 }

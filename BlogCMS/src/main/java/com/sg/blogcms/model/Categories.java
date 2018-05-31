@@ -12,7 +12,16 @@ import java.util.Objects;
  * @author kmlnd
  */
 public class Categories {
+    private String recordId;
     private String CategoryName;
+
+    public String getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(String recordId) {
+        this.recordId = recordId;
+    }
 
     public String getCategoryName() {
         return CategoryName;
@@ -25,7 +34,8 @@ public class Categories {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.CategoryName);
+        hash = 67 * hash + Objects.hashCode(this.recordId);
+        hash = 67 * hash + Objects.hashCode(this.CategoryName);
         return hash;
     }
 
@@ -41,10 +51,14 @@ public class Categories {
             return false;
         }
         final Categories other = (Categories) obj;
+        if (!Objects.equals(this.recordId, other.recordId)) {
+            return false;
+        }
         if (!Objects.equals(this.CategoryName, other.CategoryName)) {
             return false;
         }
         return true;
     }
+
     
 }
