@@ -53,3 +53,9 @@ recordId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 PageName Varchar(20),
 Content TEXT
 );
+
+CREATE TABLE IF NOT EXISTS `authorities` (
+`username` varchar(20) NOT NULL,
+`authority` varchar(20) NOT NULL,
+KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
