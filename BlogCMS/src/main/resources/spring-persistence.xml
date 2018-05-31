@@ -44,4 +44,12 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     
+    <bean id="entityService" class="com.sg.blogcms.serviceImpl.EntityServiceImpl">
+        <constructor-arg ref="entityDao"/>
+    </bean>
+    
+<!--    <bean id="ssPhoneInfoServiceLayer" class="com.sg.supersighting.serviceLayerImpl.SSPhoneInfoServiceLayerImpl">
+        <constructor-arg ref="ssPhoneInfoDao"/>
+    </bean>-->
+    
 </beans>

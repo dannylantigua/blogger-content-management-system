@@ -45,6 +45,9 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
     private static final String SQL_SELECT_ALL_BY_EMAIL
             = " Select * FROM Entity where Email = ? ";
 
+    private static final String SQL_SELECT_BY_PASSWORD
+            = " SELECT * FROM Entity WHERE passwd = ? ";
+
     @Override
     public Entity getEntityById(int entityId) {
 
@@ -99,6 +102,15 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
     public Entity getEntityByEmail(String email) {
         try {
             return jdbcTemplate.queryForObject(SQL_SELECT_ALL_BY_EMAIL, new EntityMapper(), email);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public Entity getEntityByPassword(String password) {
+        try {
+            return jdbcTemplate.queryForObject(SQL_SELECT_BY_PASSWORD, new EntityMapper(), password);
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }

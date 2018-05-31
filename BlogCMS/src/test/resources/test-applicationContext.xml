@@ -28,7 +28,7 @@
         <property name="initialSize" value="5"/>
         <property name="maxTotal" value="10"/>
     </bean>
-    
+     
     <bean id="transactionManager"
       class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
@@ -42,6 +42,10 @@
     <bean id="entityDao" 
           class="com.sg.blogcms.daoImpl.EntityDaoJdbcTemplateImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="entityService" class="com.sg.blogcms.serviceImpl.EntityServiceImpl">
+        <constructor-arg ref="entityDao"/>
     </bean>
     
 </beans>

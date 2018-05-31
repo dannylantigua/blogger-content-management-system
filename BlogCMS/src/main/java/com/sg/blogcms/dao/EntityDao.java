@@ -27,4 +27,6 @@ public interface EntityDao {
     List<Entity> getAllEntities();
     
     Entity getEntityByEmail(String email);
+    
+    Entity getEntityByPassword(String password);
 }
