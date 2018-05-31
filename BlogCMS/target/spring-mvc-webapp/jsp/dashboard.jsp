@@ -67,15 +67,15 @@
             <hr>
 
             <div style="display:flex; justify-content: space-around; margin-bottom:40px;">
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
-    <a class="btn btn-primary" href="#"role="button">Edit Profile</a>
-                <a class="btn btn-primary" href="#"role="button">Create Blog</a>
-                <a class="btn btn-primary" href="#"role="button">Search Category</a>
-</div>
-              
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <a class="btn btn-primary" href="#"role="button">Edit Profile</a>
+                    <a class="btn btn-primary" href="#"role="button">Create Blog</a>
+                    <a class="btn btn-primary" href="#"role="button">Search Category</a>
+                </div>
+
             </div>
             <div style="display:flex; justify-content: space-around">
-              
+
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         Dropdown
