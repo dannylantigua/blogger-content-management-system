@@ -5,7 +5,9 @@
  */
 package com.sg.blogcms.controller;
 
+import com.sg.blogcms.dao.EntityDao;
 import com.sg.blogcms.model.Entity;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class DashboardController {
+    
+    EntityDao entityDao;
+    
+    @Inject
+    public DashboardController (EntityDao entityDao){
+        this.entityDao = entityDao;
+    }
+    
+    
     @RequestMapping(value="/dashboard", method=RequestMethod.GET)
     public String dashboard(HttpServletRequest request){
         
@@ -25,19 +36,7 @@ public class DashboardController {
         return "dashboard";
     }
     
-    @RequestMapping(value="/createUser", method=RequestMethod.POST)
-    public String createNewEntity(HttpServletRequest request){
-        Entity currentEntity = new Entity();
-        currentEntity.setEmail(request.getParameter("email"));
-        currentEntity.setFirstName(request.getParameter("username"));
-        currentEntity.setLastName(request.getParameter(""));
-        currentEntity.setIsAdmin(false);
-        currentEntity.setPassword(request.getParameter("password"));
-        currentEntity.setPhoneNumber(request.getParameter("phone"));
-        currentEntity.setUserName(request.getParameter("username"));
-        
-        return "dashboard";
-    }
+
     
 
   

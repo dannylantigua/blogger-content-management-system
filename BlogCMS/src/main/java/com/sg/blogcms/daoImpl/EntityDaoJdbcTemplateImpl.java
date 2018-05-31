@@ -28,6 +28,7 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    // PREPARED STATEMENTS
     private static final String SQL_INSERT_ENTITY
             = " INSERT INTO Entity (FirstName, LastName, EMAIL , PhoneNumber,AboutMe,UserName,passwd,isAdmin) "
             + " VALUES ( ? , ? , ? , ? , ? , ? , ?, ?)";
@@ -40,6 +41,9 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
 
     private static final String SQL_SELECT_BY_ID
             = " SELECT * from Entity WHERE recordId = ?";
+
+    private static final String SQL_SELECT_ALL_BY_EMAIL
+            = " Select * FROM Entity where Email = ? ";
 
     @Override
     public Entity getEntityById(int entityId) {
@@ -73,8 +77,7 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public Entity addEntity(Entity entity
-    ) {
+    public Entity addEntity(Entity entity) {
         jdbcTemplate.update(SQL_INSERT_ENTITY,
                 entity.getFirstName(),
                 entity.getLastName(),
@@ -84,12 +87,21 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
                 entity.getUserName(),
                 entity.getPassword(),
                 entity.isIsAdmin()
-                );
+        );
 
         int entityId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         entity.setEntityId(entityId);
 
         return null;
+    }
+
+    @Override
+    public Entity getEntityByEmail(String email) {
+        try {
+            return jdbcTemplate.queryForObject(SQL_SELECT_ALL_BY_EMAIL, new EntityMapper(), email);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
     }
 
 }
