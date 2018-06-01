@@ -13,8 +13,9 @@ import java.util.Objects;
  */
 public class StaticPages {
 
+    private int pageId;
     private String pageName;
-    private String url;
+    private String content;
 
     public String getPageName() {
         return pageName;
@@ -24,19 +25,28 @@ public class StaticPages {
         this.pageName = pageName;
     }
 
-    public String getUrl() {
-        return url;
+    public String getContent() {
+        return content;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getPageId() {
+        return pageId;
+    }
+
+    public void setPageId(int pageId) {
+        this.pageId = pageId;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.pageName);
-        hash = 97 * hash + Objects.hashCode(this.url);
+        int hash = 5;
+        hash = 11 * hash + this.pageId;
+        hash = 11 * hash + Objects.hashCode(this.pageName);
+        hash = 11 * hash + Objects.hashCode(this.content);
         return hash;
     }
 
@@ -52,14 +62,15 @@ public class StaticPages {
             return false;
         }
         final StaticPages other = (StaticPages) obj;
+        if (this.pageId != other.pageId) {
+            return false;
+        }
         if (!Objects.equals(this.pageName, other.pageName)) {
             return false;
         }
-        if (!Objects.equals(this.url, other.url)) {
+        if (!Objects.equals(this.content, other.content)) {
             return false;
         }
         return true;
-    }
-    
-    
+    } 
 }
