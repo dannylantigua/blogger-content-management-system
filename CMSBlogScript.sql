@@ -22,7 +22,7 @@ CREATE TABLE EntitySocialProfiles(
 EntityId INT,
 WebName VARCHAR(20),
 Website VARCHAR(100),
-FOREIGN KEY (EntityId) REFERENCES Entity(recordId)
+FOREIGN KEY (EntityId) REFERENCES Entity(recordId) ON DELETE CASCADE
 );
 
 CREATE TABLE Categories(
@@ -41,13 +41,13 @@ likes INT,
 isPending boolean,
 isApproved boolean,
 isRejected boolean,
-FOREIGN KEY (userId) REFERENCES Categories (recordId)
+FOREIGN KEY (userId) REFERENCES Categories (recordId) ON DELETE CASCADE
 );
 
 CREATE TABLE PostsTags(
 postId INT,
 Tag VARCHAR(30),
-FOREIGN KEY (postId) REFERENCES Posts (recordId)
+FOREIGN KEY (postId) REFERENCES Posts (recordId) ON DELETE CASCADE
 );
 
 CREATE TABLE StaticPages(
