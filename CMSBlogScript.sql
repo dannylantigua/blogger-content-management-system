@@ -47,7 +47,7 @@ FOREIGN KEY (userId) REFERENCES Categories (recordId) ON DELETE CASCADE
 CREATE TABLE PostsTags(
 postId INT,
 Tag VARCHAR(30),
-FOREIGN KEY (postId) REFERENCES Posts (recordId)
+FOREIGN KEY (postId) REFERENCES Posts (recordId) ON DELETE CASCADE
 );
 
 CREATE TABLE StaticPages(
