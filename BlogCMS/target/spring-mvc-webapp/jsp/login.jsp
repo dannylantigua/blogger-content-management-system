@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,15 +13,18 @@
     <body>
         <div class="container" style="width:20%;margin-top:160px;">
 
+            <c:if test="${param.login_error == 1}">
+                <h3>Wrong id or password!</h3>
+            </c:if>
 
 
-            <form role="form" method="POST" action="loginUser" class="form-signin">
+            <form role="form" method="POST" action="j_spring_security_check" class="form-signin">
                 <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+                <label for="j_username" class="sr-only">Username :</label>
+                <input type="text" id="username" class="form-control" name="j_username" placeholder="Username" required autofocus>
+                <label for="j_password" class="sr-only">Password</label>
+                <input type="password" id="j_password" class="form-control" name="j_password" placeholder="Password" required>
                 <div class="checkbox mb-3">
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me

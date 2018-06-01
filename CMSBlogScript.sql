@@ -41,7 +41,7 @@ likes INT,
 isPending boolean,
 isApproved boolean,
 isRejected boolean,
-FOREIGN KEY (userId) REFERENCES Categories (recordId)
+FOREIGN KEY (userId) REFERENCES Categories (recordId) ON DELETE CASCADE
 );
 
 CREATE TABLE PostsTags(
@@ -57,18 +57,18 @@ Content TEXT
 );
 
 CREATE TABLE IF NOT EXISTS `authorities` (
-`username` varchar(20) NOT NULL,
+`UserName` varchar(20) NOT NULL,
 `authority` varchar(20) NOT NULL,
-KEY `username` (`username`)
+KEY `UserName` (`UserName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `authorities`
- ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `Entity` (`username`) ON DELETE CASCADE;
+ ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`UserName`) REFERENCES `Entity` (`UserName`) ON DELETE CASCADE;
  
 --
 -- Dumping data for table `users`
 --
-INSERT INTO `Entity` (`recordId`, `username`, `passwd`, `enabled`) VALUES
+INSERT INTO `Entity` (`recordId`, `UserName`, `passwd`, `enabled`) VALUES
 (1, 'admin', 'password', 1),
 (2, 'user', 'password', 1);
 --
@@ -77,7 +77,7 @@ INSERT INTO `Entity` (`recordId`, `username`, `passwd`, `enabled`) VALUES
 --
 -- Dumping data for table `authorities`
 --
-INSERT INTO `authorities` (`username`, `authority`) VALUES
+INSERT INTO `authorities` (`UserName`, `authority`) VALUES
 ('admin', 'ROLE_ADMIN'),
 ('admin', 'ROLE_USER'),
 ('user', 'ROLE_USER');

@@ -30,7 +30,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
+    public String showLoginForm() {
 
         return "login";
     }
