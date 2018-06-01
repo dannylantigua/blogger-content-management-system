@@ -18,4 +18,6 @@ public interface TagsDao {
     
     void savePostTags(List<postsTags> tags);
     
+    void removeTag(postsTags tag);
+
 }

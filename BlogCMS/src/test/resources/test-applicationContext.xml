@@ -24,7 +24,7 @@
         <property name="url"
                   value="jdbc:mysql://localhost:3306/BlogCMS"/>
         <property name="username" value="root"/>
-        <property name="password" value="root"/>
+        <property name="password" value="aced123"/>
         <property name="initialSize" value="5"/>
         <property name="maxTotal" value="10"/>
     </bean>
@@ -41,6 +41,21 @@
     
     <bean id="entityDao" 
           class="com.sg.blogcms.daoImpl.EntityDaoJdbcTemplateImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="categoriesDao" 
+          class="com.sg.blogcms.daoImpl.CategoriesDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="TagsDao" 
+          class="com.sg.blogcms.daoImpl.TagsDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="StaticPagesDao" 
+          class="com.sg.blogcms.daoImpl.StaticPagesDaoDbImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     

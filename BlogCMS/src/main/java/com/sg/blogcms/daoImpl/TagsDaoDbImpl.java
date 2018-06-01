@@ -30,11 +30,14 @@ public class TagsDaoDbImpl implements TagsDao {
 
     private static final String SQL_SAVE_TAGS
             = "insert into PostsTags values (?, ?)";
+    
+    private static final String SQL_REMOVE_TAGS
+            = "delete from PostsTags where postId = ? and Tag = ?";
 
     @Override
     public List<postsTags> getAllTagsByPosts(int postId) {
         final String newGetAllTagsSQL = SQL_GET_ALL_TAGS + postId;
-        return jdbcTemplate.query(SQL_GET_ALL_TAGS, new TagsMapper());
+        return jdbcTemplate.query(newGetAllTagsSQL, new TagsMapper());
     }
 
     @Override
@@ -44,6 +47,11 @@ public class TagsDaoDbImpl implements TagsDao {
                     currentTag.getPostId(),
                     currentTag.getTag());
         }
+    }
+
+    @Override
+    public void removeTag(postsTags tag) {
+        jdbcTemplate.update(SQL_REMOVE_TAGS, tag.getPostId(), tag.getTag());
     }
 
 }
