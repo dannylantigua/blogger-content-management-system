@@ -13,8 +13,10 @@ PhoneNumber VARCHAR(10),
 AboutMe TEXT,
 UserName VARCHAR(30),
 passwd VARCHAR(50),
-isAdmin boolean
-);
+isAdmin boolean,
+`enabled` tinyint(1) NOT NULL,
+ KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 CREATE TABLE EntitySocialProfiles(
 EntityId INT,
@@ -59,3 +61,23 @@ CREATE TABLE IF NOT EXISTS `authorities` (
 `authority` varchar(20) NOT NULL,
 KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `authorities`
+ ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `Entity` (`username`) ON DELETE CASCADE;
+ 
+--
+-- Dumping data for table `users`
+--
+INSERT INTO `Entity` (`recordId`, `username`, `passwd`, `enabled`) VALUES
+(1, 'admin', 'password', 1),
+(2, 'user', 'password', 1);
+--
+-- Table structure for table `authorities`
+-- 
+--
+-- Dumping data for table `authorities`
+--
+INSERT INTO `authorities` (`username`, `authority`) VALUES
+('admin', 'ROLE_ADMIN'),
+('admin', 'ROLE_USER'),
+('user', 'ROLE_USER');
