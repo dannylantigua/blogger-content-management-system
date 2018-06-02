@@ -62,4 +62,9 @@ public class EntityServiceImpl implements EntityService {
         return entityDao.getEntityByPassword(password);
     }
 
+    @Override
+    public Entity getEntityByUserName(String username) {
+        return entityDao.getEntityByUserName(username);
+    }
+
 }

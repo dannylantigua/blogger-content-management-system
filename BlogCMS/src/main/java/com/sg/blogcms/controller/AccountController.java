@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -86,8 +87,16 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String dashboard(HttpServletRequest request) {
+    public String dashboard(HttpServletRequest request, Model model) {
 
+        if(request.getRemoteUser() != null){
+            String username = request.getRemoteUser();
+            Entity currentEntity = ServiceDao.getEntityByUserName(username);
+            model.addAttribute("firstname", currentEntity.getFirstName());
+            model.addAttribute("lastname", currentEntity.getLastName());
+            model.addAttribute("email", currentEntity.getEmail());
+        }
+        
         return "dashboard";
     }
 }

@@ -10,6 +10,7 @@ import com.sg.blogcms.mappers.Mappers.EntityMapper;
 import com.sg.blogcms.model.Entity;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
@@ -49,22 +50,19 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
     private static final String SQL_SELECT_BY_PASSWORD
             = " SELECT * FROM Entity WHERE passwd = ? ";
 
- 
+    private static final String SQL_GET_ENTITY_BY_USERNAME
+            = " select * from Entity where UserName = ?";
+
     /*=============================================================================
         AUTHORITY PREPARED STATEMENTS
     ==============================================================================*/
-    
     private static final String SQL_INSERT_AUTHORITY
             = " INSERT INTO authorities (UserName , authority) values ( ? , ?)";
 
     private static final String SQL_DELETE_AUTHORITY
             = " delete from authorities where UserName = ? ";
-    
- 
 
-    
     //Might have to refactor entity methods to include authorities
-    
     @Override
     public Entity getEntityById(int entityId) {
 
@@ -74,13 +72,19 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
             return null;
         }
     }
-    
-   
+
+    public Entity getEntityByUserName(String username) {
+        try {
+        return jdbcTemplate.queryForObject(SQL_GET_ENTITY_BY_USERNAME, new EntityMapper(), username);
+        } catch(DataAccessException ex){
+            return null;
+        }
+    }
 
     @Override
     public void removeEntityById(int entityId) {
         Entity currentEntity = this.getEntityById(entityId);
-        jdbcTemplate.update(SQL_DELETE_AUTHORITY,currentEntity.getUserName());
+        jdbcTemplate.update(SQL_DELETE_AUTHORITY, currentEntity.getUserName());
         jdbcTemplate.update(SQL_DELETE_BY_ID, entityId);
     }
 

@@ -51,18 +51,24 @@
                     <ul style="list-style:none;">
                         <li>
                             <c:if test="${pageContext.request.userPrincipal.name != null}">
-                            <p> Hello : ${pageContext.request.userPrincipal.name}
-                                <a href="<c:url value="j_spring_security_logout" />" > Logout </a>
+                            <p> Hello .. 
+                                ${pageContext.request.userPrincipal.name}
+                                <a href="<c:url value="j_spring_security_logout" />" >( Logout )</a>
+                                
                             </p>
                             </c:if>
                         </li>
 
                         <li>
-                            Name
+                            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                <p>  ${firstname} ${lastname} </p>
+                            </c:if>
                         </li>
 
                         <li>
-                            About Me
+                            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                <p>${email}</p>
+                            </c:if>
                         </li>
                     </ul>
                 </div>
