@@ -8,6 +8,7 @@ package com.sg.blogcms.daoImpl;
 import com.sg.blogcms.dao.EntityDao;
 import com.sg.blogcms.mappers.Mappers.EntityMapper;
 import com.sg.blogcms.model.Entity;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -48,6 +49,16 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
     private static final String SQL_SELECT_BY_PASSWORD
             = " SELECT * FROM Entity WHERE passwd = ? ";
 
+    /*=============================================================================
+        AUTHORITY PREPARED STATEMENTS
+    ==============================================================================*/
+    
+    private static final String SQL_INSERT_AUTHORITY
+            = " INSERT INTO authorities (UserName , authority) values ( ? , ?)";
+
+    /*=============================================================================
+        AUTHORITY PREPARED STATEMENTS
+    ==============================================================================*/
     @Override
     public Entity getEntityById(int entityId) {
 
@@ -90,11 +101,17 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
                 entity.getUserName(),
                 entity.getPassword(),
                 entity.isIsAdmin()
-                
         );
 
         int entityId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         entity.setRecordId(entityId);
+
+        // inserting the users roles
+        ArrayList<String> authorities = entity.getAuthorities();
+
+        for (String authortity : authorities) {
+            jdbcTemplate.update(SQL_INSERT_AUTHORITY, entity.getUserName(), authortity);
+        }
 
         return null;
     }
