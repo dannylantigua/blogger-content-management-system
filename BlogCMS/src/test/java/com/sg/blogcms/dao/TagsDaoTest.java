@@ -77,14 +77,12 @@ public class TagsDaoTest {
                 new ArrayList<>(Arrays.asList(tag1, tag2, tag3));
         // Save
         dao.savePostTags(myList);
-        System.out.println(myList.size());
         
         // Get the list from DAO
         List<postsTags> fromDao = dao.getAllTagsByPosts(1);
         // Save functionality
         assertEquals(fromDao.indexOf(1), myList.indexOf(1));
         // Get functionality
-        System.out.println(fromDao.size());
         assertEquals(fromDao.size(), 3);  
         // Remove functionality
         dao.removeTag(tag1);
