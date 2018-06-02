@@ -5,6 +5,7 @@
  */
 package com.sg.blogcms.model;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Objects;
  * @author kmlnd
  */
 public class Entity {
-    private int EntityId;
+    private int recordId;
     private String firstName;
     private String lastName;
     private String email;
@@ -21,13 +22,14 @@ public class Entity {
     private String userName;
     private String password;
     private boolean isAdmin;
+    private ArrayList<String> authorities = new ArrayList<>();
 
-    public int getEntityId() {
-        return EntityId;
+    public int getRecordId() {
+        return recordId;
     }
 
-    public void setEntityId(int EntityId) {
-        this.EntityId = EntityId;
+    public void setRecordId(int recordId) {
+        this.recordId = recordId;
     }
 
     public String getFirstName() {
@@ -94,18 +96,27 @@ public class Entity {
         this.isAdmin = isAdmin;
     }
 
+    public ArrayList<String> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(ArrayList<String> authorities) {
+        this.authorities = authorities;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 67 * hash + this.EntityId;
-        hash = 67 * hash + Objects.hashCode(this.firstName);
-        hash = 67 * hash + Objects.hashCode(this.lastName);
-        hash = 67 * hash + Objects.hashCode(this.email);
-        hash = 67 * hash + Objects.hashCode(this.phoneNumber);
-        hash = 67 * hash + Objects.hashCode(this.aboutMe);
-        hash = 67 * hash + Objects.hashCode(this.userName);
-        hash = 67 * hash + Objects.hashCode(this.password);
-        hash = 67 * hash + (this.isAdmin ? 1 : 0);
+        hash = 89 * hash + this.recordId;
+        hash = 89 * hash + Objects.hashCode(this.firstName);
+        hash = 89 * hash + Objects.hashCode(this.lastName);
+        hash = 89 * hash + Objects.hashCode(this.email);
+        hash = 89 * hash + Objects.hashCode(this.phoneNumber);
+        hash = 89 * hash + Objects.hashCode(this.aboutMe);
+        hash = 89 * hash + Objects.hashCode(this.userName);
+        hash = 89 * hash + Objects.hashCode(this.password);
+        hash = 89 * hash + (this.isAdmin ? 1 : 0);
+        hash = 89 * hash + Objects.hashCode(this.authorities);
         return hash;
     }
 
@@ -121,7 +132,7 @@ public class Entity {
             return false;
         }
         final Entity other = (Entity) obj;
-        if (this.EntityId != other.EntityId) {
+        if (this.recordId != other.recordId) {
             return false;
         }
         if (this.isAdmin != other.isAdmin) {
@@ -148,9 +159,12 @@ public class Entity {
         if (!Objects.equals(this.password, other.password)) {
             return false;
         }
+        if (!Objects.equals(this.authorities, other.authorities)) {
+            return false;
+        }
         return true;
     }
 
-    
+   
     
 }

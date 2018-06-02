@@ -30,7 +30,7 @@ public class Mappers {
         public Entity mapRow(ResultSet rs, int i) throws SQLException {
             //converting entity from rows of database into an object
             Entity currentEntityFromRow = new Entity();
-            currentEntityFromRow.setEntityId(rs.getInt("recordId"));
+            currentEntityFromRow.setRecordId(rs.getInt("recordId"));
             currentEntityFromRow.setFirstName(rs.getString("FirstName"));
             currentEntityFromRow.setLastName(rs.getString("LastName"));
             currentEntityFromRow.setEmail(rs.getString("EMAIL"));

@@ -42,7 +42,7 @@ public class EntityDaoTest {
         List<Entity> entities = eDao.getAllEntities();
 
         for (Entity currentEntity : entities) {
-            eDao.removeEntityById(currentEntity.getEntityId());
+            eDao.removeEntityById(currentEntity.getRecordId());
         }
     }
 
@@ -65,7 +65,7 @@ public class EntityDaoTest {
         e.setPhoneNumber("2342423");
         e.setUserName("Kaniki");
         eDao.addEntity(e);
-        Entity eFromDatabase = eDao.getEntityById(e.getEntityId());
+        Entity eFromDatabase = eDao.getEntityById(e.getRecordId());
         assertEquals(eFromDatabase.getFirstName(), e.getFirstName());
     }
 
@@ -116,7 +116,6 @@ public class EntityDaoTest {
         e2.setPhoneNumber("2342423");
         e2.setUserName("TrunksFan");
         eDao.addEntity(e2);
-        
         assertEquals(eDao.getAllEntities().size(),2);
     }
 

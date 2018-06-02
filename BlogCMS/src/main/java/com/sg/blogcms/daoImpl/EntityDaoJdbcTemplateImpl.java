@@ -94,7 +94,7 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
         );
 
         int entityId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        entity.setEntityId(entityId);
+        entity.setRecordId(entityId);
 
         return null;
     }
