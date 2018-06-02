@@ -4,7 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html class="main-bg">
     <head>
         <title>Index Page</title>
         <!-- Bootstrap core CSS -->
@@ -22,7 +22,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Brand</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/homepage">Brand</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,11 +51,11 @@
                     <ul style="list-style:none;">
                         <li>
                             <c:if test="${pageContext.request.userPrincipal.name != null}">
-                            <p> Hello .. 
-                                ${pageContext.request.userPrincipal.name}
-                                <a href="<c:url value="j_spring_security_logout" />" >( Logout )</a>
-                                
-                            </p>
+                                <p> Hello .. 
+                                    ${pageContext.request.userPrincipal.name}
+                                    <a href="<c:url value="j_spring_security_logout" />" >( Logout )</a>
+
+                                </p>
                             </c:if>
                         </li>
 
@@ -80,7 +80,7 @@
             <div style="display:flex; justify-content: space-around; margin-bottom:40px;">
                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                     <a class="btn btn-primary" href="#"role="button">Edit Profile</a>
-                    <a class="btn btn-primary" href="#"role="button">Create Blog</a>
+                    <a class="btn btn-primary" href="${pageContext.request.contextPath}/createPost"role="button">Create Blog Post</a>
                     <a class="btn btn-primary" href="#"role="button">Search Category</a>
                 </div>
 
@@ -89,7 +89,7 @@
 
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Dropdown
+                        Recent Posts
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -102,7 +102,7 @@
                 </div>
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Dropdown
+                        Recent Tags
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -115,7 +115,7 @@
                 </div>
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Dropdown
+                        Recent Pages
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -135,6 +135,8 @@
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <p>Hi i can only be seen by admins</p>
             </sec:authorize>
+
+           
 
         </div>
         <!-- Placed at the end of the document so the pages load faster -->

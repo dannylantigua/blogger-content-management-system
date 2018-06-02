@@ -11,6 +11,7 @@ import com.sg.blogcms.service.EntityService;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,10 +29,30 @@ public class DashboardController {
         this.ServiceDao = ServiceDao;
     }
 
-//    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-//    public String dashboard(HttpServletRequest request) {
-//
-//        return "dashboard";
-//    }
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public String dashboard(HttpServletRequest request, Model model) {
 
+        if (request.getRemoteUser() != null) {
+            String username = request.getRemoteUser();
+            Entity currentEntity = ServiceDao.getEntityByUserName(username);
+            model.addAttribute("firstname", currentEntity.getFirstName());
+            model.addAttribute("lastname", currentEntity.getLastName());
+            model.addAttribute("email", currentEntity.getEmail());
+        }
+
+        return "dashboard";
+    }
+
+    @RequestMapping(value = "/createPost", method = RequestMethod.GET)
+    public String createPost(HttpServletRequest request, Model model){
+        if (request.getRemoteUser() != null) {
+            String username = request.getRemoteUser();
+            Entity currentEntity = ServiceDao.getEntityByUserName(username);
+            model.addAttribute("firstname", currentEntity.getFirstName());
+            model.addAttribute("lastname", currentEntity.getLastName());
+            model.addAttribute("email", currentEntity.getEmail());
+        }
+        return "createPost";
+    }
+    
 }

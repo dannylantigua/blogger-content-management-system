@@ -86,17 +86,5 @@ public class AccountController {
 //        }
     }
 
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String dashboard(HttpServletRequest request, Model model) {
-
-        if(request.getRemoteUser() != null){
-            String username = request.getRemoteUser();
-            Entity currentEntity = ServiceDao.getEntityByUserName(username);
-            model.addAttribute("firstname", currentEntity.getFirstName());
-            model.addAttribute("lastname", currentEntity.getLastName());
-            model.addAttribute("email", currentEntity.getEmail());
-        }
-        
-        return "dashboard";
-    }
+   
 }

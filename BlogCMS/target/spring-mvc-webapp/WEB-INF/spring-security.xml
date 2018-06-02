@@ -44,6 +44,8 @@
         <intercept-url pattern="/dashboard" 
                        access="ROLE_USER" />
         
+        <intercept-url pattern="/createPost" 
+                       access="ROLE_USER" />
         
                        
                        <!--
