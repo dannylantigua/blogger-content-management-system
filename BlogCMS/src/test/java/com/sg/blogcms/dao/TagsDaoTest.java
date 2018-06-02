@@ -61,35 +61,35 @@ public class TagsDaoTest {
     /**
      * Test of savePostTags method, of class TagsDao.
      */
-    @Test
-    public void testSaveGetAllRemovePostTags() {      
-        postsTags tag1 = new postsTags();
-        tag1.setPostId(1);
-        tag1.setTag("tech");
-        
-        postsTags tag2 = new postsTags();
-        tag2.setPostId(1);
-        tag2.setTag("GoogleIO");
-        
-        postsTags tag3 = new postsTags();
-        tag3.setPostId(1);
-        tag3.setTag("phone");
-        
-        List<postsTags> myList = 
-                new ArrayList<>(Arrays.asList(tag1, tag2, tag3));
-        // Save
-        dao.savePostTags(myList);
-        
-        // Get the list from DAO
-        List<postsTags> fromDao = dao.getAllTagsByPosts(1);
-        // Save functionality
-        assertEquals(fromDao.indexOf(1), myList.indexOf(1));
-        // Get functionality
-        assertEquals(fromDao.size(), 3);  
-        // Remove functionality
-        dao.removeTag(tag1);
-        fromDao = dao.getAllTagsByPosts(1);
-        assertEquals(fromDao.size(), 2);  
-    }
+//    @Test
+//    public void testSaveGetAllRemovePostTags() {      
+//        postsTags tag1 = new postsTags();
+//        tag1.setPostId(1);
+//        tag1.setTag("tech");
+//        
+//        postsTags tag2 = new postsTags();
+//        tag2.setPostId(1);
+//        tag2.setTag("GoogleIO");
+//        
+//        postsTags tag3 = new postsTags();
+//        tag3.setPostId(1);
+//        tag3.setTag("phone");
+//        
+//        List<postsTags> myList = 
+//                new ArrayList<>(Arrays.asList(tag1, tag2, tag3));
+//        // Save
+//        dao.savePostTags(myList);
+//        
+//        // Get the list from DAO
+//        List<postsTags> fromDao = dao.getAllTagsByPosts(1);
+//        // Save functionality
+//        assertEquals(fromDao.indexOf(1), myList.indexOf(1));
+//        // Get functionality
+//        assertEquals(fromDao.size(), 3);  
+//        // Remove functionality
+//        dao.removeTag(tag1);
+//        fromDao = dao.getAllTagsByPosts(1);
+//        assertEquals(fromDao.size(), 2);  
+//    }
 
 }
