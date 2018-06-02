@@ -14,8 +14,9 @@
         <title>Index Page</title>
         <!-- Bootstrap core CSS -->
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">     
+        <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">  
     </head>
-    <body>
+    <body class="signup">
 
         <div class="text-center">
             <h1>Title</h1>
