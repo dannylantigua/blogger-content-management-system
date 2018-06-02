@@ -28,10 +28,10 @@ public class DashboardController {
         this.ServiceDao = ServiceDao;
     }
 
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String dashboard(HttpServletRequest request) {
-
-        return "dashboard";
-    }
+//    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+//    public String dashboard(HttpServletRequest request) {
+//
+//        return "dashboard";
+//    }
 
 }

@@ -49,6 +49,7 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
     private static final String SQL_SELECT_BY_PASSWORD
             = " SELECT * FROM Entity WHERE passwd = ? ";
 
+ 
     /*=============================================================================
         AUTHORITY PREPARED STATEMENTS
     ==============================================================================*/
@@ -56,9 +57,14 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
     private static final String SQL_INSERT_AUTHORITY
             = " INSERT INTO authorities (UserName , authority) values ( ? , ?)";
 
-    /*=============================================================================
-        AUTHORITY PREPARED STATEMENTS
-    ==============================================================================*/
+    private static final String SQL_DELETE_AUTHORITY
+            = " delete from authorities where UserName = ? ";
+    
+ 
+
+    
+    //Might have to refactor entity methods to include authorities
+    
     @Override
     public Entity getEntityById(int entityId) {
 
@@ -68,9 +74,13 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
             return null;
         }
     }
+    
+   
 
     @Override
     public void removeEntityById(int entityId) {
+        Entity currentEntity = this.getEntityById(entityId);
+        jdbcTemplate.update(SQL_DELETE_AUTHORITY,currentEntity.getUserName());
         jdbcTemplate.update(SQL_DELETE_BY_ID, entityId);
     }
 

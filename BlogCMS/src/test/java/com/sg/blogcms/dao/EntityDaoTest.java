@@ -6,7 +6,9 @@
 package com.sg.blogcms.dao;
 
 import com.sg.blogcms.model.Entity;
+import com.sg.blogcms.service.EntityService;
 import java.util.List;
+import javax.inject.Inject;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,6 +17,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  *
@@ -23,10 +26,16 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class EntityDaoTest {
 
     EntityDao eDao;
-
+    private PasswordEncoder encoder;
+    
     public EntityDaoTest() {
     }
 
+     
+    
+    
+   
+    
     @BeforeClass
     public static void setUpClass() {
     }
@@ -61,9 +70,12 @@ public class EntityDaoTest {
         e.setFirstName("Son");
         e.setLastName("Danny");
         e.setIsAdmin(false);
-        e.setPassword("theCakeIsALie94");
+        
+        e.setPassword("theCakeIsALie");
         e.setPhoneNumber("2342423");
         e.setUserName("Kaniki");
+        e.addAuthority("ROLE_USER");
+        
         eDao.addEntity(e);
         Entity eFromDatabase = eDao.getEntityById(e.getRecordId());
         assertEquals(eFromDatabase.getFirstName(), e.getFirstName());

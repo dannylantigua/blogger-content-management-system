@@ -43,8 +43,7 @@
         <intercept-url pattern="/dashboard" 
                        access="ROLE_USER" />
         
-        <intercept-url pattern="/dashboard" 
-                       access="ROLE_ADMIN" />
+        
                        
                        <!--
         <intercept-url pattern="/deleteContact" 

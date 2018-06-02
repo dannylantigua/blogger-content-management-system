@@ -13,6 +13,7 @@ import java.util.Objects;
  * @author kmlnd
  */
 public class Entity {
+
     private int recordId;
     private String firstName;
     private String lastName;
@@ -165,6 +166,8 @@ public class Entity {
         return true;
     }
 
-   
-    
+    public void addAuthority(String authority) {
+        authorities.add(authority);
+    }
+
 }

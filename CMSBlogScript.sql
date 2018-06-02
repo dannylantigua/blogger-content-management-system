@@ -12,7 +12,7 @@ EMAIL VARCHAR(25),
 PhoneNumber VARCHAR(10),
 AboutMe TEXT,
 UserName VARCHAR(30),
-passwd VARCHAR(50),
+passwd VARCHAR(300),
 isAdmin boolean,
 `enabled` tinyint(1) NOT NULL,
  KEY `username` (`username`)

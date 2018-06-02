@@ -3,13 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
     <head>
         <title>Company Contacts</title>
-        <!-- Bootstrap core CSS -->
+         Bootstrap core CSS 
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-        <!-- SWC Icon -->
+         SWC Icon 
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/icon.png">
     </head>
     <body>
@@ -21,8 +21,8 @@
                 <h1>An error has occurred...</h1>
                 <h3>${errorMessage}</h3>
             </div>
-            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+             jQuery (necessary for Bootstrap's JavaScript plugins) 
             <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
             <script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     </body>
-</html>
+</html>-->
