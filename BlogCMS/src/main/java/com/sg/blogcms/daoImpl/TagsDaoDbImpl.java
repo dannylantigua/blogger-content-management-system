@@ -29,7 +29,7 @@ public class TagsDaoDbImpl implements TagsDao {
             = "select * from PostsTags where postId = ";
 
     private static final String SQL_SAVE_TAGS
-            = "insert into PostsTags values (?, ?)";
+            = "insert into PostsTags (postId, Tag) values (?, ?)";
     
     private static final String SQL_REMOVE_TAGS
             = "delete from PostsTags where postId = ? and Tag = ?";
