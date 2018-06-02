@@ -31,11 +31,6 @@ public class EntityDaoTest {
     public EntityDaoTest() {
     }
 
-     
-    
-    
-   
-    
     @BeforeClass
     public static void setUpClass() {
     }

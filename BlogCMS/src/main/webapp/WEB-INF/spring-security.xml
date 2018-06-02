@@ -23,7 +23,8 @@
     <http auto-config="true" use-expressions="false">
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/login"
-                    authentication-failure-url="/login?login_error=1"/>
+                    authentication-failure-url="/login?login_error=1"
+                    default-target-url="/dashboard"/>
        
         <intercept-url pattern="/" 
                        access="IS_AUTHENTICATED_ANONYMOUSLY" />
