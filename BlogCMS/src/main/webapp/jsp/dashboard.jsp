@@ -79,7 +79,7 @@
 
             <div style="display:flex; justify-content: space-around; margin-bottom:40px;">
                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <a class="btn btn-primary" href="#"role="button">Edit Profile</a>
+                    <a class="btn btn-primary" href="${pageContext.request.contextPath}/editProfile"role="button">Edit Profile</a>
                     <a class="btn btn-primary" href="${pageContext.request.contextPath}/createPost"role="button">Create Blog Post</a>
                     <a class="btn btn-primary" href="#"role="button">Search Category</a>
                 </div>

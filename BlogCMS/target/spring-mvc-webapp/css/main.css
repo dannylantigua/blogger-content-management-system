@@ -1,0 +1,85 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 31, 2018, 8:52:03 AM
+    Author     : kmlnd
+*/
+
+.main-content {
+    display:flex;
+}
+
+.left-main-content {
+    height:500px;
+    border: 1px solid black;
+    width:50%;
+}
+
+.right-main-content {
+    height:500px;
+    border: 1px solid black;
+    width:50%;
+}
+
+.top-content{
+    height:50%;
+    border: 1px solid black;
+}
+
+.bottom-content {
+    height:50%;
+    border: 1px solid black;
+}
+
+
+.card-img-size{
+    max-width:15rem;
+}
+
+.card {
+
+    margin-top:100px;
+    border:1px solid black;
+    padding:20px;
+}
+
+
+
+.group-cards{
+    display:flex;
+    justify-content: space-between;
+}
+
+.index {
+
+
+    background-image:url("https://images.pexels.com/photos/941566/pexels-photo-941566.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-repeat: no-repeat;
+
+}
+
+.login{
+
+
+    color:white;
+    background-image:url("https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+
+.signup{
+
+    color:white;
+    background-image:url("https://images.pexels.com/photos/753267/pexels-photo-753267.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.title {
+    color:black;
+    
+}

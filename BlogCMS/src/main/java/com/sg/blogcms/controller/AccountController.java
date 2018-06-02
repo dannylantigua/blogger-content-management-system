@@ -38,8 +38,6 @@ public class AccountController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String showLoginForm() {
 
-   
-
         return "login";
     }
 
@@ -86,5 +84,17 @@ public class AccountController {
 //        }
     }
 
-   
+    @RequestMapping(value = "/editProfile", method = RequestMethod.GET)
+    public String editProfile() {
+        return "editProfile";
+    }
+    
+    @RequestMapping(value="/deleteUser" , method = RequestMethod.GET)
+    public String deleteUser(HttpServletRequest request){
+        String userName = request.getRemoteUser();
+        Entity entity = ServiceDao.getEntityByUserName(userName);
+        ServiceDao.removeEntityById(entity.getRecordId());
+        return "redirect:login";
+    }
+
 }
