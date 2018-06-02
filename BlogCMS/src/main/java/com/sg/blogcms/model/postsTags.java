@@ -16,14 +16,6 @@ public class postsTags {
     private int postId;
     private String tag;
 
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-
     public int getPostId() {
         return postId;
     }
@@ -32,11 +24,19 @@ public class postsTags {
         this.postId = postId;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + this.postId;
-        hash = 31 * hash + Objects.hashCode(this.tag);
+        int hash = 5;
+        hash = 97 * hash + this.postId;
+        hash = 97 * hash + Objects.hashCode(this.tag);
         return hash;
     }
 
@@ -60,5 +60,6 @@ public class postsTags {
         }
         return true;
     }
+
     
 }

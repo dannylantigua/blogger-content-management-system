@@ -47,7 +47,7 @@ public class CategoriesDaoDbImpl implements CategoriesDao {
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()",
                 Integer.class);
-        category.setCategoryId(newId);
+        category.setRecordId(newId);
         return category;
     }
 
@@ -55,7 +55,7 @@ public class CategoriesDaoDbImpl implements CategoriesDao {
     public void updateCategory(Categories category) {
         jdbcTemplate.update(SQL_UPDATE_CATEGORY,
                 category.getCategoryName(),
-                category.getCategoryId());
+                category.getRecordId());
     }
 
     @Override

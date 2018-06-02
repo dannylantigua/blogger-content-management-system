@@ -65,7 +65,7 @@ public class Mappers {
             //converting entity from rows of database into an object
             
             Categories currentCategory = new Categories();
-            currentCategory.setCategoryId(rs.getInt("recordId"));
+            currentCategory.setRecordId(rs.getInt("recordId"));
             currentCategory.setCategoryName(rs.getString("CategoryName"));
             return currentCategory;
         }
@@ -79,7 +79,7 @@ public class Mappers {
             //converting entity from rows of database into an object
             
             StaticPages page = new StaticPages();
-            page.setPageId(rs.getInt("recordId"));
+            page.setRecordId(rs.getInt("recordId"));
             page.setPageName(rs.getString("PageName"));
             page.setContent(rs.getString("Content"));
             return page;

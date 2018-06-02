@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author kmlnd
  */
 @Controller
-public class LoginController {
-      @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        return "login";
+public class HomepageController {
+    @RequestMapping(value="/homepage",method=RequestMethod.GET)
+    public String homepage(){
+        
+        return "homepage";
     }
 }

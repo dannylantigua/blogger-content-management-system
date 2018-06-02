@@ -6,6 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,28 +21,37 @@
             <h1>Title</h1>
         </div>
 
+        
         <div class="container" style="width:25%;margin-top:2%;">
-            <form>
+            <form role="form" method="POST" action="createUser">
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter email">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="password" class="form-control" id="username" placeholder="Username">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <label for="first">First Name</label>
+                    <input type="text" class="form-control" id="first" name="firstname" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last">Last Name</label>
+                    <input type="text" class="form-control" id="last" name="lastname" placeholder="Last Name" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                 </div>
-                <div class="form-group">
+<!--                <div class="form-group">
                     <label for="retypePassword">Retype Password</label>
-                    <input type="password" class="form-control" id="retypePassword" placeholder="Password">
-                </div>
+                    <input type="password" class="form-control" id="retypePassword" name="password-repeat" placeholder="Password" required>
+                </div>-->
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="rememberMe">

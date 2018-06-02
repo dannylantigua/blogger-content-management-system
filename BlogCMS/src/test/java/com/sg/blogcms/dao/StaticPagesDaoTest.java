@@ -45,7 +45,7 @@ public class StaticPagesDaoTest {
         List<StaticPages> pages = stDao.getAllStaticPages();
         
         for (StaticPages currentPage : pages) {
-            stDao.removeStaticPage(currentPage.getPageId());
+            stDao.removeStaticPage(currentPage.getRecordId());
         }
     }
     
@@ -59,16 +59,16 @@ public class StaticPagesDaoTest {
     @Test
     public void testAddGetDeleteStaticPage() {
         StaticPages page = new StaticPages();
-        page.setPageId(1);
+        page.setRecordId(1);
         page.setPageName("About");
         page.setContent("Content for About page...");
         stDao.addNewStaticPage(page);
         
-        StaticPages fromDao = stDao.getStaticPageById(page.getPageId());
+        StaticPages fromDao = stDao.getStaticPageById(page.getRecordId());
         assertEquals(fromDao, page);
         
-        stDao.removeStaticPage(page.getPageId());
-        assertNull(stDao.getStaticPageById(page.getPageId()));
+        stDao.removeStaticPage(page.getRecordId());
+        assertNull(stDao.getStaticPageById(page.getRecordId()));
     }
 
     /**
@@ -77,14 +77,14 @@ public class StaticPagesDaoTest {
     @Test
     public void testUpdateStaticPage() {
         StaticPages page = new StaticPages();
-        page.setPageId(2);
+        page.setRecordId(2);
         page.setPageName("Contact Us");
         page.setContent("Content for Contact Us page...");
         stDao.addNewStaticPage(page);
         
         page.setPageName("Contact");
         stDao.updateStaticPage(page);
-        StaticPages fromDao = stDao.getStaticPageById(page.getPageId());
+        StaticPages fromDao = stDao.getStaticPageById(page.getRecordId());
         assertEquals(fromDao, page);
     }
 
@@ -94,13 +94,13 @@ public class StaticPagesDaoTest {
     @Test
     public void testGetAllStaticPages() {
         StaticPages page = new StaticPages();
-        page.setPageId(1);
+        page.setRecordId(1);
         page.setPageName("About");
         page.setContent("Content for About page...");
         stDao.addNewStaticPage(page);
         
         StaticPages page2 = new StaticPages();
-        page2.setPageId(2);
+        page2.setRecordId(2);
         page2.setPageName("Contact Us");
         page2.setContent("Content for Contact Us page...");
         stDao.addNewStaticPage(page2);

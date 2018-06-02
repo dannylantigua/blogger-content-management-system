@@ -47,7 +47,7 @@ public class StaticPagesDaoDbImpl implements StaticPagesDao {
                 page.getContent());
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
-        page.setPageId(newId);
+        page.setRecordId(newId);
         return page;
     }
 
@@ -56,7 +56,7 @@ public class StaticPagesDaoDbImpl implements StaticPagesDao {
         jdbcTemplate.update(SQL_UPDATE_PAGE,
                 page.getPageName(),
                 page.getContent(),
-                page.getPageId());
+                page.getRecordId());
     }
 
     @Override

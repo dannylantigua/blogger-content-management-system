@@ -45,7 +45,7 @@ public class CategoriesDaoTest {
         List<Categories> categories = CatDao.getAllCategories();
         
         for (Categories currentCat : categories) {
-            CatDao.removeCategory(currentCat.getCategoryId());
+            CatDao.removeCategory(currentCat.getRecordId());
         }
     }
     
@@ -59,15 +59,15 @@ public class CategoriesDaoTest {
     @Test
     public void testAddGetDeleteCategory() {        
         Categories ct = new Categories();
-        ct.setCategoryId(1);
+        ct.setRecordId(1);
         ct.setCategoryName("Technology");
         CatDao.addNewCategory(ct);
         
-        Categories fromDb = CatDao.getCategoryById(ct.getCategoryId());
+        Categories fromDb = CatDao.getCategoryById(ct.getRecordId());
         assertEquals(fromDb, ct);
         
-        CatDao.removeCategory(ct.getCategoryId());
-        assertNull(CatDao.getCategoryById(ct.getCategoryId()));
+        CatDao.removeCategory(ct.getRecordId());
+        assertNull(CatDao.getCategoryById(ct.getRecordId()));
     }
 
     /**
@@ -76,14 +76,14 @@ public class CategoriesDaoTest {
     @Test
     public void testUpdateCategory() {
         Categories ct2 = new Categories();
-        ct2.setCategoryId(2);
+        ct2.setRecordId(2);
         ct2.setCategoryName("Health");
         CatDao.addNewCategory(ct2);
         
         ct2.setCategoryName("Health & Fitness");
         CatDao.updateCategory(ct2);
         
-        Categories fromDb = CatDao.getCategoryById(ct2.getCategoryId());
+        Categories fromDb = CatDao.getCategoryById(ct2.getRecordId());
         assertEquals(fromDb, ct2);
     }
 
@@ -93,12 +93,12 @@ public class CategoriesDaoTest {
     @Test
     public void testGetAllCategories() {
         Categories ct = new Categories();
-        ct.setCategoryId(1);
+        ct.setRecordId(1);
         ct.setCategoryName("Technology");
         CatDao.addNewCategory(ct);
         
         Categories ct2 = new Categories();
-        ct2.setCategoryId(2);
+        ct2.setRecordId(2);
         ct2.setCategoryName("Health");
         CatDao.addNewCategory(ct2);
         

@@ -13,9 +13,17 @@ import java.util.Objects;
  */
 public class StaticPages {
 
-    private int pageId;
+    private int recordId;
     private String pageName;
     private String content;
+
+    public int getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(int recordId) {
+        this.recordId = recordId;
+    }
 
     public String getPageName() {
         return pageName;
@@ -33,20 +41,12 @@ public class StaticPages {
         this.content = content;
     }
 
-    public int getPageId() {
-        return pageId;
-    }
-
-    public void setPageId(int pageId) {
-        this.pageId = pageId;
-    }
-
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 11 * hash + this.pageId;
-        hash = 11 * hash + Objects.hashCode(this.pageName);
-        hash = 11 * hash + Objects.hashCode(this.content);
+        hash = 31 * hash + this.recordId;
+        hash = 31 * hash + Objects.hashCode(this.pageName);
+        hash = 31 * hash + Objects.hashCode(this.content);
         return hash;
     }
 
@@ -62,7 +62,7 @@ public class StaticPages {
             return false;
         }
         final StaticPages other = (StaticPages) obj;
-        if (this.pageId != other.pageId) {
+        if (this.recordId != other.recordId) {
             return false;
         }
         if (!Objects.equals(this.pageName, other.pageName)) {
@@ -72,5 +72,7 @@ public class StaticPages {
             return false;
         }
         return true;
-    } 
+    }
+
+    
 }

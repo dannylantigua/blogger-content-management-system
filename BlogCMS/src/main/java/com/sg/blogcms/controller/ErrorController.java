@@ -5,19 +5,26 @@
  */
 package com.sg.blogcms.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
  * @author kmlnd
  */
 @Controller
-public class SignUpController {
+public class ErrorController {
 
-    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
-    public String signUp() {
-        return "signUp";
+    @RequestMapping(value = "/error")
+    public String customError(HttpServletRequest request,
+            HttpServletResponse response,
+            Model mode) {
+        
+        
+        
+        return "customError";
     }
 }

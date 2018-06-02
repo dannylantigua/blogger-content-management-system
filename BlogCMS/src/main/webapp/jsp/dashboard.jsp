@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -49,7 +50,11 @@
                 <div style="padding-top:20px">
                     <ul style="list-style:none;">
                         <li>
-                            Profile
+                            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <p> Hello : ${pageContext.request.userPrincipal.name}
+                                <a href="<c:url value="j_spring_security_logout" />" > Logout </a>
+                            </p>
+                            </c:if>
                         </li>
 
                         <li>
@@ -67,15 +72,15 @@
             <hr>
 
             <div style="display:flex; justify-content: space-around; margin-bottom:40px;">
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
-    <a class="btn btn-primary" href="#"role="button">Edit Profile</a>
-                <a class="btn btn-primary" href="#"role="button">Create Blog</a>
-                <a class="btn btn-primary" href="#"role="button">Search Category</a>
-</div>
-              
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <a class="btn btn-primary" href="#"role="button">Edit Profile</a>
+                    <a class="btn btn-primary" href="#"role="button">Create Blog</a>
+                    <a class="btn btn-primary" href="#"role="button">Search Category</a>
+                </div>
+
             </div>
             <div style="display:flex; justify-content: space-around">
-              
+
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         Dropdown
@@ -116,6 +121,15 @@
                     </ul>
                 </div>
             </div>
+
+            <sec:authorize access="hasRole('ROLE_USER')">
+                <p> Hi im a thing that can only be seen by users </p>
+            </sec:authorize>
+
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <p>Hi i can only be seen by admins</p>
+            </sec:authorize>
+
         </div>
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>

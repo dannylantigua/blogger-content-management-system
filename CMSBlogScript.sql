@@ -62,12 +62,15 @@ CREATE TABLE IF NOT EXISTS `authorities` (
 KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 ALTER TABLE `authorities`
- ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `Entity` (`username`) ON DELETE CASCADE;
+ ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`UserName`) REFERENCES `Entity` (`UserName`) ON DELETE CASCADE;
+
  
 --
 -- Dumping data for table `users`
 --
+
 INSERT INTO `Entity` (`recordId`, `username`, `passwd`, `enabled`) VALUES
 (1, 'admin', 'password', 1),
 (2, 'user', 'password', 1);
@@ -77,6 +80,7 @@ INSERT INTO `Entity` (`recordId`, `username`, `passwd`, `enabled`) VALUES
 --
 -- Dumping data for table `authorities`
 --
+
 INSERT INTO `authorities` (`username`, `authority`) VALUES
 ('admin', 'ROLE_ADMIN'),
 ('admin', 'ROLE_USER'),
@@ -107,3 +111,9 @@ INSERT INTO Posts VALUES (1, 'What is a Method? A real controversy in the LGACC-
 -- Data for Tags
 -- 
 INSERT INTO PostsTags VALUES (1, 'ForRealWhatsAMethod'), (1, 'ThisHasToStop');
+
+INSERT INTO `authorities` (`UserName`, `authority`) VALUES
+('admin', 'ROLE_ADMIN'),
+('admin', 'ROLE_USER'),
+('user', 'ROLE_USER');
+
