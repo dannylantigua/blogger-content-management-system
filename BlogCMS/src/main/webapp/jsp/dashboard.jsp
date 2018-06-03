@@ -82,6 +82,11 @@
                     <a class="btn btn-primary" href="${pageContext.request.contextPath}/editProfile"role="button">Edit Profile</a>
                     <a class="btn btn-primary" href="${pageContext.request.contextPath}/createPost"role="button">Create Blog Post</a>
                     <a class="btn btn-primary" href="#"role="button">Search Category</a>
+
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/adminSettings"role="button">Admin Settings</a>
+                    </sec:authorize>
+
                 </div>
 
             </div>
@@ -136,7 +141,7 @@
                 <p>Hi i can only be seen by admins</p>
             </sec:authorize>
 
-           
+
 
         </div>
         <!-- Placed at the end of the document so the pages load faster -->

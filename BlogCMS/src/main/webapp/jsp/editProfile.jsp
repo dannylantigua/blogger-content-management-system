@@ -98,16 +98,7 @@
             <hr>
 
             <h1>
-                Company Settings
-            </h1>
-
-            <p>form and add logo for company goes here</p>
-
-
-
-
-
-            <hr>
+           
             <a class="btn btn-primary" href="${pageContext.request.contextPath}/dashboard"role="button">Back to dashboard</a>
         </div>
         <!-- Placed at the end of the document so the pages load faster -->

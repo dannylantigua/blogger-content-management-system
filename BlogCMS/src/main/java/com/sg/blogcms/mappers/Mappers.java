@@ -35,9 +35,10 @@ public class Mappers {
             currentEntityFromRow.setLastName(rs.getString("LastName"));
             currentEntityFromRow.setEmail(rs.getString("EMAIL"));
             currentEntityFromRow.setPhoneNumber(rs.getString("PhoneNumber"));
-            currentEntityFromRow.setUserName(rs.getString("AboutMe"));
+            currentEntityFromRow.setUserName(rs.getString("UserName"));
             currentEntityFromRow.setPassword(rs.getString("passwd"));
             currentEntityFromRow.setIsAdmin(rs.getBoolean("isAdmin"));
+            currentEntityFromRow.setAboutMe(rs.getString("AboutMe"));
             return currentEntityFromRow;
         }
 

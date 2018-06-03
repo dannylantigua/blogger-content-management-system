@@ -8,9 +8,11 @@ package com.sg.blogcms.controller;
 import com.sg.blogcms.dao.EntityDao;
 import com.sg.blogcms.model.Entity;
 import com.sg.blogcms.service.EntityService;
+import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import static org.springframework.http.RequestEntity.method;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -95,6 +97,15 @@ public class AccountController {
         Entity entity = ServiceDao.getEntityByUserName(userName);
         ServiceDao.removeEntityById(entity.getRecordId());
         return "redirect:login";
+    }
+    
+    @RequestMapping(value="/adminSettings", method=RequestMethod.GET)
+    public String adminSettings(Model model){
+        
+        List<Entity> listOfEntities = ServiceDao.getAllEntities();
+        model.addAttribute("listOfEntities", listOfEntities);
+        
+        return "adminSettings";
     }
 
 }
