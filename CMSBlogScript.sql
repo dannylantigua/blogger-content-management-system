@@ -117,3 +117,8 @@ INSERT INTO `authorities` (`UserName`, `authority`) VALUES
 ('admin', 'ROLE_USER'),
 ('user', 'ROLE_USER');
 
+UPDATE Entity
+SET passwd = '$2a$10$tzNSD00b1lkRrEYNSVtbC.m7Vwhx/hjgdQZinBgIztFwis0./XTfq'
+where UserName = 'admin';
+
+
