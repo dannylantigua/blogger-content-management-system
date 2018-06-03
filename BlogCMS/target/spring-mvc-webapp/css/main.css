@@ -21,7 +21,7 @@ and open the template in the editor.
 .right-main-content {
     height:500px;
     border: 1px solid black;
-    width:50%;
+    width:25%;
 }
 
 .top-content{
@@ -82,4 +82,10 @@ and open the template in the editor.
 .title {
     color:black;
     
+}
+
+.profile {
+    border:1px solid black;
+    width:25%;
+    text-align: center;
 }

@@ -28,17 +28,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="${pageContext.request.contextPath}/homepage">Brand</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/homepage">Company Logo</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Link</a></li>
-                        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                        <li <!--class="active"--><a href="#">All Blogs <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">Contact</a></li>
+                            <c:if test="${pageContext.request.userPrincipal.name != null}">
                             <li><a href="${pageContext.request.contextPath}/dashboard" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Dashboard</a></li>
-                         </c:if>
+                            </c:if>
 
                     </ul>
                     <form class="navbar-form navbar-right">
@@ -68,69 +68,45 @@
                 </div>
                 <div class="right-main-content">
                     <div class="top-content">
-                        <div class="container">
-                        <p>Category here (will fix structure and design later)</p>
-                        <h1>Kennys Blog example heading</h1>
-                        <p>O.O fjsdfhsdjhfkjshkfjhsjkfhjshfjhdjhsfj</p>
-                    </div>
+                        
+                            <p>Catign later)</p>
+                            <h1>example </h1>
+                            <p>O.O fjsdfhsdjhfkjshkfjhsjkfhjshfjhdjhsfj</p>
+                     
                     </div>
                     <div class="bottom-content">
-                        <div class="container">
-                        <p>Category here (will fix structure and design later)</p>
-                        <h1>Kennys Blog example heading</h1>
-                        <p>O.O fjsdfhsdjhfkjshkfjhsjkfhjshfjhdjhsfj</p>
+                      
+                            <p>Categorygn later)</p>
+                            <h1>example </h1>
+                            <p>O.O fjsdfhsdjhfkjshkfjhsjkfhjshfjhdjhsfj</p>
+                   
                     </div>
-                    </div>
+                </div>
+                <div class="profile">
+                
+                    <div style="display:block; margin: 50px 32%;" >
+                            <div style="padding:50px;border-radius:400px;background:grey;width:1%;"></div>
+                       </div>
+                        <div class="social-media-links ">
+                            <p>Facebook</p>
+
+                            <p>twitter</p>
+
+                            <p>whateevr</p>
+                        </div>
+
+                   
                 </div>
 
 
 
 
             </div>
+</div>
 
+          
 
-            <div class="group-cards">
-
-
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top card-img-size" src="https://cdn.gamerant.com/wp-content/uploads/pokemon-sun-moon-ash-pikachu.jpg.optimal.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Blog num</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top card-img-size" src="https://cdn.gamerant.com/wp-content/uploads/pokemon-sun-moon-ash-pikachu.jpg.optimal.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Blog num</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top card-img-size" src="https://cdn.gamerant.com/wp-content/uploads/pokemon-sun-moon-ash-pikachu.jpg.optimal.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Blog num</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top card-img-size" src="https://cdn.gamerant.com/wp-content/uploads/pokemon-sun-moon-ash-pikachu.jpg.optimal.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Blog num</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
+        
 
 
         <!-- Placed at the end of the document so the pages load faster -->
