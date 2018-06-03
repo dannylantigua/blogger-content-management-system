@@ -6,7 +6,9 @@
 package com.sg.blogcms.daoImpl;
 
 import com.sg.blogcms.dao.EntityDao;
+import com.sg.blogcms.mappers.Mappers.AuthoritiesMapper;
 import com.sg.blogcms.mappers.Mappers.EntityMapper;
+import com.sg.blogcms.model.Authorities;
 import com.sg.blogcms.model.Entity;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,11 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
             = " INSERT INTO Entity (FirstName, LastName, EMAIL , PhoneNumber,AboutMe,UserName,passwd,isAdmin , enabled) "
             + " VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , 1)";
 
+    private static final String SQL_UPDATE_ENTITY
+            = " UPDATE Entity "
+            + " SET FirstName = ? , LastName = ? , EMAIL = ? , PhoneNumber = ?, AboutMe = ? , UserName = ? , passwd = ?"
+            + " WHERE recordId = ? ";
+
     private static final String SQL_SELECT_ALL_ENTITY
             = " SELECT * FROM Entity ";
 
@@ -62,7 +69,10 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
     private static final String SQL_DELETE_AUTHORITY
             = " delete from authorities where UserName = ? ";
 
-    //Might have to refactor entity methods to include authorities
+  
+    private static final String SQL_GET_AUTHORITIES_BY_USERNAME
+            = " SELECT * from authorities where UserName = ?";
+
     @Override
     public Entity getEntityById(int entityId) {
 
@@ -73,10 +83,11 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
         }
     }
 
+    @Override
     public Entity getEntityByUserName(String username) {
         try {
-        return jdbcTemplate.queryForObject(SQL_GET_ENTITY_BY_USERNAME, new EntityMapper(), username);
-        } catch(DataAccessException ex){
+            return jdbcTemplate.queryForObject(SQL_GET_ENTITY_BY_USERNAME, new EntityMapper(), username);
+        } catch (DataAccessException ex) {
             return null;
         }
     }
@@ -89,8 +100,24 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
     }
 
     @Override
-    public Entity updateEntityById(int entityId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateEntity(Entity e) {
+        jdbcTemplate.update(SQL_UPDATE_ENTITY,
+                e.getFirstName(),
+                e.getLastName(),
+                e.getEmail(),
+                e.getPhoneNumber(),
+                e.getAboutMe(),
+                e.getUserName(),
+                e.getPassword(),
+                e.getRecordId());
+
+        // inserting the users roles
+        ArrayList<String> authorities = e.getAuthorities();
+
+        for (String authortity : authorities) {
+            jdbcTemplate.update(SQL_INSERT_AUTHORITY, e.getUserName(), authortity);
+        }
+
     }
 
     @Override
@@ -100,7 +127,18 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
 
     @Override
     public List<Entity> getAllEntities() {
-        return jdbcTemplate.query(SQL_SELECT_ALL_ENTITY, new EntityMapper());
+        List<Entity> entities = jdbcTemplate.query(SQL_SELECT_ALL_ENTITY, new EntityMapper());
+
+        for (Entity currentEntity : entities) {
+            List<Authorities> au = jdbcTemplate.query(SQL_GET_AUTHORITIES_BY_USERNAME, new AuthoritiesMapper(), currentEntity.getUserName());
+            for (Authorities currentAu : au) {
+                currentEntity.addAuthority(currentAu.getAuthority());
+            }
+
+        }
+        //jdbcTemplate.query(SQL_SELECT_ALL_ENTITY, new EntityMapper());
+
+        return entities;
     }
 
     @Override

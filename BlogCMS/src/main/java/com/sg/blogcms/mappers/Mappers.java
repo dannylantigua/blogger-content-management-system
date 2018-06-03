@@ -5,6 +5,7 @@
  */
 package com.sg.blogcms.mappers;
 
+import com.sg.blogcms.model.Authorities;
 import com.sg.blogcms.model.Categories;
 import com.sg.blogcms.model.Entity;
 import com.sg.blogcms.model.StaticPages;
@@ -42,6 +43,19 @@ public class Mappers {
             return currentEntityFromRow;
         }
 
+    }
+    
+    //authorities mapper
+    public static final class AuthoritiesMapper implements RowMapper<Authorities> {
+
+        @Override
+        public Authorities mapRow(ResultSet rs, int i) throws SQLException {
+            Authorities au = new Authorities();
+            au.setUserName(rs.getString("UserName"));
+            au.setAuthority(rs.getString("authority"));
+            return au;
+        }
+        
     }
     
     // TAGS MAPPER

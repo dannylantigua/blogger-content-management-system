@@ -20,7 +20,7 @@ public interface EntityDao {
     
     void removeEntityById(int entityId);
     
-    Entity updateEntityById(int entityId);
+    void updateEntity(Entity e);
     
     Entity editEntity(Entity entity);
     

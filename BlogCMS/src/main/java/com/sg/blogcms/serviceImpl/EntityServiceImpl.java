@@ -37,10 +37,7 @@ public class EntityServiceImpl implements EntityService {
         entityDao.removeEntityById(entityId);
     }
 
-    @Override
-    public Entity updateEntityById(int entityId) {
-        return entityDao.updateEntityById(entityId);
-    }
+   
 
     @Override
     public Entity editEntity(Entity entity) {
@@ -65,6 +62,11 @@ public class EntityServiceImpl implements EntityService {
     @Override
     public Entity getEntityByUserName(String username) {
         return entityDao.getEntityByUserName(username);
+    }
+
+    @Override
+    public void updateEntity(Entity e) {
+        entityDao.updateEntity(e);
     }
 
 }

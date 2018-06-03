@@ -6,8 +6,10 @@
 package com.sg.blogcms.controller;
 
 import com.sg.blogcms.dao.EntityDao;
+import com.sg.blogcms.model.Authorities;
 import com.sg.blogcms.model.Entity;
 import com.sg.blogcms.service.EntityService;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -100,10 +102,31 @@ public class AccountController {
     }
     
     @RequestMapping(value="/adminSettings", method=RequestMethod.GET)
-    public String adminSettings(Model model){
+    public String adminSettings(Model model,HttpServletRequest request){
+        
+        
         
         List<Entity> listOfEntities = ServiceDao.getAllEntities();
-        model.addAttribute("listOfEntities", listOfEntities);
+        List<Entity> admins = new ArrayList<>();
+        for(Entity e : listOfEntities){
+            List<String> au = e.getAuthorities();
+            if(au.contains("ROLE_ADMIN")){
+                admins.add(e);
+            }
+        }
+        model.addAttribute("listOfEntities", admins);
+      
+        
+        List<Entity> users = new ArrayList<>();
+        for(Entity e : listOfEntities){
+            List<String> au = e.getAuthorities();
+            if(!au.contains("ROLE_ADMIN")){
+                users.add(e);
+            }
+
+        }
+        
+        model.addAttribute("users",users);
         
         return "adminSettings";
     }
@@ -121,5 +144,16 @@ public class AccountController {
         return "redirect:adminSettings";
     }
     
+    @RequestMapping(value = "/promoteUserRole", method = RequestMethod.GET)
+    public String promoteUserRole(HttpServletRequest request , Model model){
+        
+        String userId = request.getParameter("userId");
+        Entity currentE = ServiceDao.getEntityById(Integer.parseInt(userId));
+        currentE.addAuthority("ROLE_ADMIN");
+        ServiceDao.updateEntity(currentE);
+        
+        model.addAttribute("notice", currentE);
+        return "redirect:adminSettings";
+    }
 
 }

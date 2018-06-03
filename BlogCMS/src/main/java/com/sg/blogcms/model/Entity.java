@@ -169,5 +169,6 @@ public class Entity {
     public void addAuthority(String authority) {
         authorities.add(authority);
     }
+    
 
 }
