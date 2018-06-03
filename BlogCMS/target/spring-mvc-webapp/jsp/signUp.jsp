@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="rememberMe">
-                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                    <label class="form-check-label" for="rememberMe">Remember me <a href="${pageContext.request.contextPath}/login" style="color:white;"/> | Log in</a></label>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

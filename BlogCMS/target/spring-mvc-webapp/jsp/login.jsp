@@ -26,9 +26,9 @@
                 <input type="text" id="username" class="form-control" name="j_username" placeholder="Username" required autofocus>
                 <label for="j_password" class="sr-only">Password</label>
                 <input type="password" id="j_password" class="form-control" name="j_password" placeholder="Password" required>
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
+                <div class="checkbox mb-3" >
+                    <label >
+                        <input type="checkbox" value="remember-me"> Remember me <a href="${pageContext.request.contextPath}/signUp" style="color:white;"/> | Sign Up</a>
                     </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

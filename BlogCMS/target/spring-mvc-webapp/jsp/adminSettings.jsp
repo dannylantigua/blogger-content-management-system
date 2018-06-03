@@ -31,6 +31,7 @@
                         <th>UserName</th>
                         <th>FirstName</th>
                         <th>LastName</th>
+                        <th>Remove Account</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,7 @@
                             <td><c:out value="${currentEntity.userName}"/></td>
                             <td><c:out value="${currentEntity.firstName}"/></td>
                             <td><c:out value="${currentEntity.lastName}"/></td>
+                            <td><a href="deleteUserAsAdmin?userId=${currentEntity.recordId}"> delete </a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

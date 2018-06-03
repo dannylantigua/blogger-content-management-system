@@ -107,5 +107,19 @@ public class AccountController {
         
         return "adminSettings";
     }
+    
+    @RequestMapping(value="/deleteUserAsAdmin", method=RequestMethod.GET)
+    public String makeAdmin(Model model,HttpServletRequest request){
+        String currentUserName = request.getRemoteUser();
+        Entity currentUser = ServiceDao.getEntityByUserName(currentUserName);
+        String id = request.getParameter("userId");
+        
+        if(currentUser.getRecordId() != Integer.parseInt(id)){
+            ServiceDao.removeEntityById(Integer.parseInt(id));
+        }
+        
+        return "redirect:adminSettings";
+    }
+    
 
 }

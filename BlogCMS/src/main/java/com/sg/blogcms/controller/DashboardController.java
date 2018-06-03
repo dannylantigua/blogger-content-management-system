@@ -35,16 +35,25 @@ public class DashboardController {
         if (request.getRemoteUser() != null) {
             String username = request.getRemoteUser();
             Entity currentEntity = ServiceDao.getEntityByUserName(username);
-            model.addAttribute("firstname", currentEntity.getFirstName());
-            model.addAttribute("lastname", currentEntity.getLastName());
-            model.addAttribute("email", currentEntity.getEmail());
+            
+            
+            try {
+                model.addAttribute("firstname", currentEntity.getFirstName());
+
+                model.addAttribute("lastname", currentEntity.getLastName());
+
+                model.addAttribute("email", currentEntity.getEmail());
+            } catch (NullPointerException ex) {
+
+            }
+
         }
 
         return "dashboard";
     }
 
     @RequestMapping(value = "/createPost", method = RequestMethod.GET)
-    public String createPost(HttpServletRequest request, Model model){
+    public String createPost(HttpServletRequest request, Model model) {
         if (request.getRemoteUser() != null) {
             String username = request.getRemoteUser();
             Entity currentEntity = ServiceDao.getEntityByUserName(username);
@@ -54,5 +63,5 @@ public class DashboardController {
         }
         return "createPost";
     }
-    
+
 }
