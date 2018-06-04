@@ -10,6 +10,9 @@ and open the template in the editor.
 
 .main-content {
     display:flex;
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 6px 5px 10px;
 }
 
 .left-main-content {
@@ -81,7 +84,7 @@ and open the template in the editor.
 
 .title {
     color:black;
-    
+
 }
 
 .profile {
