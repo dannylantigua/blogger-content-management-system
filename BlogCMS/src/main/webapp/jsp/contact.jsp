@@ -36,7 +36,7 @@
                     <ul class="nav navbar-nav">
                         <li <!--class="active"--><a href="${pageContext.request.contextPath}/allBlogs">All Blogs <span class="sr-only">(current)</span></a></li>
                         <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
-                            
+
 
                     </ul>
                     <form class="navbar-form navbar-right">
@@ -44,66 +44,24 @@
                             <input type="text" class="form-control" placeholder="Search">
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
-                         <c:if test="${pageContext.request.userPrincipal.name != null}">
-                        <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Dashboard</a>
+                        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Dashboard</a>
                         </c:if>
                     </form>
-                   
+
 
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
 
-
         <!--content-->
 
         <div class="container">
 
-            <div class="main-content">
-                <div class="left-main-content">
-                    <div class="container">
-                        <p>Category here (will fix structure and design later)</p>
-                        <h1>Kennys Blog example heading</h1>
-                        <p>O.O fjsdfhsdjhfkjshkfjhsjkfhjshfjhdjhsfj</p>
-                    </div>
 
-                </div>
-                <div class="right-main-content">
-                    <div class="top-content">
-
-                        <p>Catign later)</p>
-                        <h1>example </h1>
-                        <p>O.O fjsdfhsdjhfkjshkfjhsjkfhjshfjhdjhsfj</p>
-
-                    </div>
-                    <div class="bottom-content">
-
-                        <p>Categorygn later)</p>
-                        <h1>example </h1>
-                        <p>O.O fjsdfhsdjhfkjshkfjhsjkfhjshfjhdjhsfj</p>
-
-                    </div>
-                </div>
-                <div class="profile">
-
-                    <div style="display:block; margin: 50px 32%;" >
-                        <div style="padding:50px;border-radius:400px;background:grey;width:1%;"></div>
-                    </div>
-                    <div class="social-media-links ">
-                        <p>Facebook</p>
-
-                        <p>twitter</p>
-
-                        <p>whateevr</p>
-                    </div>
-
-
-                </div>
-
-
-
-
-            </div>
+                    <h1>Contact page</h1>
+                    <p>fill out stuff here static page stuff</p>
+           
         </div>
 
 
