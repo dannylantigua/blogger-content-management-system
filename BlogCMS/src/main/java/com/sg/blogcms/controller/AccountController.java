@@ -55,20 +55,23 @@ public class AccountController {
 
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public String createNewEntity(HttpServletRequest request, Model model) {
-        Entity currentEntity = new Entity();
-        currentEntity.setEmail(request.getParameter("email"));
-        currentEntity.setFirstName(request.getParameter("firstname"));
-        currentEntity.setLastName(request.getParameter("lastname"));
-        currentEntity.setIsAdmin(false);
-        currentEntity.setPassword(request.getParameter("password"));
-        currentEntity.setPhoneNumber(request.getParameter("phone"));
-        currentEntity.setUserName(request.getParameter("username"));
-
-        if (ServiceDao.getEntityByEmail(currentEntity.getEmail()) != null) {
-            return "redirect:signUp";
-        } else {
-            ServiceDao.addEntity(currentEntity);
+//        Entity currentEntity = new Entity();
+//        currentEntity.setEmail(request.getParameter("email"));
+//        currentEntity.setFirstName(request.getParameter("firstname"));
+//        currentEntity.setLastName(request.getParameter("lastname"));
+//        currentEntity.setIsAdmin(false);
+//        currentEntity.setPassword(request.getParameter("password"));
+//        currentEntity.setPhoneNumber(request.getParameter("phone"));
+//        currentEntity.setUserName(request.getParameter("username"));
+//
+//        ServiceDao.addEntity(currentEntity);
             return "dashboard";
-        }
+        
+//        if (ServiceDao.getEntityByEmail(currentEntity.getEmail()) != null) {
+//            return "redirect:signUp";
+//        } else {
+//            ServiceDao.addEntity(currentEntity);
+//            return "dashboard";
+//        }
     }
 }

@@ -30,8 +30,8 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
 
     // PREPARED STATEMENTS
     private static final String SQL_INSERT_ENTITY
-            = " INSERT INTO Entity (FirstName, LastName, EMAIL , PhoneNumber,AboutMe,UserName,passwd,isAdmin) "
-            + " VALUES ( ? , ? , ? , ? , ? , ? , ?, ?)";
+            = " INSERT INTO Entity (FirstName, LastName, EMAIL , PhoneNumber,AboutMe,UserName,passwd,isAdmin , enabled) "
+            + " VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , 1)";
 
     private static final String SQL_SELECT_ALL_ENTITY
             = " SELECT * FROM Entity ";
@@ -90,6 +90,7 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
                 entity.getUserName(),
                 entity.getPassword(),
                 entity.isIsAdmin()
+                
         );
 
         int entityId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
