@@ -15,6 +15,13 @@ public class postsTags {
     
     private int postId;
     private String tag;
+    
+    public postsTags(){}
+    
+    public postsTags(int postId, String tag){
+        this.postId = postId;
+        this.tag = tag;
+    }
 
     public int getPostId() {
         return postId;
