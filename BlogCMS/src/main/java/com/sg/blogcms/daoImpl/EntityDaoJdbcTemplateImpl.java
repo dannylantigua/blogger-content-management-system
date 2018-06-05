@@ -69,9 +69,11 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
     private static final String SQL_DELETE_AUTHORITY
             = " delete from authorities where UserName = ? ";
 
-  
     private static final String SQL_GET_AUTHORITIES_BY_USERNAME
             = " SELECT * from authorities where UserName = ?";
+
+    private static final String SQL_UPDATE_AUTHORITIES
+            = " UPDATE authorities SET UserName = ? , authority = ? WHERE UserName = ? ";
 
     @Override
     public Entity getEntityById(int entityId) {
@@ -101,6 +103,7 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
 
     @Override
     public void updateEntity(Entity e) {
+
         jdbcTemplate.update(SQL_UPDATE_ENTITY,
                 e.getFirstName(),
                 e.getLastName(),
@@ -114,10 +117,10 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
         // inserting the users roles
         ArrayList<String> authorities = e.getAuthorities();
 
-        for (String authortity : authorities) {
-            jdbcTemplate.update(SQL_INSERT_AUTHORITY, e.getUserName(), authortity);
-        }
+        for (String authority : authorities) {
+            jdbcTemplate.update(SQL_INSERT_AUTHORITY, e.getUserName(), authority);
 
+        }
     }
 
     @Override
@@ -161,8 +164,8 @@ public class EntityDaoJdbcTemplateImpl implements EntityDao {
         // inserting the users roles
         ArrayList<String> authorities = entity.getAuthorities();
 
-        for (String authortity : authorities) {
-            jdbcTemplate.update(SQL_INSERT_AUTHORITY, entity.getUserName(), authortity);
+        for (String authoritity : authorities) {
+            jdbcTemplate.update(SQL_INSERT_AUTHORITY, entity.getUserName(), authoritity);
         }
 
         return null;

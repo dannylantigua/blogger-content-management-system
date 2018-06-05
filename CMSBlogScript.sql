@@ -5,7 +5,7 @@ CREATE DATABASE BlogCMS;
 USE BlogCMS;
 
 CREATE TABLE IF NOT EXISTS Entity (
-recordId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+recordId INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
 FirstName VARCHAR(20),
 LastName VARCHAR(20),
 EMAIL VARCHAR(25),
@@ -16,7 +16,7 @@ passwd VARCHAR(300),
 isAdmin boolean,
 `enabled` tinyint(1) NOT NULL,
  KEY `UserName` (`UserName`) 
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB ;
 
 CREATE TABLE IF NOT EXISTS EntitySocialProfiles(
 EntityId INT,
@@ -57,14 +57,14 @@ Content TEXT
 ) ENGINE=InnoDB ;
 
 CREATE TABLE IF NOT EXISTS `authorities` (
-`UserName` varchar(20) NOT NULL,
+`UserName` varchar(20) NOT NULL ,
 `authority` varchar(20) NOT NULL,
 KEY `UserName` (`UserName`) 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 ALTER TABLE `authorities`
- ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`UserName`) REFERENCES `Entity` (`UserName`) ON DELETE CASCADE;
+ ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`UserName`) REFERENCES `Entity` (`UserName`) ON UPDATE CASCADE;
 
  
 --

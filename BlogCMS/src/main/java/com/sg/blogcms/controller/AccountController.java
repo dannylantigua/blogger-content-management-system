@@ -30,12 +30,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AccountController {
 
-    EntityService ServiceDao;
+    EntityService EntityServiceDao;
     private PasswordEncoder encoder;
 
     @Inject
-    public AccountController(EntityService ServiceDao, PasswordEncoder encoder) {
-        this.ServiceDao = ServiceDao;
+    public AccountController(EntityService EntityServiceDao, PasswordEncoder encoder) {
+        this.EntityServiceDao = EntityServiceDao;
         this.encoder = encoder;
     }
 
@@ -47,14 +47,8 @@ public class AccountController {
 
     @RequestMapping(value = "/loginUser", method = RequestMethod.POST)
     public String loginUser(HttpServletRequest request) {
-
-//        String email = request.getParameter("email");
-//        String password = request.getParameter("password");
-//        if (ServiceDao.getEntityByEmail(email) != null && ServiceDao.getEntityByPassword(password) != null) {
-//            return "dashboard";
-//        } else {
         return "dashboard";
-//        }
+
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
@@ -74,86 +68,105 @@ public class AccountController {
         currentEntity.setPassword(hashedPassword);
         currentEntity.setPhoneNumber(request.getParameter("phone"));
         currentEntity.setUserName(request.getParameter("username"));
-
         currentEntity.addAuthority("ROLE_USER");
 
-        ServiceDao.addEntity(currentEntity);
-        return "redirect:login";
+       
+        EntityServiceDao.addEntity(currentEntity);
+        return "redirect:adminSettings";
 
-//        if (ServiceDao.getEntityByEmail(currentEntity.getEmail()) != null) {
-//            return "redirect:signUp";
-//        } else {
-//            ServiceDao.addEntity(currentEntity);
-//            return "dashboard";
-//        }
     }
 
     @RequestMapping(value = "/editProfile", method = RequestMethod.GET)
-    public String editProfile() {
+    public String editProfile(Model model,HttpServletRequest request) {
+        String userName = request.getRemoteUser();
+        Entity currentEntity = EntityServiceDao.getEntityByUserName(userName);
+        
+        model.addAttribute("user", currentEntity);
+        
         return "editProfile";
     }
-    
-    @RequestMapping(value="/deleteUser" , method = RequestMethod.GET)
-    public String deleteUser(HttpServletRequest request){
+
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
+    public String deleteUser(HttpServletRequest request) {
         String userName = request.getRemoteUser();
-        Entity entity = ServiceDao.getEntityByUserName(userName);
-        ServiceDao.removeEntityById(entity.getRecordId());
+        Entity entity = EntityServiceDao.getEntityByUserName(userName);
+        EntityServiceDao.removeEntityById(entity.getRecordId());
         return "redirect:login";
     }
-    
-    @RequestMapping(value="/adminSettings", method=RequestMethod.GET)
-    public String adminSettings(Model model,HttpServletRequest request){
-        
-        
-        
-        List<Entity> listOfEntities = ServiceDao.getAllEntities();
+
+    @RequestMapping(value = "/adminSettings", method = RequestMethod.GET)
+    public String adminSettings(Model model, HttpServletRequest request) {
+
+        List<Entity> listOfEntities = EntityServiceDao.getAllEntities();
         List<Entity> admins = new ArrayList<>();
-        for(Entity e : listOfEntities){
+        for (Entity e : listOfEntities) {
             List<String> au = e.getAuthorities();
-            if(au.contains("ROLE_ADMIN")){
+            if (au.contains("ROLE_ADMIN")) {
                 admins.add(e);
             }
         }
         model.addAttribute("listOfEntities", admins);
-      
-        
+
         List<Entity> users = new ArrayList<>();
-        for(Entity e : listOfEntities){
+        for (Entity e : listOfEntities) {
             List<String> au = e.getAuthorities();
-            if(!au.contains("ROLE_ADMIN")){
+            if (!au.contains("ROLE_ADMIN")) {
                 users.add(e);
             }
 
         }
-        
-        model.addAttribute("users",users);
-        
+
+        model.addAttribute("users", users);
+
         return "adminSettings";
     }
-    
-    @RequestMapping(value="/deleteUserAsAdmin", method=RequestMethod.GET)
-    public String makeAdmin(Model model,HttpServletRequest request){
+
+    @RequestMapping(value = "/deleteUserAsAdmin", method = RequestMethod.GET)
+    public String makeAdmin(Model model, HttpServletRequest request) {
         String currentUserName = request.getRemoteUser();
-        Entity currentUser = ServiceDao.getEntityByUserName(currentUserName);
+        Entity currentUser = EntityServiceDao.getEntityByUserName(currentUserName);
         String id = request.getParameter("userId");
-        
-        if(currentUser.getRecordId() != Integer.parseInt(id)){
-            ServiceDao.removeEntityById(Integer.parseInt(id));
+
+        if (currentUser.getRecordId() != Integer.parseInt(id)) {
+            EntityServiceDao.removeEntityById(Integer.parseInt(id));
         }
-        
+
         return "redirect:adminSettings";
     }
-    
+
     @RequestMapping(value = "/promoteUserRole", method = RequestMethod.GET)
-    public String promoteUserRole(HttpServletRequest request , Model model){
-        
+    public String promoteUserRole(HttpServletRequest request, Model model) {
+
         String userId = request.getParameter("userId");
-        Entity currentE = ServiceDao.getEntityById(Integer.parseInt(userId));
-        currentE.addAuthority("ROLE_ADMIN");
-        ServiceDao.updateEntity(currentE);
+        Entity currentE = EntityServiceDao.getEntityById(Integer.parseInt(userId));
         
+        currentE.addAuthority("ROLE_ADMIN");
+        EntityServiceDao.updateEntity(currentE);
+
         model.addAttribute("notice", currentE);
         return "redirect:adminSettings";
+    }
+
+
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+    public String updateUser(HttpServletRequest request, Model model) {
+        String currentUser = request.getRemoteUser();
+        int id = EntityServiceDao.getEntityByUserName(currentUser).getRecordId();
+        Entity currentEntity = new Entity();
+         currentEntity.setRecordId(id);
+        currentEntity.setEmail(request.getParameter("email"));
+        currentEntity.setFirstName(request.getParameter("firstname"));
+        currentEntity.setLastName(request.getParameter("lastname"));
+        currentEntity.setIsAdmin(false);
+        String clearPassword = request.getParameter("password");
+        String hashedPassword = encoder.encode(clearPassword);
+        currentEntity.setPassword(hashedPassword);
+        currentEntity.setPhoneNumber(request.getParameter("phone"));
+        currentEntity.setUserName(request.getParameter("username"));
+       
+        EntityServiceDao.updateEntity(currentEntity);
+        
+        return "redirect:login";
     }
 
 }

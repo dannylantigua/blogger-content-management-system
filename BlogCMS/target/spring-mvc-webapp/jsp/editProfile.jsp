@@ -49,13 +49,55 @@
 
                 USER SETTINGS
             </h1>
+            
+            <hr>
+            
+            <h2>Edit Account</h1>
+           
+           
+            
+            <hr>
 
-            <p>
-                form stuff coming here
-            </p>
+            <!--UPDATE ACCOUNT INFORMATION-->
+
+            <form role="form" method="POST" action="updateUser">
+                <div class="form-group">
+                    <label for="email">Email address  : ( ${user.email} )</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username : ( ${user.userName} )</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <label for="first">First Name  : ( ${user.firstName} )</label>
+                    <input type="text" class="form-control" id="first" name="firstname" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last">Last Name : ( ${user.lastName} )</label>
+                    <input type="text" class="form-control" id="last" name="lastname" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                </div>
+                <!--                <div class="form-group">
+                                    <label for="retypePassword">Retype Password</label>
+                                    <input type="password" class="form-control" id="retypePassword" name="password-repeat" placeholder="Password" required>
+                                </div>-->
+                <div class="form-group">
+                    <label for="phone">Phone Number : ( ${user.lastName} )</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+
+            <!--UPDATE ACCOUNT INFORMATION-->
             <!--<a class="btn btn-danger" href="#"role="button">Delete Your Account</a>-->
 
-
+            <hr>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                 Delete your account
@@ -76,30 +118,30 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                             <a class="btn btn-danger" href="${pageContext.request.contextPath}/deleteUser" role="button">Delete Account</a>
+                            <a class="btn btn-danger" href="${pageContext.request.contextPath}/deleteUser" role="button">Delete Account</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-                        
-                        
-                         <c:if test="${pageContext.request.userPrincipal.name != null}">
-<!--                                <p> Hello .. 
-                                    ${pageContext.request.userPrincipal.name}
-                                    <a href="<c:url value="j_spring_security_logout" />" >( Logout )</a>
 
-                                </p>-->
-                            </c:if>
-                        
-                        
-                        
+
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <!--                                <p> Hello .. 
+                ${pageContext.request.userPrincipal.name}
+                <a href="<c:url value="j_spring_security_logout" />" >( Logout )</a>
+
+            </p>-->
+            </c:if>
+
+
+
 
             <hr>
 
             <h1>
-           
-            <a class="btn btn-primary" href="${pageContext.request.contextPath}/dashboard"role="button">Back to dashboard</a>
+
+                <a class="btn btn-primary" href="${pageContext.request.contextPath}/dashboard"role="button">Back to dashboard</a>
         </div>
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>

@@ -65,13 +65,13 @@
 
                 </tbody>
             </table>
-            
+
             <br>
-            
+
             <hr>
-            
+
             <h2>Users</h2> 
-            
+
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -122,6 +122,44 @@
 
 
 
+
+
+        <hr>
+        
+        <h1>Sign Up a User</h1>
+
+        <form role="form" method="POST" action="createUser">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <label for="first">First Name</label>
+                <input type="text" class="form-control" id="first" name="firstname" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+                <label for="last">Last Name</label>
+                <input type="text" class="form-control" id="last" name="lastname" placeholder="Last Name" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            </div>
+            <!--                <div class="form-group">
+                                <label for="retypePassword">Retype Password</label>
+                                <input type="password" class="form-control" id="retypePassword" name="password-repeat" placeholder="Password" required>
+                            </div>-->
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 
         <hr>
 

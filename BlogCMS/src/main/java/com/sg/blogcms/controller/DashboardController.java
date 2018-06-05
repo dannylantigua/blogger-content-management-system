@@ -32,20 +32,16 @@ public class DashboardController {
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String dashboard(HttpServletRequest request, Model model) {
 
-        if (request.getRemoteUser() != null) {
-            String username = request.getRemoteUser();
+        String username = request.getRemoteUser();
+        if (username != null) {
+
             Entity currentEntity = ServiceDao.getEntityByUserName(username);
-            
-            
-            try {
-                model.addAttribute("firstname", currentEntity.getFirstName());
 
-                model.addAttribute("lastname", currentEntity.getLastName());
+            model.addAttribute("firstname", currentEntity.getFirstName());
 
-                model.addAttribute("email", currentEntity.getEmail());
-            } catch (NullPointerException ex) {
+            model.addAttribute("lastname", currentEntity.getLastName());
 
-            }
+            model.addAttribute("email", currentEntity.getEmail());
 
         }
 
