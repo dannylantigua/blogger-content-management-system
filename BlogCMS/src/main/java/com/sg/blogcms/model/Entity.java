@@ -170,5 +170,9 @@ public class Entity {
         authorities.add(authority);
     }
     
+    public void clearAuthorities(){
+        authorities.clear();
+    }
+    
 
 }

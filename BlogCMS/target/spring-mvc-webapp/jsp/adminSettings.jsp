@@ -51,9 +51,9 @@
                                 </c:if>
                             </td>
                             <td>
-                                <%--<c:if test="${pageContext.request.userPrincipal.name != currentEntity.userName}">--%>
-                                    <!--<a href="promoteUserRole?userId=${currentEntity.recordId}"> Promote Role To Admin </a>-->
-                                <%--</c:if>--%>
+                                <c:if test="${pageContext.request.userPrincipal.name != currentEntity.userName}">
+                                    <a href="removeAdminRole?userId=${currentEntity.recordId}"> Remove Admin Role </a>
+                                </c:if>
                             </td>
 
 
@@ -91,7 +91,6 @@
                             <td>
                                 <c:if test="${pageContext.request.userPrincipal.name != currentUser.userName}">
                                     <a href="deleteUserAsAdmin?userId=${currentUser.recordId}"> delete </a>
-
                                 </c:if>
                                 <c:if test="${pageContext.request.userPrincipal.name == currentUser.userName}">
                                     <b>Current User</b>
@@ -125,7 +124,7 @@
 
 
         <hr>
-        
+
         <h1>Sign Up a User</h1>
 
         <form role="form" method="POST" action="createUser">
@@ -157,7 +156,7 @@
                 <label for="phone">Phone Number</label>
                 <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
             </div>
-            
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 

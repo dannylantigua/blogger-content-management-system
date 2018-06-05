@@ -18,5 +18,9 @@ public class PWEnc {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String hashedPw = encoder.encode(clearTxtPw);
         System.out.println(hashedPw);
+        
+        String clear="password";
+        String newPass = encoder.encode(clear);
+        System.out.println(newPass);
     }
 }

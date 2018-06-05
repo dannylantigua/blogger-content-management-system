@@ -70,19 +70,18 @@ public class AccountController {
         currentEntity.setUserName(request.getParameter("username"));
         currentEntity.addAuthority("ROLE_USER");
 
-       
         EntityServiceDao.addEntity(currentEntity);
         return "redirect:adminSettings";
 
     }
 
     @RequestMapping(value = "/editProfile", method = RequestMethod.GET)
-    public String editProfile(Model model,HttpServletRequest request) {
+    public String editProfile(Model model, HttpServletRequest request) {
         String userName = request.getRemoteUser();
         Entity currentEntity = EntityServiceDao.getEntityByUserName(userName);
         
         model.addAttribute("user", currentEntity);
-        
+
         return "editProfile";
     }
 
@@ -139,7 +138,7 @@ public class AccountController {
 
         String userId = request.getParameter("userId");
         Entity currentE = EntityServiceDao.getEntityById(Integer.parseInt(userId));
-        
+        //currentE.addAuthority("ROLE_USER");
         currentE.addAuthority("ROLE_ADMIN");
         EntityServiceDao.updateEntity(currentE);
 
@@ -147,26 +146,37 @@ public class AccountController {
         return "redirect:adminSettings";
     }
 
-
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     public String updateUser(HttpServletRequest request, Model model) {
         String currentUser = request.getRemoteUser();
-        int id = EntityServiceDao.getEntityByUserName(currentUser).getRecordId();
-        Entity currentEntity = new Entity();
-         currentEntity.setRecordId(id);
+        Entity currentEntity = EntityServiceDao.getEntityByUserName(currentUser);
+        
+    
         currentEntity.setEmail(request.getParameter("email"));
         currentEntity.setFirstName(request.getParameter("firstname"));
         currentEntity.setLastName(request.getParameter("lastname"));
-        currentEntity.setIsAdmin(false);
         String clearPassword = request.getParameter("password");
         String hashedPassword = encoder.encode(clearPassword);
         currentEntity.setPassword(hashedPassword);
         currentEntity.setPhoneNumber(request.getParameter("phone"));
         currentEntity.setUserName(request.getParameter("username"));
-       
-        EntityServiceDao.updateEntity(currentEntity);
         
+    
+        EntityServiceDao.updateEntity(currentEntity);
+
         return "redirect:login";
+      
+    }
+
+    @RequestMapping(value = "/removeAdminRole", method = RequestMethod.GET)
+    public String removeAdminRole(HttpServletRequest request) {
+        String id = request.getParameter("userId");
+        Entity currentEntity = EntityServiceDao.getEntityById(Integer.parseInt(id));
+        currentEntity.clearAuthorities();
+        currentEntity.addAuthority("ROLE_USER");
+        
+        EntityServiceDao.updateEntity(currentEntity);
+        return "redirect:adminSettings";
     }
 
 }
