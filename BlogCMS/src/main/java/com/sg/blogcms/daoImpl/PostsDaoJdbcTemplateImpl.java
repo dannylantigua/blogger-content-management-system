@@ -21,6 +21,10 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     JdbcTemplate jdbcTemplate;
 
     //PREPARE STATMENTS
+    private static final String SQL_ADD_POST = " "
+            + " INSERT INTO Posts (postTitle, postBody, postDate, expireDate,likes,isPending , isApprove, isRejected)"
+            + " VALUES (?,?,?,?,?,?,?,?) " ;  
+    
     private static final String SQL_GET_ALL_POSTS = " SELECT * FROM POSTS ";
 
     private static final String SQL_GET_POST_BY_ID = " SELECT * FROM Posts WHERE recordId = ? ";
@@ -52,10 +56,24 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     public void removePostsById(int id) {
         jdbcTemplate.update(SQL_REMOVE_POST_BY_ID, id);
     }
-
+    ///jonathan's work//
     @Override
     public void createPost(Posts currentPosts) {
+     jdbcTemplate.update( SQL_ADD_POST, 
+        currentPosts.getPostTitle(),
+        currentPosts.getPostBody(), 
+        currentPosts.getPostDate(),
+        currentPosts.getExpireDate(),
+        currentPosts.getLikes(),
+        currentPosts.isIsPending(),
+        currentPosts.isIsApproved(),
+        currentPosts.isIsRejected() );
         
+        int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()",
+                                            Integer.class);
+         currentPosts.setRecordId(newId);
+         
     }
-
 }
+
+
