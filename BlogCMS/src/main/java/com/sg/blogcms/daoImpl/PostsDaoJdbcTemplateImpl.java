@@ -22,8 +22,8 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
 
     //PREPARE STATMENTS
     private static final String SQL_ADD_POST = " "
-            + " INSERT INTO Posts (postTitle, postBody, postDate, expireDate,likes,isPending , isApproved, isRejected , userId)"
-            + " VALUES (?,?,?,?,?,?,?,?,?) ";
+            + " INSERT INTO Posts (postTitle, postBody, postDate, expireDate,likes,isPending , isApproved, isRejected )"
+            + " VALUES (?,?,?,?,?,?,?,?) ";
 
     private static final String SQL_GET_ALL_POSTS = " SELECT * FROM POSTS ";
 
@@ -33,7 +33,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
 
     private static final String SQL_GET_POSTS_BY_CATEGORY = " SELECT * FROM Posts WHERE userId = ? ";
     
-    private static final String SQL_INSERT_CATEGORY_AND_POST = " INSERT INTO Categories ( recordId , CategoryName ) VALUES (?,?) ";
+    
 
     //SETTER INJECTION
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -64,8 +64,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     ///jonathan's work//
     @Override
     public Posts createPost(Posts currentPosts) {
-        //WILL CHANGE
-        jdbcTemplate.update(SQL_INSERT_CATEGORY_AND_POST,currentPosts.getUserId() );
+       
         
         jdbcTemplate.update(SQL_ADD_POST,
                 currentPosts.getPostTitle(),
@@ -75,8 +74,8 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
                 currentPosts.getLikes(),
                 currentPosts.isIsPending(),
                 currentPosts.isIsApproved(),
-                currentPosts.isIsRejected(),
-                currentPosts.getUserId());
+                currentPosts.isIsRejected()
+                );
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()",
                 Integer.class);
