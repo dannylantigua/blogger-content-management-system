@@ -18,13 +18,13 @@ public class Posts {
     private int recordId;
     private String postTitle;
     private String postBody;
-    private String userId;
-    private Date postTime;
+    private int userId;
+    private Date postDate;
+    private Date expireDate;
     private int likes;
     private boolean isRejected;
     private boolean isApproved;
     private boolean isPending;
-    private Date expireDate;
     private List<postsTags> postTags;
 
     public int getRecordId() {
@@ -51,20 +51,28 @@ public class Posts {
         this.postBody = postBody;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public Date getPostTime() {
-        return postTime;
+    public Date getPostDate() {
+        return postDate;
     }
 
-    public void setPostTime(Date postTime) {
-        this.postTime = postTime;
+    public void setPostDate(Date postDate) {
+        this.postDate = postDate;
+    }
+
+    public Date getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
     }
 
     public int getLikes() {
@@ -99,14 +107,6 @@ public class Posts {
         this.isPending = isPending;
     }
 
-    public Date getExpireDate() {
-        return expireDate;
-    }
-
-    public void setExpireDate(Date expireDate) {
-        this.expireDate = expireDate;
-    }
-
     public List<postsTags> getPostTags() {
         return postTags;
     }
@@ -118,17 +118,17 @@ public class Posts {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + this.recordId;
-        hash = 53 * hash + Objects.hashCode(this.postTitle);
-        hash = 53 * hash + Objects.hashCode(this.postBody);
-        hash = 53 * hash + Objects.hashCode(this.userId);
-        hash = 53 * hash + Objects.hashCode(this.postTime);
-        hash = 53 * hash + this.likes;
-        hash = 53 * hash + (this.isRejected ? 1 : 0);
-        hash = 53 * hash + (this.isApproved ? 1 : 0);
-        hash = 53 * hash + (this.isPending ? 1 : 0);
-        hash = 53 * hash + Objects.hashCode(this.expireDate);
-        hash = 53 * hash + Objects.hashCode(this.postTags);
+        hash = 29 * hash + this.recordId;
+        hash = 29 * hash + Objects.hashCode(this.postTitle);
+        hash = 29 * hash + Objects.hashCode(this.postBody);
+        hash = 29 * hash + this.userId;
+        hash = 29 * hash + Objects.hashCode(this.postDate);
+        hash = 29 * hash + Objects.hashCode(this.expireDate);
+        hash = 29 * hash + this.likes;
+        hash = 29 * hash + (this.isRejected ? 1 : 0);
+        hash = 29 * hash + (this.isApproved ? 1 : 0);
+        hash = 29 * hash + (this.isPending ? 1 : 0);
+        hash = 29 * hash + Objects.hashCode(this.postTags);
         return hash;
     }
 
@@ -145,6 +145,9 @@ public class Posts {
         }
         final Posts other = (Posts) obj;
         if (this.recordId != other.recordId) {
+            return false;
+        }
+        if (this.userId != other.userId) {
             return false;
         }
         if (this.likes != other.likes) {
@@ -165,10 +168,7 @@ public class Posts {
         if (!Objects.equals(this.postBody, other.postBody)) {
             return false;
         }
-        if (!Objects.equals(this.userId, other.userId)) {
-            return false;
-        }
-        if (!Objects.equals(this.postTime, other.postTime)) {
+        if (!Objects.equals(this.postDate, other.postDate)) {
             return false;
         }
         if (!Objects.equals(this.expireDate, other.expireDate)) {
@@ -180,6 +180,4 @@ public class Posts {
         return true;
     }
 
-    
-    
 }
