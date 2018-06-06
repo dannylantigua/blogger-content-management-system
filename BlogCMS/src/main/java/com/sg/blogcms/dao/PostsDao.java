@@ -11,7 +11,6 @@ import java.util.List;
 public interface PostsDao {
 
    public Posts createPost(Posts currentPosts);
-
  
     List<Posts> getAllPosts();
     
@@ -19,5 +18,6 @@ public interface PostsDao {
     
     void removePostsById(int id);
     
+    List<Posts> getPostsByCategory(int theCategoryId);
 
 }

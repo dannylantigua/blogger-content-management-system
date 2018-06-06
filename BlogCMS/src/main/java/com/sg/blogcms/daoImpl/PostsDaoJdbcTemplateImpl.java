@@ -22,14 +22,16 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
 
     //PREPARE STATMENTS
     private static final String SQL_ADD_POST = " "
-            + " INSERT INTO Posts (postTitle, postBody, postDate, expireDate,likes,isPending , isApproved, isRejected)"
-            + " VALUES (?,?,?,?,?,?,?,?) " ;  
-    
+            + " INSERT INTO Posts (postTitle, postBody, postDate, expireDate,likes,isPending , isApproved, isRejected , userId)"
+            + " VALUES (?,?,?,?,?,?,?,?,?) ";
+
     private static final String SQL_GET_ALL_POSTS = " SELECT * FROM POSTS ";
 
     private static final String SQL_GET_POST_BY_ID = " SELECT * FROM Posts WHERE recordId = ? ";
 
     private static final String SQL_REMOVE_POST_BY_ID = " DELETE FROM Posts WHERE recordId = ? ";
+
+    private static final String SQL_GET_POSTS_BY_CATEGORY = " SELECT * FROM Posts WHERE userId = ? ";
 
     //SETTER INJECTION
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -56,24 +58,29 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     public void removePostsById(int id) {
         jdbcTemplate.update(SQL_REMOVE_POST_BY_ID, id);
     }
+
     ///jonathan's work//
     @Override
     public Posts createPost(Posts currentPosts) {
-     jdbcTemplate.update( SQL_ADD_POST, 
-        currentPosts.getPostTitle(),
-        currentPosts.getPostBody(), 
-        currentPosts.getPostDate(),
-        currentPosts.getExpireDate(),
-        currentPosts.getLikes(),
-        currentPosts.isIsPending(),
-        currentPosts.isIsApproved(),
-        currentPosts.isIsRejected() );
-        
+        jdbcTemplate.update(SQL_ADD_POST,
+                currentPosts.getPostTitle(),
+                currentPosts.getPostBody(),
+                currentPosts.getPostDate(),
+                currentPosts.getExpireDate(),
+                currentPosts.getLikes(),
+                currentPosts.isIsPending(),
+                currentPosts.isIsApproved(),
+                currentPosts.isIsRejected(),
+                currentPosts.getUserId());
+
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()",
-                                            Integer.class);
-         currentPosts.setRecordId(newId);
-         return currentPosts;
+                Integer.class);
+        currentPosts.setRecordId(newId);
+        return currentPosts;
+    }
+
+    @Override
+    public List<Posts> getPostsByCategory(int theCategoryId) {
+        return jdbcTemplate.query(SQL_GET_POSTS_BY_CATEGORY, new PostsMapper(), theCategoryId);
     }
 }
-
-

@@ -42,4 +42,9 @@ public class PostsServiceImpl implements PostsService {
         return postsDao.createPost(currentPosts);
     }
 
+    @Override
+    public List<Posts> getPostsByCategory(int theCategoryId) {
+        return postsDao.getPostsByCategory(theCategoryId);
+    }
+
 }
