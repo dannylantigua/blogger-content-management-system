@@ -55,7 +55,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
 
     @Override
     public void createPost(Posts currentPosts) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
 }
