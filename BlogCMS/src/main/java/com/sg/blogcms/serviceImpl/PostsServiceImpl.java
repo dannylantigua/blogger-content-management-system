@@ -38,8 +38,8 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public void createPost(Posts currentPosts) {
-        postsDao.createPost(currentPosts);
+    public Posts createPost(Posts currentPosts) {
+        return postsDao.createPost(currentPosts);
     }
 
 }

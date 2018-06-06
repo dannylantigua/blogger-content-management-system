@@ -72,8 +72,9 @@ public class PostsServiceTest {
     }
 
     @Test
-    public void testaddPosts() {
-
+    public void testaddPostsGetPost() {
+    Posts p = postService.createPost(dummyPost());
+        assertEquals(postService.getPostsById(p.getRecordId()).getPostTitle(),"Cooking with Danny");
     }
 
     public Posts dummyPost() {

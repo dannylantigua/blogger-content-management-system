@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface PostsDao {
 
-   void createPost(Posts currentPosts);
+   public Posts createPost(Posts currentPosts);
 
  
     List<Posts> getAllPosts();

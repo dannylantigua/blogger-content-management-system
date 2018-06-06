@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface PostsService {
 
-    void createPost(Posts currentPosts);
+    Posts createPost(Posts currentPosts);
 
     List<Posts> getAllPosts();
 

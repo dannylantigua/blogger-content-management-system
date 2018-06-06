@@ -58,7 +58,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     }
     ///jonathan's work//
     @Override
-    public void createPost(Posts currentPosts) {
+    public Posts createPost(Posts currentPosts) {
      jdbcTemplate.update( SQL_ADD_POST, 
         currentPosts.getPostTitle(),
         currentPosts.getPostBody(), 
@@ -72,7 +72,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()",
                                             Integer.class);
          currentPosts.setRecordId(newId);
-         
+         return currentPosts;
     }
 }
 
