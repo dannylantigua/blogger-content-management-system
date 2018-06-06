@@ -22,7 +22,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
 
     //PREPARE STATMENTS
     private static final String SQL_ADD_POST = " "
-            + " INSERT INTO Posts (postTitle, postBody, postDate, expireDate,likes,isPending , isApprove, isRejected)"
+            + " INSERT INTO Posts (postTitle, postBody, postDate, expireDate,likes,isPending , isApproved, isRejected)"
             + " VALUES (?,?,?,?,?,?,?,?) " ;  
     
     private static final String SQL_GET_ALL_POSTS = " SELECT * FROM POSTS ";

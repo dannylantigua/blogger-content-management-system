@@ -6,6 +6,8 @@
 package com.sg.blogcms.service;
 
 import com.sg.blogcms.model.Posts;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,34 +23,34 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author kmlnd
  */
 public class PostsServiceTest {
-    
+
     PostsService postService;
     ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
-    
+
     public PostsServiceTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-        
-        postService = ctx.getBean("postsService" , PostsService.class);
-        
+
+        postService = ctx.getBean("postsService", PostsService.class);
+
         List<Posts> posts = postService.getAllPosts();
-        
-        for(Posts currentPost : posts){
+
+        for (Posts currentPost : posts) {
             postService.removePostsById(currentPost.getRecordId());
         }
-        
+
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -58,9 +60,50 @@ public class PostsServiceTest {
      */
     @Test
     public void testGetAllPosts() {
-    }
-    
-   
 
-    
+        Posts post = dummyPost();
+        Posts post2 = dummyPost2();
+        postService.createPost(post);
+        postService.createPost(post2);
+
+        List<Posts> posts = postService.getAllPosts();
+        assertEquals(posts.size(), 2);
+
+    }
+
+    @Test
+    public void testaddPosts() {
+
+    }
+
+    public Posts dummyPost() {
+        Posts post = new Posts();
+        Date date = new Date();
+        post.setPostTitle("Cooking with Danny");
+        post.setPostDate(date);
+        post.setPostBody(" Well.... cooking with this guy has been such an amazing expereince WOW. I learned so much blah blah blah....");
+        post.setPostDate(date);
+        post.setExpireDate(date);
+        post.setLikes(20);
+        post.setIsPending(false);
+        post.setIsApproved(true);
+        post.setIsRejected(false);
+        return post;
+    }
+
+    public Posts dummyPost2() {
+        Posts post = new Posts();
+        Date date = new Date();
+        post.setPostTitle("Cooking with Kenny");
+        post.setPostDate(date);
+        post.setPostBody(" Kenny cant cook . but Well.... cooking with this guy Danny has been such an amazing expereince WOW. I learned so much blah blah blah....");
+        post.setPostDate(date);
+        post.setExpireDate(date);
+        post.setLikes(45);
+        post.setIsPending(false);
+        post.setIsApproved(true);
+        post.setIsRejected(false);
+        return post;
+    }
+
 }

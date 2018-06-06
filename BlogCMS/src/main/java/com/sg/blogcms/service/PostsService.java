@@ -14,9 +14,12 @@ import java.util.List;
  */
 public interface PostsService {
 
+    void createPost(Posts currentPosts);
+
     List<Posts> getAllPosts();
 
     Posts getPostsById(int id);
 
     void removePostsById(int id);
+
 }

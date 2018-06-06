@@ -37,4 +37,9 @@ public class PostsServiceImpl implements PostsService {
         postsDao.removePostsById(id);
     }
 
+    @Override
+    public void createPost(Posts currentPosts) {
+        postsDao.createPost(currentPosts);
+    }
+
 }
