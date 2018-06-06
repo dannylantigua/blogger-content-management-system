@@ -32,6 +32,8 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     private static final String SQL_REMOVE_POST_BY_ID = " DELETE FROM Posts WHERE recordId = ? ";
 
     private static final String SQL_GET_POSTS_BY_CATEGORY = " SELECT * FROM Posts WHERE userId = ? ";
+    
+    private static final String SQL_INSERT_CATEGORY_AND_POST = " INSERT INTO Categories ( recordId , CategoryName ) VALUES (?,?) ";
 
     //SETTER INJECTION
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -62,6 +64,9 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     ///jonathan's work//
     @Override
     public Posts createPost(Posts currentPosts) {
+        //WILL CHANGE
+        jdbcTemplate.update(SQL_INSERT_CATEGORY_AND_POST,currentPosts.getUserId() );
+        
         jdbcTemplate.update(SQL_ADD_POST,
                 currentPosts.getPostTitle(),
                 currentPosts.getPostBody(),

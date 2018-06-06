@@ -41,7 +41,7 @@ likes INT,
 isPending boolean,
 isApproved boolean,
 isRejected boolean,
-FOREIGN KEY (userId) REFERENCES Categories (recordId) ON DELETE CASCADE
+FOREIGN KEY (userId) REFERENCES Categories (recordId) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB ;
 
 CREATE TABLE IF NOT EXISTS PostsTags(
