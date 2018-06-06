@@ -97,3 +97,18 @@ and open the template in the editor.
     width:25%;
     text-align: center;
 }
+
+.post {
+    border: 1px solid black;
+    padding:40px;
+}
+
+.add-overflow {
+     
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    
+}

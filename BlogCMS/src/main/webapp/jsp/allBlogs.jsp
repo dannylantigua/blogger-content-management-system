@@ -64,11 +64,12 @@
 
 
             <c:forEach var="post" items="${posts}">
-
-                <div style="border:1px solid black; padding:10px;">   
-                    <h1> <c:out value="${post.postTitle}"></c:out></h1>
-                    <p> <c:out value="${post.postBody}"></c:out> </p>
-                </div> 
+                <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${post.recordId}">
+                    <div class="post">   
+                        <span class="add-overflow"><h1> <c:out value="${post.postTitle}"></c:out>...</h1></span>
+                        <span class="add-overflow"><p> <c:out value="${post.postBody}"></c:out> ...</p></span>
+                        </div> 
+                    </a>
             </c:forEach>
 
         </div>

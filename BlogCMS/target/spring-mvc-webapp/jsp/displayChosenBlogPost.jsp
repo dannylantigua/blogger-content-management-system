@@ -58,26 +58,15 @@
 
         <div class="container">
 
+            <div style="margin-top: 100px;">
+                ${currentPost.postTitle}
 
-            <h1>Display all blogs and catogogize them</h1>
-            <p>fill out stuff here static page stuff</p>
+                <hr>
 
-
-            <c:forEach var="post" items="${posts}">
-                <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${post.recordId}">
-                    <div class="post">   
-                        <span class="add-overflow"><h1> <c:out value="${post.postTitle}"></c:out>...</h1></span>
-                        <span class="add-overflow"><p> <c:out value="${post.postBody}"></c:out> ...</p></span>
-                        </div> 
-                    </a>
-            </c:forEach>
+                ${currentPost.postBody}
+            </div>
 
         </div>
-
-
-
-
-
 
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>

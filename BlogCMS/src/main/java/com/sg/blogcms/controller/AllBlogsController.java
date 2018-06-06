@@ -9,6 +9,7 @@ import com.sg.blogcms.model.Posts;
 import com.sg.blogcms.service.PostsService;
 import java.util.List;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,5 +36,15 @@ public class AllBlogsController {
         model.addAttribute("posts",posts);
         
         return "allBlogs";
+    }
+    
+    @RequestMapping(value="/displayChosenBlogPost" , method = RequestMethod.GET)
+    public String displayChosenBlogPost(HttpServletRequest request, Model model){
+        String currentIdForPost = request.getParameter("currentPostId");
+        
+        Posts currentPost = postsService.getPostsById(Integer.parseInt(currentIdForPost));
+        
+        model.addAttribute("currentPost", currentPost);
+        return "displayChosenBlogPost";
     }
 }
