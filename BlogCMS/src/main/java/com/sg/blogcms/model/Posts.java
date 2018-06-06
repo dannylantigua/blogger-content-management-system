@@ -14,7 +14,11 @@ import java.util.Objects;
  * @author kmlnd
  */
 
-   public class Posts {
+
+ 
+
+public class Posts {
+
 
     private int recordId;
     private String postTitle;
@@ -62,11 +66,13 @@ import java.util.Objects;
 
     public Date getPostDate() {
         return postDate;
+
     }
 
     public void setPostDate(Date postDate) {
         this.postDate = postDate;
     }
+
 
     public Date getExpireDate() {
         return expireDate;
@@ -179,6 +185,7 @@ import java.util.Objects;
             return false;
         }
         return true;
-    } 
-    
+    }
 }
+
+

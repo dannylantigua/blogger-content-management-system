@@ -1,0 +1,61 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sg.blogcms.daoImpl;
+
+import com.sg.blogcms.dao.PostsDao;
+import com.sg.blogcms.mappers.Mappers.PostsMapper;
+import com.sg.blogcms.model.Posts;
+import java.util.List;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+/**
+ *
+ * @author kmlnd
+ */
+public class PostsDaoJdbcTemplateImpl implements PostsDao {
+
+    JdbcTemplate jdbcTemplate;
+
+    //PREPARE STATMENTS
+    private static final String SQL_GET_ALL_POSTS = " SELECT * FROM POSTS ";
+
+    private static final String SQL_GET_POST_BY_ID = " SELECT * FROM Posts WHERE recordId = ? ";
+
+    private static final String SQL_REMOVE_POST_BY_ID = " DELETE FROM Posts WHERE recordId = ? ";
+
+    //SETTER INJECTION
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    //METHODS
+    @Override
+    public List<Posts> getAllPosts() {
+
+        try {
+            return jdbcTemplate.query(SQL_GET_ALL_POSTS, new PostsMapper());
+        } catch (DataAccessException ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public Posts getPostsById(int id) {
+        return jdbcTemplate.queryForObject(SQL_GET_POST_BY_ID, new PostsMapper(), id);
+    }
+
+    @Override
+    public void removePostsById(int id) {
+        jdbcTemplate.update(SQL_REMOVE_POST_BY_ID, id);
+    }
+
+    @Override
+    public void createPost(Posts currentPosts) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+}

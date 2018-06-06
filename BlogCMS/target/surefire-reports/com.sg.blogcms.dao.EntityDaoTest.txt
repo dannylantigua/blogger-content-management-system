@@ -1,6 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: com.sg.blogcms.dao.EntityDaoTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 0.928 sec <<< FAILURE!
 testRemoveEntityById(com.sg.blogcms.dao.EntityDaoTest)  Time elapsed: 0.216 sec  <<< ERROR!
 org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Could not create connection to database server.)
@@ -452,3 +453,6 @@ Caused by: java.lang.NullPointerException
 	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2280)
 	... 62 more
 
+=======
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.715 sec
+>>>>>>> kennyPost

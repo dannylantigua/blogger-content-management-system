@@ -32,7 +32,7 @@ CategoryName VARCHAR(20)
 
 CREATE TABLE IF NOT EXISTS Posts(
 recordId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-postTittle TEXT,
+postTitle TEXT,
 postBody TEXT,
 userId INT,
 postDate DateTime,

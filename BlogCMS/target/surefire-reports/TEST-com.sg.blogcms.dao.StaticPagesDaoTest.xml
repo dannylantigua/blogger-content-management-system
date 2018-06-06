@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<<<<<<< HEAD
 <testsuite tests="3" failures="0" name="com.sg.blogcms.dao.StaticPagesDaoTest" time="0.451" errors="3" skipped="0">
+=======
+<testsuite tests="3" failures="0" name="com.sg.blogcms.dao.StaticPagesDaoTest" time="0.268" errors="0" skipped="0">
+>>>>>>> kennyPost
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/jre/lib"/>
@@ -66,6 +70,7 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
+<<<<<<< HEAD
   <testcase classname="com.sg.blogcms.dao.StaticPagesDaoTest" name="testAddGetDeleteStaticPage" time="0.178">
     <error message="Could not get JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Could not create connection to database server.)" type="org.springframework.jdbc.CannotGetJdbcConnectionException">org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Could not create connection to database server.)
 	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80)
@@ -339,4 +344,9 @@ Jun 05, 2018 5:19:59 PM org.springframework.beans.factory.annotation.AutowiredAn
 INFO: JSR-330 &apos;javax.inject.Inject&apos; annotation found and supported for autowiring
 </system-err>
   </testcase>
+=======
+  <testcase classname="com.sg.blogcms.dao.StaticPagesDaoTest" name="testAddGetDeleteStaticPage" time="0.079"/>
+  <testcase classname="com.sg.blogcms.dao.StaticPagesDaoTest" name="testUpdateStaticPage" time="0.089"/>
+  <testcase classname="com.sg.blogcms.dao.StaticPagesDaoTest" name="testGetAllStaticPages" time="0.1"/>
+>>>>>>> kennyPost
 </testsuite>

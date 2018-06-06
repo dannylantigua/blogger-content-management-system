@@ -1,6 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: com.sg.blogcms.dao.StaticPagesDaoTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.494 sec <<< FAILURE!
 testAddGetDeleteStaticPage(com.sg.blogcms.dao.StaticPagesDaoTest)  Time elapsed: 0.178 sec  <<< ERROR!
 org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Could not create connection to database server.)
@@ -251,3 +252,6 @@ Caused by: java.lang.NullPointerException
 	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2280)
 	... 55 more
 
+=======
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.268 sec
+>>>>>>> kennyPost

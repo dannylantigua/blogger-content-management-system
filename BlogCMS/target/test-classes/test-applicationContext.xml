@@ -64,7 +64,13 @@
     </bean>
     
 
-
+    <bean id="postsDao" class="com.sg.blogcms.daoImpl.PostsDaoJdbcTemplateImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean> 
+    
+    <bean id="postsService" class="com.sg.blogcms.serviceImpl.PostsServiceImpl">
+        <constructor-arg ref="postsDao"/>
+    </bean> 
     
     
     

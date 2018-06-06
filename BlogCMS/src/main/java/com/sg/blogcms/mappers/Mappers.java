@@ -102,7 +102,7 @@ public class Mappers {
         }
     }
     
-     // POSTS MAPPER
+
     public static final class PostsMapper implements RowMapper<Posts>  {
 
         @Override
@@ -136,4 +136,9 @@ public class Mappers {
         }
         
     
+
+
+    }
+    
+}
 

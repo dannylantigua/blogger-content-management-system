@@ -6,12 +6,18 @@
 package com.sg.blogcms.dao;
 
 import com.sg.blogcms.model.Posts;
+import java.util.List;
 
-/**
- *
- * @author jonathan
- */
 public interface PostsDao {
 
-    void createPost(Posts currentPosts);
+   void createPost(Posts currentPosts);
+
+ 
+    List<Posts> getAllPosts();
+    
+    Posts getPostsById(int id);
+    
+    void removePostsById(int id);
+    
+
 }
