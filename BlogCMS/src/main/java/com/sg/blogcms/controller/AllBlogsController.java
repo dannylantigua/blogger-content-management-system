@@ -50,4 +50,13 @@ public class AllBlogsController {
             return "displayChosenBlogPost";
         }
     }
+    @RequestMapping(value="/deletePost", method=RequestMethod.GET)
+    public String deletePost(HttpServletRequest request){
+        String id = request.getParameter("currentPost");
+        postsService.removePostsById(Integer.parseInt(id));
+        
+        
+        
+        return "dashboard";
+    }
 }
