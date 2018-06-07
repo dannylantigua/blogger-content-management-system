@@ -33,11 +33,10 @@ public class HomepageController {
 
         List<Posts> posts = postsService.getLatestPosts();
 
-        try {
-            model.addAttribute("latestPosts", posts);
-        } catch (IndexOutOfBoundsException ex) {
-
-        }
+        
+        
+        model.addAttribute("latestPosts", posts);
+        
         return "homepage";
     }
 }

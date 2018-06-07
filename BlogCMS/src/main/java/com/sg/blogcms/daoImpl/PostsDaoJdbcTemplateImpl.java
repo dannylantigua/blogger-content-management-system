@@ -58,6 +58,8 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
             return null;
         }
     }
+    
+    
 
     @Override
     public Posts getPostsById(int id) {

@@ -47,7 +47,7 @@ FOREIGN KEY (userId) REFERENCES Categories (recordId) ON DELETE CASCADE ON UPDAT
 CREATE TABLE IF NOT EXISTS PostsTags(
 postId INT,
 Tag VARCHAR(30),
-FOREIGN KEY (postId) REFERENCES Posts (recordId) ON DELETE CASCADE
+FOREIGN KEY (postId) REFERENCES Posts (recordId) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB ;
 
 CREATE TABLE StaticPages(
@@ -64,7 +64,7 @@ KEY `UserName` (`UserName`)
 
 
 ALTER TABLE `authorities`
- ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`UserName`) REFERENCES `Entity` (`UserName`) ON UPDATE CASCADE;
+ ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`UserName`) REFERENCES `Entity` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
  
 --

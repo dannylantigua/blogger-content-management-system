@@ -49,7 +49,24 @@ public class PostsServiceImpl implements PostsService {
 
     @Override
     public List<Posts> getLatestPosts() {
-        return postsDao.getLatestPosts();
+        List<Posts> posts = postsDao.getLatestPosts();
+        for (int x = 0; x < 3; x++) {
+            try {
+                posts.get(x);
+            } catch(IndexOutOfBoundsException ex){
+                posts.add(emptyPosts());
+            }
+        }
+        return posts;
+    }
+
+    // creating an emtpy post object incase the posts are empty 
+    // and to avoid null pointer exception 
+    public Posts emptyPosts() {
+        Posts post = new Posts();
+        post.setPostTitle("");
+        post.setPostBody("");
+        return post;
     }
 
 }

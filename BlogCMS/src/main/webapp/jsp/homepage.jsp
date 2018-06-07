@@ -78,12 +78,10 @@
                     </div>
                     <div class="bottom-content">
 
-
-
-
-                        <h4><span class="add-overflow-main2">${latestPosts.get(2).postTitle}</span></h4>
-                        <h6><span class="add-overflow-main2">${latestPosts.get(2).postBody}</span></h6>
-
+                        
+                            <h4><span class="add-overflow-main2">${latestPosts.get(2).postTitle}</span></h4>
+                            <h6><span class="add-overflow-main2">${latestPosts.get(2).postBody}</span></h6>
+                        
 
 
                     </div>
