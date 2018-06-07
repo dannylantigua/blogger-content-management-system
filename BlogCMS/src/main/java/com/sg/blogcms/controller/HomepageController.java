@@ -5,7 +5,9 @@
  */
 package com.sg.blogcms.controller;
 
+import com.sg.blogcms.model.Posts;
 import com.sg.blogcms.service.PostsService;
+import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,8 +31,13 @@ public class HomepageController {
     @RequestMapping(value = "/homepage", method = RequestMethod.GET)
     public String homepage(Model model) {
 
-        model.addAttribute("latestPosts", postsService.getLatestPosts());
-        
+        List<Posts> posts = postsService.getLatestPosts();
+
+        try {
+            model.addAttribute("latestPosts", posts);
+        } catch (IndexOutOfBoundsException ex) {
+
+        }
         return "homepage";
     }
 }

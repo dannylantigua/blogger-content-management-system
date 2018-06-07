@@ -40,6 +40,7 @@ and open the template in the editor.
 .bottom-content {
     height:50%;
     border: 1px solid black;
+    padding:30px;
 }
 
 
@@ -145,3 +146,4 @@ add-margin-padding-main2 {
 .add-padding-side-content {
     padding:30px;
 }
+

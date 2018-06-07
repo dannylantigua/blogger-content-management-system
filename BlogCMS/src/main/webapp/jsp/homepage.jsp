@@ -70,14 +70,21 @@
                 <div class="right-main-content">
                     <div class="top-content add-padding-side-content">
 
-                        <h3><span class="add-overflow-main2">${latestPosts.get(1).postTitle}</span></h3>
-                        <h5><span class="add-overflow-main2">${latestPosts.get(1).postBody}</span></h5>
+
+
+                        <h4><span class="add-overflow-main2">${latestPosts.get(1).postTitle}</span></h4>
+                        <h6><span class="add-overflow-main2">${latestPosts.get(1).postBody}</span></h6>
+
                     </div>
                     <div class="bottom-content">
 
-                        <p>Categorygn later)</p>
-                        <h1>example </h1>
-                        <p>O.O fjsdfhsdjhfkjshkfjhsjkfhjshfjhdjhsfj</p>
+
+
+
+                        <h4><span class="add-overflow-main2">${latestPosts.get(2).postTitle}</span></h4>
+                        <h6><span class="add-overflow-main2">${latestPosts.get(2).postBody}</span></h6>
+
+
 
                     </div>
                 </div>
