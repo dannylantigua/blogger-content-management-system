@@ -49,8 +49,15 @@ public class PostsServiceImpl implements PostsService {
 
     @Override
     public List<Posts> getLatestPosts() {
+        //getting the list of posts
         List<Posts> posts = postsDao.getLatestPosts();
-        for (int x = 0; x < 3; x++) {
+        
+        //the amount of posts you expect
+        int postCount = 3;
+        
+        // scanning and filling the posts were expecting if they return null
+        // as a blank object to display to the user that the main page is empty
+        for (int x = 0; x < postCount; x++) {
             try {
                 posts.get(x);
             } catch(IndexOutOfBoundsException ex){
@@ -62,10 +69,9 @@ public class PostsServiceImpl implements PostsService {
 
     // creating an emtpy post object incase the posts are empty 
     // and to avoid null pointer exception 
+    // and to display empty current posts to the user
     public Posts emptyPosts() {
         Posts post = new Posts();
-        post.setPostTitle("");
-        post.setPostBody("");
         return post;
     }
 
