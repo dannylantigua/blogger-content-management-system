@@ -62,6 +62,16 @@
             <h1>Display all blogs and catogogize them</h1>
             <p>fill out stuff here static page stuff</p>
 
+
+            <c:forEach var="post" items="${posts}">
+                <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${post.recordId}">
+                    <div class="post">   
+                        <span class="add-overflow"><h1> <c:out value="${post.postTitle}"></c:out>...</h1></span>
+                        <span class="add-overflow"><p> <c:out value="${post.postBody}"></c:out> ...</p></span>
+                        </div> 
+                    </a>
+            </c:forEach>
+
         </div>
 
 

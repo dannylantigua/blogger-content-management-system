@@ -36,7 +36,7 @@
                     <ul class="nav navbar-nav">
                         <li <!--class="active"--><a href="${pageContext.request.contextPath}/allBlogs">All Blogs <span class="sr-only">(current)</span></a></li>
                         <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
-                            
+
 
                     </ul>
                     <form class="navbar-form navbar-right">
@@ -44,11 +44,11 @@
                             <input type="text" class="form-control" placeholder="Search">
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
-                         <c:if test="${pageContext.request.userPrincipal.name != null}">
-                        <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Dashboard</a>
+                        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Dashboard</a>
                         </c:if>
                     </form>
-                   
+
 
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -61,28 +61,42 @@
 
             <div class="main-content">
                 <div class="left-main-content">
-                    <div class="container">
-                        <p>Category here (will fix structure and design later)</p>
-                        <h1>Kennys Blog example heading</h1>
-                        <p>O.O fjsdfhsdjhfkjshkfjhsjkfhjshfjhdjhsfj</p>
-                    </div>
+                    <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${latestPosts.get(0).recordId}">
+                        <div class="container add-margin-padding-main">
+                            <h1><span class="add-overflow-main">${latestPosts.get(0).postTitle}</span></h1>
+                            <h4><span class="add-overflow-main">${latestPosts.get(0).postBody}</span></h4>
+                        </div>
+                    </a>
 
                 </div>
                 <div class="right-main-content">
-                    <div class="top-content">
 
-                        <p>Catign later)</p>
-                        <h1>example </h1>
-                        <p>O.O fjsdfhsdjhfkjshkfjhsjkfhjshfjhdjhsfj</p>
+                    <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${latestPosts.get(1).recordId}">    
+                        <div class="top-content add-padding-side-content">
 
-                    </div>
-                    <div class="bottom-content">
 
-                        <p>Categorygn later)</p>
-                        <h1>example </h1>
-                        <p>O.O fjsdfhsdjhfkjshkfjhsjkfhjshfjhdjhsfj</p>
 
-                    </div>
+                            <h4><span class="add-overflow-main2">${latestPosts.get(1).postTitle}</span></h4>
+                            <h6><span class="add-overflow-main2">${latestPosts.get(1).postBody}</span></h6>
+
+                        </div>
+
+                    </a>
+                    <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${latestPosts.get(2).postTitle}">  
+
+                        <div class="bottom-content">
+
+
+                            <h4><span class="add-overflow-main2">${latestPosts.get(2).postTitle}</span></h4>
+                            <h6><span class="add-overflow-main2">${latestPosts.get(2).postBody}</span></h6>
+
+
+
+                        </div>
+
+                    </a>
+
+
                 </div>
                 <div class="profile">
 

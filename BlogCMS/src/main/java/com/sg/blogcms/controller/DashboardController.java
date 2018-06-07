@@ -33,6 +33,7 @@ public class DashboardController {
     public String dashboard(HttpServletRequest request, Model model) {
 
         String username = request.getRemoteUser();
+        
         if (username != null) {
 
             Entity currentEntity = ServiceDao.getEntityByUserName(username);

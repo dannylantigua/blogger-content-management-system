@@ -8,6 +8,7 @@ package com.sg.blogcms.mappers;
 import com.sg.blogcms.model.Authorities;
 import com.sg.blogcms.model.Categories;
 import com.sg.blogcms.model.Entity;
+import com.sg.blogcms.model.Posts;
 import com.sg.blogcms.model.StaticPages;
 import com.sg.blogcms.model.postsTags;
 import java.sql.ResultSet;
@@ -101,6 +102,43 @@ public class Mappers {
         }
     }
     
+
+    public static final class PostsMapper implements RowMapper<Posts>  {
+
+        @Override
+        public Posts mapRow(ResultSet rs, int i) throws SQLException {
+            
+          Posts currentPost = new Posts();
+          
+          currentPost.setRecordId(rs.getInt("recordId"));
+          
+          currentPost.setPostTitle(rs.getString("postTitle"));
+          
+          currentPost.setPostBody(rs.getString("postBody"));
+          
+          currentPost.setUserId(rs.getInt("userId"));
+          
+          currentPost.setPostDate(rs.getDate("postDate"));
+          
+          currentPost.setExpireDate(rs.getDate("expireDate"));
+          
+          currentPost.setLikes(rs.getInt("likes"));
+          
+          currentPost.setIsPending(rs.getBoolean("isPending"));
+          
+          currentPost.setIsPending(rs.getBoolean("isPending"));
+          
+          currentPost.setIsApproved(rs.getBoolean("isApproved"));
+          
+          currentPost.setIsRejected(rs.getBoolean("isRejected"));
+          
+          return currentPost;
+        }
+        
     
+
+
+    }
     
 }
+

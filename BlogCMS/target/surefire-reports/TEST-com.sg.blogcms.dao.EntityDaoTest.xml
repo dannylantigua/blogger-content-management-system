@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <testsuite tests="5" failures="0" name="com.sg.blogcms.dao.EntityDaoTest" time="0.607" errors="0" skipped="0">
 =======
 <testsuite tests="5" failures="0" name="com.sg.blogcms.dao.EntityDaoTest" time="1.047" errors="0" skipped="0">
 >>>>>>> LOGINK-45-50
+=======
+<testsuite tests="5" failures="0" name="com.sg.blogcms.dao.EntityDaoTest" time="0.538" errors="0" skipped="0">
+>>>>>>> kelliesCreatePostJspController
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre/lib"/>
@@ -70,6 +74,7 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testRemoveEntityById" time="0.105"/>
   <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testGetAllEntities" time="0.147"/>
   <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testUpdateEntityById" time="0.155"/>
@@ -82,4 +87,11 @@
   <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testEditEntity" time="0.202"/>
   <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testAddEntityAndGet" time="0.206"/>
 >>>>>>> LOGINK-45-50
+=======
+  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testRemoveEntityById" time="0.047"/>
+  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testGetAllEntities" time="0.147"/>
+  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testUpdateEntityById" time="0.119"/>
+  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testEditEntity" time="0.118"/>
+  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testAddEntityAndGet" time="0.107"/>
+>>>>>>> kelliesCreatePostJspController
 </testsuite>

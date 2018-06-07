@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <testsuite tests="3" failures="0" name="com.sg.blogcms.dao.CategoriesDaoTest" time="1.195" errors="0" skipped="0">
 =======
 <testsuite tests="3" failures="0" name="com.sg.blogcms.dao.CategoriesDaoTest" time="2.589" errors="0" skipped="0">
 >>>>>>> LOGINK-45-50
+=======
+<testsuite tests="3" failures="0" name="com.sg.blogcms.dao.CategoriesDaoTest" time="1.187" errors="0" skipped="0">
+>>>>>>> kelliesCreatePostJspController
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre/lib"/>
@@ -70,6 +74,7 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <testcase classname="com.sg.blogcms.dao.CategoriesDaoTest" name="testGetAllCategories" time="0.9"/>
   <testcase classname="com.sg.blogcms.dao.CategoriesDaoTest" name="testAddGetDeleteCategory" time="0.161"/>
   <testcase classname="com.sg.blogcms.dao.CategoriesDaoTest" name="testUpdateCategory" time="0.134"/>
@@ -78,4 +83,9 @@
   <testcase classname="com.sg.blogcms.dao.CategoriesDaoTest" name="testAddGetDeleteCategory" time="0.306"/>
   <testcase classname="com.sg.blogcms.dao.CategoriesDaoTest" name="testUpdateCategory" time="0.254"/>
 >>>>>>> LOGINK-45-50
+=======
+  <testcase classname="com.sg.blogcms.dao.CategoriesDaoTest" name="testGetAllCategories" time="0.896"/>
+  <testcase classname="com.sg.blogcms.dao.CategoriesDaoTest" name="testAddGetDeleteCategory" time="0.179"/>
+  <testcase classname="com.sg.blogcms.dao.CategoriesDaoTest" name="testUpdateCategory" time="0.112"/>
+>>>>>>> kelliesCreatePostJspController
 </testsuite>

@@ -2,7 +2,11 @@
 Test set: com.sg.blogcms.dao.EntityDaoTest
 -------------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
 Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.611 sec
 =======
 Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.059 sec
 >>>>>>> LOGINK-45-50
+=======
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.538 sec
+>>>>>>> kelliesCreatePostJspController
