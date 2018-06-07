@@ -60,36 +60,38 @@
         <div class="container">
 
             <div class="main-content">
-                <div class="left-main-content">
+                <div class="left-main-content button-effect" style="z-index: 1999;">
                     <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${latestPosts.get(0).recordId}">
-                        <div class="container add-margin-padding-main">
+                        <div class="add-margin-padding-main">
                             <h1><span class="add-overflow-main">${latestPosts.get(0).postTitle}</span></h1>
                             <h4><span class="add-overflow-main">${latestPosts.get(0).postBody}</span></h4>
                         </div>
                     </a>
 
                 </div>
-                <div class="right-main-content">
+                <div class="right-main-content ">
 
                     <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${latestPosts.get(1).recordId}">    
-                        <div class="top-content add-padding-side-content">
+                        <div class="button-effect">
+                            <div class="top-content add-padding-side-content">
 
 
 
-                            <h4><span class="add-overflow-main2">${latestPosts.get(1).postTitle}</span></h4>
-                            <h6><span class="add-overflow-main2">${latestPosts.get(1).postBody}</span></h6>
+                                <h4><span class="add-overflow-main2">${latestPosts.get(1).postTitle}</span></h4>
+                                <h6><span class="add-overflow-main2">${latestPosts.get(1).postBody}</span></h6>
+                            </div>
 
                         </div>
-
                     </a>
+
                     <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${latestPosts.get(2).postTitle}">  
 
                         <div class="bottom-content">
+                            <div class="button-effect" >
 
-
-                            <h4><span class="add-overflow-main2">${latestPosts.get(2).postTitle}</span></h4>
-                            <h6><span class="add-overflow-main2">${latestPosts.get(2).postBody}</span></h6>
-
+                                <h4><span class="add-overflow-main2">${latestPosts.get(2).postTitle}</span></h4>
+                                <h6><span class="add-overflow-main2">${latestPosts.get(2).postBody}</span></h6>
+                            </div>
 
 
                         </div>
@@ -103,12 +105,21 @@
                     <div style="display:block; margin: 50px 32%;" >
                         <div style="padding:50px;border-radius:400px;background:grey;width:1%;"></div>
                     </div>
-                    <div class="social-media-links ">
-                        <p>Facebook</p>
+                    <div class="social-media-links">
+                        <!--                        <p>Facebook</p>
+                        
+                                                <p>twitter</p>
+                        
+                                                <p>whateevr</p>-->
 
-                        <p>twitter</p>
 
-                        <p>whateevr</p>
+                        <div class="card" style="width: 18rem; margin:0 auto; border:none;">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">fb</li>
+                                <li class="list-group-item">twitter</li>
+                                <li class="list-group-item">Vestibu</li>
+                            </ul>
+                        </div>
                     </div>
 
 

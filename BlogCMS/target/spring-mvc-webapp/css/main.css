@@ -121,7 +121,7 @@ and open the template in the editor.
 .add-overflow-main {
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 40%;
+    width: 90%;
     display: block;
     overflow: hidden;
     
@@ -159,4 +159,20 @@ a:hover{
     cursor:pointer;
     text-decoration: none;
     color:black;
+}
+
+.button-effect {
+     position:relative;
+    transition:1s;
+    top:0;
+    left: 0;
+    background:white;
+}
+
+.button-effect:hover {
+    position:relative;
+    transition:0.5s;
+    top:-15px;
+    left: 15px;
+    background:white;
 }
