@@ -41,7 +41,7 @@ public class AllBlogsController {
     @RequestMapping(value = "/displayChosenBlogPost", method = RequestMethod.GET)
     public String displayChosenBlogPost(HttpServletRequest request, Model model) {
         String currentIdForPost = request.getParameter("currentPostId");
-        if ("".equals(currentIdForPost)) {
+        if ("".equals(currentIdForPost) || "0".equals(currentIdForPost)) {
             return "redirect:homepage";
         } else {
             Posts currentPost = postsService.getPostsById(Integer.parseInt(currentIdForPost));
