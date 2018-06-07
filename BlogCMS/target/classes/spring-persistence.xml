@@ -24,7 +24,7 @@
         <property name="url"
                   value="jdbc:mysql://localhost:3306/BlogCMS"/>
         <property name="username" value="root"/>
-        <property name="password" value="aced123"/>
+        <property name="password" value="root"/>
         <property name="initialSize" value="5"/>
         <property name="maxTotal" value="10"/>
     </bean>
@@ -72,9 +72,16 @@
         <constructor-arg ref="postsDao"/>
     </bean> 
     
+    <bean id="categoriesService" class="com.sg.blogcms.serviceImpl.CategoriesServiceImpl">
+        <constructor-arg ref="categoriesDao"/>
+    </bean>
     
+    <bean id="tagsService" class="com.sg.blogcms.serviceImpl.TagsServiceImpl">
+        <constructor-arg ref="TagsDao"/>
+    </bean>
     
-    
-    
+    <bean id="staticPagesService"  class="com.sg.blogcms.serviceImpl.StaticPagesServiceImpl">
+        <constructor-arg ref="StaticPagesDao"/>
+    </bean>
     
 </beans>

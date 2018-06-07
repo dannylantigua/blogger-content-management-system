@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.sg.blogcms.dao.CategoriesDaoTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-<<<<<<< HEAD
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.242 sec
-=======
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.715 sec
->>>>>>> LOGINK-45-50
-=======
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.215 sec
->>>>>>> kelliesCreatePostJspController
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.448 sec
