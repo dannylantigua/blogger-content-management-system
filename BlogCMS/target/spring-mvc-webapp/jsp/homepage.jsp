@@ -61,30 +61,42 @@
 
             <div class="main-content">
                 <div class="left-main-content">
-                    <div class="container add-margin-padding-main">
-                        <h1><span class="add-overflow-main">${latestPosts.get(0).postTitle}</span></h1>
-                        <h4><span class="add-overflow-main">${latestPosts.get(0).postBody}</span></h4>
-                    </div>
+                    <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${latestPosts.get(0).recordId}">
+                        <div class="container add-margin-padding-main">
+                            <h1><span class="add-overflow-main">${latestPosts.get(0).postTitle}</span></h1>
+                            <h4><span class="add-overflow-main">${latestPosts.get(0).postBody}</span></h4>
+                        </div>
+                    </a>
 
                 </div>
                 <div class="right-main-content">
-                    <div class="top-content add-padding-side-content">
+
+                    <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${latestPosts.get(1).recordId}">    
+                        <div class="top-content add-padding-side-content">
 
 
 
-                        <h4><span class="add-overflow-main2">${latestPosts.get(1).postTitle}</span></h4>
-                        <h6><span class="add-overflow-main2">${latestPosts.get(1).postBody}</span></h6>
+                            <h4><span class="add-overflow-main2">${latestPosts.get(1).postTitle}</span></h4>
+                            <h6><span class="add-overflow-main2">${latestPosts.get(1).postBody}</span></h6>
 
-                    </div>
-                    <div class="bottom-content">
+                        </div>
 
-                        
+                    </a>
+                    <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${latestPosts.get(2).postTitle}">  
+
+                        <div class="bottom-content">
+
+
                             <h4><span class="add-overflow-main2">${latestPosts.get(2).postTitle}</span></h4>
                             <h6><span class="add-overflow-main2">${latestPosts.get(2).postBody}</span></h6>
-                        
 
 
-                    </div>
+
+                        </div>
+
+                    </a>
+
+
                 </div>
                 <div class="profile">
 

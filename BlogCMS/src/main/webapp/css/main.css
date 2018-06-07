@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : kmlnd
 */
 
+* {
+    text-decoration: none;
+}
+
 .main-content {
     margin-top: 60px;
     display:flex;
@@ -147,3 +151,12 @@ add-margin-padding-main2 {
     padding:30px;
 }
 
+a {
+    color:black;
+    
+}
+a:hover{
+    cursor:pointer;
+    text-decoration: none;
+    color:black;
+}

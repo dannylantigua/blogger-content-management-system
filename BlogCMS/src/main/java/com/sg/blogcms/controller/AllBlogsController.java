@@ -33,18 +33,21 @@ public class AllBlogsController {
     public String allBlogs(Model model) {
 
         List<Posts> posts = postsService.getAllPosts();
-        model.addAttribute("posts",posts);
-        
+        model.addAttribute("posts", posts);
+
         return "allBlogs";
     }
-    
-    @RequestMapping(value="/displayChosenBlogPost" , method = RequestMethod.GET)
-    public String displayChosenBlogPost(HttpServletRequest request, Model model){
+
+    @RequestMapping(value = "/displayChosenBlogPost", method = RequestMethod.GET)
+    public String displayChosenBlogPost(HttpServletRequest request, Model model) {
         String currentIdForPost = request.getParameter("currentPostId");
-        
-        Posts currentPost = postsService.getPostsById(Integer.parseInt(currentIdForPost));
-        
-        model.addAttribute("currentPost", currentPost);
-        return "displayChosenBlogPost";
+        if ("".equals(currentIdForPost)) {
+            return "redirect:homepage";
+        } else {
+            Posts currentPost = postsService.getPostsById(Integer.parseInt(currentIdForPost));
+
+            model.addAttribute("currentPost", currentPost);
+            return "displayChosenBlogPost";
+        }
     }
 }

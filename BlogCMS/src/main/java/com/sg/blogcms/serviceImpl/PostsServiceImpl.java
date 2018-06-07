@@ -69,7 +69,7 @@ public class PostsServiceImpl implements PostsService {
 
     // creating an emtpy post object incase the posts are empty 
     // and to avoid null pointer exception 
-    // and to display empty current posts to the user
+    // and to display empty current posts to the user if there are no latest posts
     public Posts emptyPosts() {
         Posts post = new Posts();
         return post;
