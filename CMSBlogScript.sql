@@ -106,6 +106,9 @@ INSERT INTO StaticPages (recordId, PageName, Content) VALUES
 -- 
 INSERT INTO Posts VALUES (1, 'What is a Method? A real controversy in the LGACC-Java Team', 
 	'Google it', 1, '9999-12-31 23:59:59', '9999-12-31 23:59:59' , 0, 0, 1, 0);
+    
+    INSERT INTO Posts VALUES (2, 'What is a Function? A real controversy in the LGACC-Java Team', 
+	'Google it too', 2, '9999-12-31 23:59:59', '9999-12-31 23:59:59' , 0, 0, 1, 0);
 -- 
 -- 
 -- Data for Tags

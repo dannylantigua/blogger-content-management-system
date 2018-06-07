@@ -112,3 +112,36 @@ and open the template in the editor.
     overflow: hidden;
     
 }
+
+.add-overflow-main {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 40%;
+    display: block;
+    overflow: hidden;
+    
+    /*padding : 40px;*/
+}
+
+.add-overflow-main2 {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 90%;
+    display: block;
+    overflow: hidden;
+    
+    /*padding : 40px;*/
+}
+
+.add-margin-padding-main {
+    padding:30px;
+    margin-top:60px;
+}
+
+add-margin-padding-main2 {
+    /*padding:30px;*/
+}
+
+.add-padding-side-content {
+    padding:30px;
+}

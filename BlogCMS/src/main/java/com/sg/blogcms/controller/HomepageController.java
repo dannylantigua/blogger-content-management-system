@@ -5,7 +5,10 @@
  */
 package com.sg.blogcms.controller;
 
+import com.sg.blogcms.service.PostsService;
+import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,8 +18,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomepageController {
-    @RequestMapping(value="/homepage",method=RequestMethod.GET)
-    public String homepage(){
+
+    PostsService postsService;
+
+    @Inject
+    public HomepageController(PostsService postsService) {
+        this.postsService = postsService;
+    }
+
+    @RequestMapping(value = "/homepage", method = RequestMethod.GET)
+    public String homepage(Model model) {
+
+        model.addAttribute("latestPosts", postsService.getLatestPosts());
         
         return "homepage";
     }

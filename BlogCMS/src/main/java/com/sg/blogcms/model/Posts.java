@@ -19,7 +19,6 @@ import java.util.Objects;
 
 public class Posts {
 
-
     private int recordId;
     private String postTitle;
     private String postBody;

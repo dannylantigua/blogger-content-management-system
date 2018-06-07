@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.sg.blogcms.daoImpl;
-
 import com.sg.blogcms.dao.PostsDao;
 import com.sg.blogcms.mappers.Mappers.PostsMapper;
 import com.sg.blogcms.model.Posts;
@@ -33,7 +32,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
 
     private static final String SQL_GET_POSTS_BY_CATEGORY = " SELECT * FROM Posts WHERE userId = ? ";
     
-    
+    private static final String SQL_GET_LATEST_3_POSTS = " SELECT * FROM POSTS order BY recordId DESC LIMIT 0 , 3 ";
 
     //SETTER INJECTION
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -46,6 +45,15 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
 
         try {
             return jdbcTemplate.query(SQL_GET_ALL_POSTS, new PostsMapper());
+        } catch (DataAccessException ex) {
+            return null;
+        }
+    }
+    
+    @Override
+    public List<Posts> getLatestPosts(){
+        try {
+        return jdbcTemplate.query(SQL_GET_LATEST_3_POSTS, new PostsMapper());
         } catch (DataAccessException ex) {
             return null;
         }
@@ -80,6 +88,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()",
                 Integer.class);
         currentPosts.setRecordId(newId);
+        
         return currentPosts;
     }
 

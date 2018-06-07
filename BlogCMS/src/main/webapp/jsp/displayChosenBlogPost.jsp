@@ -59,11 +59,13 @@
         <div class="container">
 
             <div style="margin-top: 100px;">
-                ${currentPost.postTitle}
-
+                <h1>${currentPost.postTitle} </h1>
+                <h4>${currentPost.postDate}</h4>
                 <hr>
 
                 ${currentPost.postBody}
+            
+             
             </div>
 
         </div>

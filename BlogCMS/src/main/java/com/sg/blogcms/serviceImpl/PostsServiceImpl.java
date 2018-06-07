@@ -47,4 +47,9 @@ public class PostsServiceImpl implements PostsService {
         return postsDao.getPostsByCategory(theCategoryId);
     }
 
+    @Override
+    public List<Posts> getLatestPosts() {
+        return postsDao.getLatestPosts();
+    }
+
 }

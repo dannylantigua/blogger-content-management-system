@@ -23,4 +23,6 @@ public interface PostsService {
     void removePostsById(int id);
 
     List<Posts> getPostsByCategory(int theCategoryId);
+    
+    List<Posts> getLatestPosts();
 }
