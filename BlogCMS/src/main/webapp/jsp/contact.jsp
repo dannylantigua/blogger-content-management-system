@@ -29,9 +29,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/allBlogs">All Blog Posts</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">contact</a>
-                    </li>
                 </ul>
                 <span class="navbar-text">
                     <c:if test="${pageContext.request.userPrincipal.name != null}">

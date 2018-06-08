@@ -40,10 +40,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/allBlogs">All Blog Posts</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">contact</a>
-                    </li>
                 </ul>
+                <span class="navbar-text pr-5">
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+                        <a class="btn btn-primary text-light" href="${pageContext.request.contextPath}/dashboard"role="button">Back to dashboard</a>
+                    </c:if>
+                </span>
             </div>
         </nav>
 
@@ -111,7 +113,7 @@
                                     </div>
                                 </div>
 
-                                <a class="btn btn-primary" href="${pageContext.request.contextPath}/dashboard"role="button">Back to dashboard</a>
+                                <!--<a class="btn btn-primary" href="${pageContext.request.contextPath}/dashboard"role="button">Back to dashboard</a>-->
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                                     Delete your account
                                 </button>

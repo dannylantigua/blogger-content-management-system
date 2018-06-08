@@ -39,9 +39,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/allBlogs">All Blog Posts</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">contact</a>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -71,7 +68,6 @@
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                         <a class="btn btn-primary" href="${pageContext.request.contextPath}/editProfile"role="button">Edit Profile</a>
                         <a class="btn btn-primary" href="${pageContext.request.contextPath}/createPost"role="button">Create Blog Post</a>
-                        <a class="btn btn-primary" href="#"role="button">Search Category</a>
 
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
                             <a class="btn btn-primary" href="${pageContext.request.contextPath}/adminSettings"role="button">Admin Settings</a>
