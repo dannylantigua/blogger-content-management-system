@@ -7,6 +7,7 @@ package com.sg.blogcms.controller;
 
 import com.sg.blogcms.model.Posts;
 import com.sg.blogcms.service.PostsService;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
@@ -34,8 +35,11 @@ public class HomepageController {
         List<Posts> posts = postsService.getLatestPosts();
 
         
+        model.addAttribute("posts", posts);
+        if(!posts.isEmpty()){
+            model.addAttribute("latestPost", posts.get(posts.size() - 1));
+        }
         
-        model.addAttribute("latestPosts", posts);
         
         return "homepage";
     }

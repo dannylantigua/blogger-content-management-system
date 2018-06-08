@@ -52,18 +52,18 @@ public class PostsServiceImpl implements PostsService {
         //getting the list of posts
         List<Posts> posts = postsDao.getLatestPosts();
         
-        //the amount of posts you expect
-        int postCount = 3;
-        
-        // scanning and filling the posts were expecting if they return null
-        // as a blank object to display to the user that the main page is empty
-        for (int x = 0; x < postCount; x++) {
-            try {
-                posts.get(x);
-            } catch(IndexOutOfBoundsException ex){
-                posts.add(emptyPosts());
-            }
-        }
+//        //the amount of posts you expect
+//        int postCount = 4;
+//        
+//        // scanning and filling the posts were expecting if they return null
+//        // as a blank object to display to the user that the main page is empty
+//        for (int x = 0; x < postCount; x++) {
+//            try {
+//                posts.get(x);
+//            } catch(IndexOutOfBoundsException ex){
+//                posts.add(emptyPosts());
+//            }
+//        }
         return posts;
     }
 
@@ -72,6 +72,8 @@ public class PostsServiceImpl implements PostsService {
     // and to display empty current posts to the user if there are no latest posts
     public Posts emptyPosts() {
         Posts post = new Posts();
+        post.setPostTitle("No current Post");
+//        post.setP
         return post;
     }
 

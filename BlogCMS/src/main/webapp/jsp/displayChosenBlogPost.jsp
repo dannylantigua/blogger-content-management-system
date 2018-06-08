@@ -67,9 +67,10 @@
 
 
                 <sec:authorize access="hasRole('ROLE_ADMIN')"> 
+                    <hr>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                        Delete your post
+                        Delete post
                     </button>
 
                     <!-- Modal -->

@@ -32,7 +32,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
 
     private static final String SQL_GET_POSTS_BY_CATEGORY = " SELECT * FROM Posts WHERE userId = ? ";
     
-    private static final String SQL_GET_LATEST_3_POSTS = " SELECT * FROM POSTS order BY recordId DESC LIMIT 0 , 3 ";
+    private static final String SQL_GET_LATEST_4_POSTS = " SELECT * FROM POSTS order BY recordId DESC LIMIT 0 , 4 ";
 
     //SETTER INJECTION
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -53,7 +53,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     @Override
     public List<Posts> getLatestPosts(){
         try {
-        return jdbcTemplate.query(SQL_GET_LATEST_3_POSTS, new PostsMapper());
+        return jdbcTemplate.query(SQL_GET_LATEST_4_POSTS, new PostsMapper());
         } catch (DataAccessException ex) {
             return null;
         }
