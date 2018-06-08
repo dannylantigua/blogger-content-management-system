@@ -52,7 +52,7 @@
                 <div class="container">
                     <h1 class="display-3">${latestPost.postTitle}</h1>
                     <p>${latestPost.postBody}</p>
-                    <p><a class="btn btn-dark btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+                    <p><a class="btn btn-dark btn-lg" href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${latestPost.recordId}" role="button">Learn more &raquo;</a></p>
                 </div>
             </div>
 
@@ -64,7 +64,7 @@
                         <div class="col-md-4">
                             <h2><c:out value="${post.postTitle}"></c:out></h2>
                             <p><c:out value="${post.postBody}"></c:out></p>
-                            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                            <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${post.recordId}" role="button">View details &raquo;</a></p>
                         </div>
                     </c:forEach>
                 </div>
