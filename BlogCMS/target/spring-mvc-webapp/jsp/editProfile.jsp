@@ -8,144 +8,171 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
         <title>JSP Page</title>
-        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">      
+<!-- <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">    -->
+
+        <!-- For the Template 
+        ////////////////////////////////////////////////////////////////
+        -->
+        <!--     Fonts and icons     -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/templatecss/material-dashboard.css?v=2.0.0">
+        <!-- Documentation extras -->
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link href="${pageContext.request.contextPath}/assets-for-demo/demo.css" rel="stylesheet" />
+        <!-- iframe removal -->
+
+
     </head>
     <body>
 
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="${pageContext.request.contextPath}/homepage">Brand</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Link</a></li>
-
-                    </ul>
-                    <form class="navbar-form navbar-right">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
-
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-        <div class="container">
 
 
-            <h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
 
-                USER SETTINGS
-            </h1>
-            
-            <hr>
-            
-            <h2>Edit Account</h1>
-           
-           
-            
-            <hr>
-
-            <!--UPDATE ACCOUNT INFORMATION-->
-
-            <form role="form" method="POST" action="updateUser">
-                <div class="form-group">
-                    <label for="email">Email address  : ( ${user.email} )</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter email" required>
-                </div>
-                <div class="form-group">
-                    <label for="username">Username : ( ${user.userName} )</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
-                </div>
-                <div class="form-group">
-                    <label for="first">First Name  : ( ${user.firstName} )</label>
-                    <input type="text" class="form-control" id="first" name="firstname" placeholder="First Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="last">Last Name : ( ${user.lastName} )</label>
-                    <input type="text" class="form-control" id="last" name="lastname" placeholder="Last Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                </div>
-                <!--                <div class="form-group">
-                                    <label for="retypePassword">Retype Password</label>
-                                    <input type="password" class="form-control" id="retypePassword" name="password-repeat" placeholder="Password" required>
-                                </div>-->
-                <div class="form-group">
-                    <label for="phone">Phone Number : ( ${user.lastName} )</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-
-
-            <!--UPDATE ACCOUNT INFORMATION-->
-            <!--<a class="btn btn-danger" href="#"role="button">Delete Your Account</a>-->
-
-            <hr>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                Delete your account
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/homepage">Company Logo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Account deletion</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/allBlogs">All Blog Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container m">
+            <div class="row">
+
+
+
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">Edit Profile</h4>
+                            <p class="card-category">Complete your profile</p>
                         </div>
-                        <div class="modal-body">
-                            Are you sure you want to delete your account?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <a class="btn btn-danger" href="${pageContext.request.contextPath}/deleteUser" role="button">Delete Account</a>
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating" for="username">Username : ( ${user.userName} )</label>
+                                            <input type="text" class="form-control" id="username" name="username" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating" for="email">Email address : ( ${user.email} )</label>
+                                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating" for="first">First Name : ( ${user.firstName} )</label>
+                                            <input type="text" class="form-control" id="first" name="firstname" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating" for="last">Last Name : ( ${user.lastName} )</label>
+                                            <input type="text" class="form-control" id="last" name="lastname" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating" for="retypePassword">Retype Password</label>
+                                            <input type="password" class="form-control" id="retypePassword" name="password-repeat" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating" for="phone">Phone Number : ( ${user.lastName} )</label>
+                                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a class="btn btn-primary" href="${pageContext.request.contextPath}/dashboard"role="button">Back to dashboard</a>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                    Delete your account
+                                </button>
+
+                                <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+
+                                <div class="clearfix"></div>
+                            </form>
                         </div>
                     </div>
                 </div>
+
+
+                <!--UPDATE ACCOUNT INFORMATION-->
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Account deletion</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete your account?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a class="btn btn-danger" href="${pageContext.request.contextPath}/deleteUser" role="button">Delete Account</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
+            <!-- Placed at the end of the document so the pages load faster -->
+    <!--        <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>-->
+
+
+            <script src="${pageContext.request.contextPath}/js/templatejs/core/jquery.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/templatejs/core/popper.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/templatejs/bootstrap-material-design.js"></script>
+            <script src="${pageContext.request.contextPath}/js/templatejs/plugins/perfect-scrollbar.jquery.min.js"></script>
+            <!--  Charts Plugin, full documentation here: https://gionkunz.github.io/chartist-js/ -->
+            <script src="${pageContext.request.contextPath}/js/templatejs/plugins/chartist.min.js"></script>
+            <!-- Library for adding dinamically elements -->
+            <script src="${pageContext.request.contextPath}/js/templatejs/plugins/arrive.min.js" type="text/javascript"></script>
+            <!--  Notifications Plugin, full documentation here: http://bootstrap-notify.remabledesigns.com/    -->
+            <script src="${pageContext.request.contextPath}/js/templatejs/plugins/bootstrap-notify.js"></script>
+            <!-- Material Dashboard Core initialisations of plugins and Bootstrap Material Design Library -->
+            <script src="${pageContext.request.contextPath}/js/templatejs/material-dashboard.js?v=2.0.0"></script>
+            <!-- demo init -->
+            <script src="${pageContext.request.contextPath}/js/templatejs/plugins/demo.js"></script>
 
 
 
-            <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <!--                                <p> Hello .. 
-                ${pageContext.request.userPrincipal.name}
-                <a href="<c:url value="j_spring_security_logout" />" >( Logout )</a>
-
-            </p>-->
-            </c:if>
-
-
-
-
-            <hr>
-
-            <h1>
-
-                <a class="btn btn-primary" href="${pageContext.request.contextPath}/dashboard"role="button">Back to dashboard</a>
-        </div>
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
     </body>
 </html>

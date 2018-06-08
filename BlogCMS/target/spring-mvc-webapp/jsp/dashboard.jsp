@@ -8,145 +8,210 @@
     <head>
         <title>Index Page</title>
         <!-- Bootstrap core CSS -->
-        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">        
+        <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+
+        <!-- For the Template 
+        ////////////////////////////////////////////////////////////////
+        -->
+        <!--     Fonts and icons     -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/templatecss/material-dashboard.css?v=2.0.0">
+        <!-- Documentation extras -->
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link href="${pageContext.request.contextPath}/assets-for-demo/demo.css" rel="stylesheet" />
+        <!-- iframe removal -->
+
+
     </head>
     <body>
 
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="${pageContext.request.contextPath}/homepage">Brand</a>
-                </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Link</a></li>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
 
-                    </ul>
-                    <form class="navbar-form navbar-right">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/homepage">Company Logo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
 
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/allBlogs">All Blog Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">contact</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
 
-        <div class="container">
-
-            <div style="display:flex;">
-                <div style="padding:50px;border-radius:400px;background:grey;width:1%;"></div>
-                <div style="padding-top:20px">
-                    <ul style="list-style:none;">
-                        <li>
-                            <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                <p> Hello .. 
-                                    ${pageContext.request.userPrincipal.name}
-                                    <a href="<c:url value="j_spring_security_logout" />" >( Logout )</a>
-
-                                </p>
-                            </c:if>
-                        </li>
-
-                        <li>
-                            <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                <p>  ${firstname} ${lastname} </p>
-                            </c:if>
-                        </li>
-
-                        <li>
-                            <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                <p>${email}</p>
-                            </c:if>
-                        </li>
-                    </ul>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card card-profile">
+                        <div class="card-avatar">
+                            <a href="#pablo">
+                                <img class="img" src="${pageContext.request.contextPath}/images/faces/marc.jpg" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
+                            <h4 class="card-title">Alec Thompson</h4>
+                            <p class="card-description">
+                                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                            </p>
+                            <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-md-9">
 
+
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/editProfile"role="button">Edit Profile</a>
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/createPost"role="button">Create Blog Post</a>
+                        <a class="btn btn-primary" href="#"role="button">Search Category</a>
+
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/adminSettings"role="button">Admin Settings</a>
+                        </sec:authorize>
+
+                        <a class="btn btn-primary" href="<c:url value="j_spring_security_logout" />" >( Logout )</a>
+
+                    </div>
+
+
+                    <!-- DASHBOARD ELEMENTS -->
+
+
+                    <div class="row">
+
+                        <!-- recent tags -->
+                        <div class="col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-warning">
+                                    <h4 class="card-title">Recent Tags</h4>
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="text-warning">
+                                        <th>PostID</th>
+                                        <th>Tag</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Dakota Rice</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Minerva Hooper</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- recent posts -->
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header card-header-warning card-header-icon">
+                                    <div class="card-icon">
+                                        <i class="material-icons">content_copy</i>
+                                    </div>
+                                    <p class="card-category">Recent Posts</p>
+                                    <h3 class="card-title">12 Posts
+                                    </h3>
+                                </div>
+                                <div class="card-footer">
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- categories -->
+                        <div class="col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-info">
+                                    <h4 class="card-title">Categories</h4>
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="text-warning">
+                                        <th>ID</th>
+                                        <th>Category</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Dakota Rice</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Minerva Hooper</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Sage Rodriguez</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Philip Chaney</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
             </div>
 
-            <hr>
 
-            <div style="display:flex; justify-content: space-around; margin-bottom:40px;">
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <a class="btn btn-primary" href="${pageContext.request.contextPath}/editProfile"role="button">Edit Profile</a>
-                    <a class="btn btn-primary" href="${pageContext.request.contextPath}/createPost"role="button">Create Blog Post</a>
-                    <a class="btn btn-primary" href="#"role="button">Search Category</a>
 
-                    <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/adminSettings"role="button">Admin Settings</a>
-                    </sec:authorize>
 
-                </div>
-
-            </div>
-            <div style="display:flex; justify-content: space-around">
-
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Recent Posts
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Recent Tags
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Recent Pages
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </div>
-            </div>
-
+            <!--
             <sec:authorize access="hasRole('ROLE_USER')">
                 <p> Hi im a thing that can only be seen by users </p>
             </sec:authorize>
 
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <p>Hi i can only be seen by admins</p>
-            </sec:authorize>
+            </sec:authorize> -->
 
 
 
         </div>
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+        <!--        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+
+
+        <script src="${pageContext.request.contextPath}/js/templatejs/core/jquery.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/templatejs/core/popper.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/templatejs/bootstrap-material-design.js"></script>
+        <script src="${pageContext.request.contextPath}/js/templatejs/plugins/perfect-scrollbar.jquery.min.js"></script>
+        <!--  Charts Plugin, full documentation here: https://gionkunz.github.io/chartist-js/ -->
+        <script src="${pageContext.request.contextPath}/js/templatejs/plugins/chartist.min.js"></script>
+        <!-- Library for adding dinamically elements -->
+        <script src="${pageContext.request.contextPath}/js/templatejs/plugins/arrive.min.js" type="text/javascript"></script>
+        <!--  Notifications Plugin, full documentation here: http://bootstrap-notify.remabledesigns.com/    -->
+        <script src="${pageContext.request.contextPath}/js/templatejs/plugins/bootstrap-notify.js"></script>
+        <!-- Material Dashboard Core initialisations of plugins and Bootstrap Material Design Library -->
+        <script src="${pageContext.request.contextPath}/js/templatejs/material-dashboard.js?v=2.0.0"></script>
+        <!-- demo init -->
+        <script src="${pageContext.request.contextPath}/js/templatejs/plugins/demo.js"></script>
+
+
 
     </body>
 </html>
