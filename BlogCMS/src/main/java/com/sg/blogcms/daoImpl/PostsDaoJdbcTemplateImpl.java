@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.sg.blogcms.daoImpl;
+
 import com.sg.blogcms.dao.PostsDao;
 import com.sg.blogcms.mappers.Mappers.PostsMapper;
 import com.sg.blogcms.model.Posts;
@@ -31,8 +32,12 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     private static final String SQL_REMOVE_POST_BY_ID = " DELETE FROM Posts WHERE recordId = ? ";
 
     private static final String SQL_GET_POSTS_BY_CATEGORY = " SELECT * FROM Posts WHERE userId = ? ";
-    
+
     private static final String SQL_GET_LATEST_4_POSTS = " SELECT * FROM POSTS order BY recordId DESC LIMIT 0 , 4 ";
+
+    private static final String SQL_UPDATE_POST = " UPDATE Posts "
+            + " SET postTitle = ? ,postDate = ?, postBody = ? , expireDate = ? , likes = ? , isPending = ? , isApproved = ? , isRejected = ? "
+            + " WHERE recordId = ? ";
 
     //SETTER INJECTION
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -49,17 +54,15 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
             return null;
         }
     }
-    
+
     @Override
-    public List<Posts> getLatestPosts(){
+    public List<Posts> getLatestPosts() {
         try {
-        return jdbcTemplate.query(SQL_GET_LATEST_4_POSTS, new PostsMapper());
+            return jdbcTemplate.query(SQL_GET_LATEST_4_POSTS, new PostsMapper());
         } catch (DataAccessException ex) {
             return null;
         }
     }
-    
-    
 
     @Override
     public Posts getPostsById(int id) {
@@ -74,8 +77,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     ///jonathan's work//
     @Override
     public Posts createPost(Posts currentPosts) {
-       
-        
+
         jdbcTemplate.update(SQL_ADD_POST,
                 currentPosts.getPostTitle(),
                 currentPosts.getPostBody(),
@@ -85,12 +87,12 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
                 currentPosts.isIsPending(),
                 currentPosts.isIsApproved(),
                 currentPosts.isIsRejected()
-                );
+        );
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()",
                 Integer.class);
         currentPosts.setRecordId(newId);
-        
+
         return currentPosts;
     }
 
@@ -98,4 +100,21 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     public List<Posts> getPostsByCategory(int theCategoryId) {
         return jdbcTemplate.query(SQL_GET_POSTS_BY_CATEGORY, new PostsMapper(), theCategoryId);
     }
+
+    @Override
+    public void updatePost(Posts post) {
+        jdbcTemplate.update(
+                SQL_UPDATE_POST,
+                post.getPostTitle(),
+                post.getPostBody(),
+                post.getPostDate(),
+                post.getExpireDate(),
+                post.getLikes(),
+                post.isIsPending(),
+                post.isIsApproved(),
+                post.isIsRejected(),
+                post.getRecordId()
+        );
+    }
+
 }

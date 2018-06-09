@@ -71,6 +71,11 @@
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                         Delete post
                     </button>
+                    
+                    <!--update button-->
+                    
+                    <a class="btn btn-primary" href="${pageContext.request.contextPath}/updatePost?currentId=${currentPost.recordId}" role="button">Update</a>
+                    
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

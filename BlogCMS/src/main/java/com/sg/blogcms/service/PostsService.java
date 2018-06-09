@@ -25,4 +25,7 @@ public interface PostsService {
     List<Posts> getPostsByCategory(int theCategoryId);
     
     List<Posts> getLatestPosts();
+    
+    void updatePost(Posts post);
+    
 }

@@ -92,6 +92,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <textarea class="form-control">Input your post here!</textarea>
+                            
                         </div>
                     </div>
 
