@@ -6,7 +6,7 @@
 package com.sg.blogcms.serviceImpl;
 
 import com.sg.blogcms.dao.CategoriesDao;
-import com.sg.blogcms.model.Categories;
+import com.sg.blogcms.model.Category;
 import com.sg.blogcms.service.CategoriesService;
 import java.util.List;
 
@@ -23,12 +23,12 @@ public class CategoriesServiceImpl implements CategoriesService {
     }
 
     @Override
-    public Categories addNewCategory(Categories category) {
+    public Category addNewCategory(Category category) {
         return dao.addNewCategory(category);
     }
 
     @Override
-    public void updateCategory(Categories category) {
+    public void updateCategory(Category category) {
         dao.updateCategory(category);
     }
 
@@ -38,12 +38,12 @@ public class CategoriesServiceImpl implements CategoriesService {
     }
 
     @Override
-    public Categories getCategoryById(int catId) {
+    public Category getCategoryById(int catId) {
         return dao.getCategoryById(catId);
     }
 
     @Override
-    public List<Categories> getAllCategories() {
+    public List<Category> getAllCategories() {
         return dao.getAllCategories();
     }
     

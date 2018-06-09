@@ -5,7 +5,7 @@
  */
 package com.sg.blogcms.service;
 
-import com.sg.blogcms.model.Categories;
+import com.sg.blogcms.model.Category;
 import java.util.List;
 
 /**
@@ -14,14 +14,14 @@ import java.util.List;
  */
 public interface CategoriesService {
     
-    Categories addNewCategory(Categories category);
+    Category addNewCategory(Category category);
     
-    void updateCategory(Categories category);
+    void updateCategory(Category category);
     
     void removeCategory(int categoryId);
     
-    Categories getCategoryById(int catId);
+    Category getCategoryById(int catId);
     
-    List<Categories> getAllCategories();
+    List<Category> getAllCategories();
     
 }

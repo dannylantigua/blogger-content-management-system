@@ -11,15 +11,16 @@ import java.util.List;
 public interface PostsDao {
 
     List<Posts> getLatestPosts();
-    
+
     public Posts createPost(Posts currentPosts);
- 
+
     List<Posts> getAllPosts();
-    
+
     Posts getPostsById(int id);
-    
+
     void removePostsById(int id);
-    
+
     List<Posts> getPostsByCategory(int theCategoryId);
 
+    void updatePost(Posts post);
 }

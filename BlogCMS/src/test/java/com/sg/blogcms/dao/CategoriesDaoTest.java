@@ -5,7 +5,7 @@
  */
 package com.sg.blogcms.dao;
 
-import com.sg.blogcms.model.Categories;
+import com.sg.blogcms.model.Category;
 import com.sg.blogcms.model.Entity;
 import java.util.List;
 import static junit.framework.Assert.assertEquals;
@@ -42,9 +42,9 @@ public class CategoriesDaoTest {
     public void setUp() {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
         CatDao = ctx.getBean("categoriesDao", CategoriesDao.class);
-        List<Categories> categories = CatDao.getAllCategories();
+        List<Category> categories = CatDao.getAllCategories();
         
-        for (Categories currentCat : categories) {
+        for (Category currentCat : categories) {
             CatDao.removeCategory(currentCat.getRecordId());
         }
     }
@@ -58,12 +58,12 @@ public class CategoriesDaoTest {
      */
     @Test
     public void testAddGetDeleteCategory() {        
-        Categories ct = new Categories();
+        Category ct = new Category();
         ct.setRecordId(1);
-        ct.setCategoryName("Technology");
+        ct.setCategoryDesc("Technology");
         CatDao.addNewCategory(ct);
         
-        Categories fromDb = CatDao.getCategoryById(ct.getRecordId());
+        Category fromDb = CatDao.getCategoryById(ct.getRecordId());
         assertEquals(fromDb, ct);
         
         CatDao.removeCategory(ct.getRecordId());
@@ -75,15 +75,15 @@ public class CategoriesDaoTest {
      */
     @Test
     public void testUpdateCategory() {
-        Categories ct2 = new Categories();
+        Category ct2 = new Category();
         ct2.setRecordId(2);
-        ct2.setCategoryName("Health");
+        ct2.setCategoryDesc("Health");
         CatDao.addNewCategory(ct2);
         
-        ct2.setCategoryName("Health & Fitness");
+        ct2.setCategoryDesc("Health & Fitness");
         CatDao.updateCategory(ct2);
         
-        Categories fromDb = CatDao.getCategoryById(ct2.getRecordId());
+        Category fromDb = CatDao.getCategoryById(ct2.getRecordId());
         assertEquals(fromDb, ct2);
     }
 
@@ -92,17 +92,17 @@ public class CategoriesDaoTest {
      */
     @Test
     public void testGetAllCategories() {
-        Categories ct = new Categories();
+        Category ct = new Category();
         ct.setRecordId(1);
-        ct.setCategoryName("Technology");
+        ct.setCategoryDesc("Technology");
         CatDao.addNewCategory(ct);
         
-        Categories ct2 = new Categories();
+        Category ct2 = new Category();
         ct2.setRecordId(2);
-        ct2.setCategoryName("Health");
+        ct2.setCategoryDesc("Health");
         CatDao.addNewCategory(ct2);
         
-        List<Categories> cats = CatDao.getAllCategories();
+        List<Category> cats = CatDao.getAllCategories();
         assertEquals(cats.size(), 2);
     }
     

@@ -77,4 +77,9 @@ public class PostsServiceImpl implements PostsService {
         return post;
     }
 
+    @Override
+    public void updatePost(Posts post) {
+        postsDao.updatePost(post);
+    }
+
 }

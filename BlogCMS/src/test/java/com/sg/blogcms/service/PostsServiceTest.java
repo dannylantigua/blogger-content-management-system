@@ -76,6 +76,16 @@ public class PostsServiceTest {
     Posts p = postService.createPost(dummyPost());
         assertEquals(postService.getPostsById(p.getRecordId()).getPostTitle(),"Cooking with Danny");
     }
+    
+    @Test
+    public void updatePost(){
+        Posts post = postService.createPost(dummyPost());
+        
+        post.setPostTitle("no more cooking");
+        postService.updatePost(post);
+        assertEquals(post.getPostTitle(),postService.getPostsById(post.getRecordId()).getPostTitle());
+        
+    }
 
     public Posts dummyPost() {
         Posts post = new Posts();

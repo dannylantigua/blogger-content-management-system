@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -50,13 +51,36 @@ public class AllBlogsController {
             return "displayChosenBlogPost";
         }
     }
-    @RequestMapping(value="/deletePost", method=RequestMethod.GET)
-    public String deletePost(HttpServletRequest request){
+
+    @RequestMapping(value = "/deletePost", method = RequestMethod.GET)
+    public String deletePost(HttpServletRequest request) {
         String id = request.getParameter("currentPost");
         postsService.removePostsById(Integer.parseInt(id));
-        
-        
-        
         return "dashboard";
     }
+
+    @RequestMapping(value = "/updatePost", method = RequestMethod.GET)
+    public String updatePost(HttpServletRequest request, Model model) {
+        String id = request.getParameter("currentId");
+        Posts post = postsService.getPostsById(Integer.parseInt(id));
+        model.addAttribute("post", post);
+        return "updatePost";
+    }
+
+    // wont work
+    @RequestMapping(value = "/submitUpdatedPost", method = RequestMethod.POST)
+    public String submitPost(@ModelAttribute("post") Posts post,HttpServletRequest request) {
+
+     
+//        //requesting and getting the parameter of the title
+//        String title = request.getParameter("postTitle");
+//        post.setPostTitle(title);
+//        //requesting and getting the parameter of the post body
+//        String body = request.getParameter("postBody");
+//        post.setPostBody(body);
+post.setPostBody(request.getParameter("postBody"));
+        postsService.updatePost(post);
+        return "redirect:allBlogs";
+    }
+
 }

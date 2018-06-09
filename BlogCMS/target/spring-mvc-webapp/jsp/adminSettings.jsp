@@ -184,7 +184,7 @@
                     <h4 class="card-title">Sign Up A User</h4>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form role="form" method="POST" action="createUser">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">

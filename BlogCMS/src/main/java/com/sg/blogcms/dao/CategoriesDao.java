@@ -5,7 +5,7 @@
  */
 package com.sg.blogcms.dao;
 
-import com.sg.blogcms.model.Categories;
+import com.sg.blogcms.model.Category;
 import java.util.List;
 
 
@@ -16,13 +16,13 @@ import java.util.List;
  */
 public interface CategoriesDao {
     
-    Categories addNewCategory(Categories category);
+    Category addNewCategory(Category category);
     
-    void updateCategory(Categories category);
+    void updateCategory(Category category);
     
     void removeCategory(int categoryId);
     
-    Categories getCategoryById(int catId);
+    Category getCategoryById(int catId);
     
-    List<Categories> getAllCategories();
+    List<Category> getAllCategories();
 }

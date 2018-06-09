@@ -5,9 +5,9 @@
  */
 package com.sg.blogcms.controller;
 
-import com.sg.blogcms.model.Categories;
+import com.sg.blogcms.model.Category;
 import com.sg.blogcms.model.postsTags;
-import com.sg.blogcms.serviceImpl.CategoriesServiceImpl;
+import com.sg.blogcms.service.CategoriesService;
 import static java.lang.Integer.parseInt;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -23,27 +23,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CategoriesController {
     
-    CategoriesServiceImpl service;
+    CategoriesService service;
 
-    public CategoriesController(CategoriesServiceImpl service) {
+    public CategoriesController(CategoriesService service) {
         this.service = service;
-    }
-    
-    @RequestMapping(value = "/getAllCategories", method = RequestMethod.GET)
-    public String getAllCategories(Model model) {
-        // Getting the list from the service
-        List<Categories> categories = service.getAllCategories();
-        // add it to the model
-        model.addAttribute("tagsList", categories);
-        // return to the page
-        return "";
     }
     
     @RequestMapping(value = "/addNewCategory", method = RequestMethod.POST)
     public String addNewcategory(HttpServletRequest request) {
         // create the object
-        Categories cat = new Categories();
-        cat.setCategoryName(request.getParameter("categoryName"));
+        Category cat = new Category();
+        cat.setCategoryDesc(request.getParameter("categoryDesc"));
         // send it to the service to save
         service.addNewCategory(cat);
         
@@ -57,7 +47,7 @@ public class CategoriesController {
         // send them to the service to delete
         service.removeCategory(parseInt(catId));
         
-        return "";
+        return "dashboard";
     }
     
     
