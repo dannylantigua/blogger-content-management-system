@@ -66,8 +66,8 @@
                     <div class="card-body" >
                         <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${post.recordId}" style="color:black; text-decoration:none;">
                             <div class="post">   
-                                <span class="add-overflow"><h1> <c:out value="${post.postTitle}"></c:out>...</h1></span>
-                                <span class="add-overflow"><p> <c:out value="${post.postBody}"></c:out> ...</p></span>
+                                <span class="add-overflow"><h1> <c:out value="${post.postTitle}"></c:out></h1></span>
+                                <span class="add-overflow">${post.postBody}</span>
                                 </div> 
                             </a>
                         </div>

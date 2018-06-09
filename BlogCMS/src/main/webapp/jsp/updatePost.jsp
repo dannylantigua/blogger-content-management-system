@@ -54,128 +54,84 @@
         <!--content-->
 
         <div class="container">
+            <!--            <div class="card">-->
+            <div style="padding:100px;">
+                <h1>${post.postTitle} </h1>
+                <h4>${post.postDate}</h4>
+                <hr>
+
+                ${post.postBody}
+            </div>
+
+
+            <!--
+            
+                REFERENCE FOR EDIT POST
+            
+                private int recordId;
+                private String postTitle;
+                private String postBody;
+                private int userId;
+                private Date postDate;
+                private Date expireDate;
+                private int likes;
+                private boolean isRejected;
+                private boolean isApproved;
+                private boolean isPending;
+                private List<postsTags> postTags;-->
+
+
+
             <div class="card">
-                <div style="padding:100px;">
-                    <h1>${post.postTitle} </h1>
-                    <h4>${post.postDate}</h4>
-                    <hr>
-
-                    ${post.postBody}
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Edit ${post.postTitle} Post</h4>
                 </div>
             </div>
 
-                <!--private int recordId;
-                    private String postTitle;
-                    private String postBody;
-                    private int userId;
-                    private Date postDate;
-                    private Date expireDate;
-                    private int likes;
-                    private boolean isRejected;
-                    private boolean isApproved;
-                    private boolean isPending;
-                    private List<postsTags> postTags;-->
+            <sf:form role="form" method="POST" action="submitUpdatedPost" modelAttribute="post">
+
+                <div class="form-group">
 
 
 
-
-
-                <div class="col-md-8" style="margin-top:100px;">
-                    <div class="card">
-                        <div class="card-header card-header-primary">
-                            <h4 class="card-title">Edit ${post.postTitle} Post</h4>
-                        </div>
-                        <div class="card-body">
-                            <sf:form role="form" method="POST" action="submitUpdatedPost" modelAttribute="post">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            
-                                           
-                                            
-                                            <label class="bmd-label-floating" for="postTitle"> Title </label>
-                                            <sf:input type="text" path="postTitle" class="form-control" id="postTitle" />
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
-
-                                    <textarea name="postBody" class="form-control"></textarea>
-                                    <script src='https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=scmd53yww1lj74aj6vs54kvv2d5zj06bxs2snlu2l51l0835'></script>
-                                    <script>tinymce.init({selector: 'textarea'});</script>
-                                </div>
-
-
-                                <button type="submit" class="btn btn-primary pull-right">Save</button>
-
-                                <div class="clearfix"></div>
-                            </sf:form>
-                        </div>
-                    </div>
+                    <label class="bmd-label-floating" for="postTitle"> Title </label>
+                    <sf:input type="text" path="postTitle" class="form-control" id="postTitle" />
                 </div>
 
 
 
+                <textarea name="postBody" class="form-control"></textarea>
+                <script src='https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=scmd53yww1lj74aj6vs54kvv2d5zj06bxs2snlu2l51l0835'></script>
+                <script>tinymce.init({selector: 'textarea'});</script>
+
+
+                <button type="submit" class="btn btn-primary pull-right">Save</button>
+
+                <div class="clearfix"></div>
+                <sf:hidden path="recordId"/>
+            </sf:form>
 
 
 
+        </div>
 
-
-                <!--DELETE POST-->
-
-                <sec:authorize access="hasRole('ROLE_ADMIN')"> 
-                    <hr>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                        Delete post
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Post deletion</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Are you sure you want to delete your post?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <a class="btn btn-danger" href="${pageContext.request.contextPath}/deletePost?currentPost=${currentPost.recordId}" role="button">Delete Post</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </sec:authorize>
-
-
-            </div>
-
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-            <script src="${pageContext.request.contextPath}/js/templatejs/core/jquery.min.js"></script>
-            <script src="${pageContext.request.contextPath}/js/templatejs/core/popper.min.js"></script>
-            <script src="${pageContext.request.contextPath}/js/templatejs/bootstrap-material-design.js"></script>
-            <script src="${pageContext.request.contextPath}/js/templatejs/plugins/perfect-scrollbar.jquery.min.js"></script>
-            <!--  Charts Plugin, full documentation here: https://gionkunz.github.io/chartist-js/ -->
-            <script src="${pageContext.request.contextPath}/js/templatejs/plugins/chartist.min.js"></script>
-            <!-- Library for adding dinamically elements -->
-            <script src="${pageContext.request.contextPath}/js/templatejs/plugins/arrive.min.js" type="text/javascript"></script>
-            <!--  Notifications Plugin, full documentation here: http://bootstrap-notify.remabledesigns.com/    -->
-            <script src="${pageContext.request.contextPath}/js/templatejs/plugins/bootstrap-notify.js"></script>
-            <!-- Material Dashboard Core initialisations of plugins and Bootstrap Material Design Library -->
-            <script src="${pageContext.request.contextPath}/js/templatejs/material-dashboard.js?v=2.0.0"></script>
-            <!-- demo init -->
-            <script src="${pageContext.request.contextPath}/js/templatejs/plugins/demo.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="${pageContext.request.contextPath}/js/templatejs/core/jquery.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/templatejs/core/popper.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/templatejs/bootstrap-material-design.js"></script>
+        <script src="${pageContext.request.contextPath}/js/templatejs/plugins/perfect-scrollbar.jquery.min.js"></script>
+        <!--  Charts Plugin, full documentation here: https://gionkunz.github.io/chartist-js/ -->
+        <script src="${pageContext.request.contextPath}/js/templatejs/plugins/chartist.min.js"></script>
+        <!-- Library for adding dinamically elements -->
+        <script src="${pageContext.request.contextPath}/js/templatejs/plugins/arrive.min.js" type="text/javascript"></script>
+        <!--  Notifications Plugin, full documentation here: http://bootstrap-notify.remabledesigns.com/    -->
+        <script src="${pageContext.request.contextPath}/js/templatejs/plugins/bootstrap-notify.js"></script>
+        <!-- Material Dashboard Core initialisations of plugins and Bootstrap Material Design Library -->
+        <script src="${pageContext.request.contextPath}/js/templatejs/material-dashboard.js?v=2.0.0"></script>
+        <!-- demo init -->
+        <script src="${pageContext.request.contextPath}/js/templatejs/plugins/demo.js"></script>
 
 
     </body>

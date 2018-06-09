@@ -70,7 +70,7 @@
 
                         <div class="col-md-4">
                             <h2><c:out value="${post.postTitle}"></c:out></h2>
-                            <p><c:out value="${post.postBody}"></c:out></p>
+                            <p>${post.postBody}</p>
                             <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${post.recordId}" role="button">View details &raquo;</a></p>
                         </div>
                     </c:forEach>

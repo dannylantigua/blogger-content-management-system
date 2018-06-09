@@ -69,16 +69,18 @@ public class AllBlogsController {
 
     // wont work
     @RequestMapping(value = "/submitUpdatedPost", method = RequestMethod.POST)
-    public String submitPost(@ModelAttribute("post") Posts post,HttpServletRequest request) {
+    public String submitPost(@ModelAttribute("post") Posts post, HttpServletRequest request) {
 
-     
+        
+        System.out.println(post.getUserId());
+        
 //        //requesting and getting the parameter of the title
 //        String title = request.getParameter("postTitle");
 //        post.setPostTitle(title);
 //        //requesting and getting the parameter of the post body
 //        String body = request.getParameter("postBody");
 //        post.setPostBody(body);
-post.setPostBody(request.getParameter("postBody"));
+        post.setPostBody(request.getParameter("postBody"));
         postsService.updatePost(post);
         return "redirect:allBlogs";
     }
