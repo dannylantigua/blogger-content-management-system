@@ -6,7 +6,7 @@
 package com.sg.blogcms.mappers;
 
 import com.sg.blogcms.model.Authorities;
-import com.sg.blogcms.model.Categories;
+import com.sg.blogcms.model.Category;
 import com.sg.blogcms.model.Entity;
 import com.sg.blogcms.model.Posts;
 import com.sg.blogcms.model.StaticPages;
@@ -74,15 +74,15 @@ public class Mappers {
     }
     
     // CATEGORIES MAPPER
-    public static final class CategoriesMapper implements RowMapper<Categories> {
+    public static final class CategoriesMapper implements RowMapper<Category> {
 
         @Override
-        public Categories mapRow(ResultSet rs, int i) throws SQLException {
+        public Category mapRow(ResultSet rs, int i) throws SQLException {
             //converting entity from rows of database into an object
             
-            Categories currentCategory = new Categories();
+            Category currentCategory = new Category();
             currentCategory.setRecordId(rs.getInt("recordId"));
-            currentCategory.setCategoryName(rs.getString("CategoryName"));
+            currentCategory.setCategoryDesc(rs.getString("categoryDesc"));
             return currentCategory;
         }
     }

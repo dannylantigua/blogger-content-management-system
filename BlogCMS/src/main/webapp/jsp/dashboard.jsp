@@ -57,9 +57,10 @@
                             <h4 class="card-title"> ${firstname} ${lastname}</h4>
                             <p class="card-description">
                                 ${aboutme}
-                                <!--Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...-->
                             </p>
-                            <!--<a href="#pablo" class="btn btn-primary btn-round">Follow</a>-->
+
+                            <a class="btn btn-primary btn-round" href="<c:url value="j_spring_security_logout" />" >Logout</a>
+
                         </div>
                     </div>
                 </div>
@@ -70,11 +71,15 @@
                         <a class="btn btn-primary" href="${pageContext.request.contextPath}/editProfile"role="button">Edit Profile</a>
                         <a class="btn btn-primary" href="${pageContext.request.contextPath}/createPost"role="button">Create Blog Post</a>
 
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#categoryModal" href="${pageContext.request.contextPath}/"role="button">Add Category</a>
+
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/createNewStaticPage"role="button">Add Static Page</a>
+
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
                             <a class="btn btn-primary" href="${pageContext.request.contextPath}/adminSettings"role="button">Admin Settings</a>
                         </sec:authorize>
 
-                        <a class="btn btn-primary" href="<c:url value="j_spring_security_logout" />" >( Logout )</a>
+
 
                     </div>
 
@@ -97,14 +102,12 @@
                                         <th>Tag</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                            </tr>
+
+
+
+
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -138,27 +141,51 @@
                                 </div>
                                 <div class="card-body table-responsive">
                                     <table class="table table-hover">
-                                        <thead class="text-warning">
+                                        <thead class="text-info">
                                         <th>ID</th>
                                         <th>Category</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sage Rodriguez</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Philip Chaney</td>
-                                            </tr>
+                                            <c:forEach var="currentCat" items="${catList}">
+                                                <tr>
+                                                    <td><c:out value="${currentCat.recordId}"/></td>
+                                                    <td><c:out value="${currentCat.categoryDesc}"/></td>
+                                                    <td>
+                                                        <a href="${pageContext.request.contextPath}/#" class="pr-3">Delete</a>
+                                                        <a href="${pageContext.request.contextPath}/#">Edit</a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Static Pages -->
+                        <div class="col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-success">
+                                    <h4 class="card-title">Static Pages</h4>
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="text-success">
+                                        <th>ID</th>
+                                        <th>Page Name</th>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="currentPage" items="${pagesList}">
+                                                <tr>
+                                                    <td><c:out value="${currentPage.recordId}"/></td>
+                                                    <td><c:out value="${currentPage.pageName}"/></td>
+                                                    <td>
+                                                        <a href="${pageContext.request.contextPath}/#" class="pr-3">Delete</a>
+                                                        <a href="${pageContext.request.contextPath}/#">Edit</a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -170,6 +197,38 @@
 
 
                 </div>
+
+
+                <!-- Modal -->
+
+                <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">New Category</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating" for="username">Category: </label>
+                                        <input type="text" class="form-control" id="category" name="category" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary pr-3" data-dismiss="modal">Close</button>
+                                
+                                <button type="button" class="btn btn-primary pl-2">SAVE</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
 
 

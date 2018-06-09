@@ -5,7 +5,6 @@
  */
 package com.sg.blogcms.dao;
 
-import com.sg.blogcms.model.Categories;
 import com.sg.blogcms.model.StaticPages;
 import java.util.List;
 import static junit.framework.Assert.assertEquals;

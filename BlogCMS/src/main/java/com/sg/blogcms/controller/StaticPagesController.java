@@ -6,7 +6,7 @@
 package com.sg.blogcms.controller;
 
 import com.sg.blogcms.model.StaticPages;
-import com.sg.blogcms.serviceImpl.StaticPagesServiceImpl;
+import com.sg.blogcms.service.StaticPagesService;
 import static java.lang.Integer.parseInt;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -22,24 +22,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class StaticPagesController {
 
-    StaticPagesServiceImpl service;
+    StaticPagesService service;
 
-    public StaticPagesController(StaticPagesServiceImpl service) {
+    public StaticPagesController(StaticPagesService service) {
         this.service = service;
     }
-
-    @RequestMapping(value = "/getAllStaticPages1", method = RequestMethod.GET)
-    public String getAllStaticPages(Model model) {
-        // get a list from the service with all pages
-        List<StaticPages> pages = service.getAllStaticPages();
-        // add it to the model
-        model.addAttribute("pagesList", pages);
-        // go back to the page
-        return "";
+    
+    @RequestMapping(value = "/createNewStaticPage", method = RequestMethod.POST)
+    public String createNewStaticPage(HttpServletRequest request) {
+        return "createStaticPage";
     }
     
-    @RequestMapping(value = "/addNewPage", method = RequestMethod.POST)
-    public String addNewPage(HttpServletRequest request) {
+    @RequestMapping(value = "/SaveNewPage", method = RequestMethod.POST)
+    public String saveNewPage(HttpServletRequest request) {
         // create the object
         StaticPages page = new StaticPages();
         page.setPageName(request.getParameter("pageName"));
@@ -47,8 +42,8 @@ public class StaticPagesController {
         
         // send it to the service
         service.addNewStaticPage(page);
-        
-        return "";
+        // go back to dashboard
+        return "dashboard";
     }
     
    @RequestMapping(value = "/getPageById", method = RequestMethod.GET)
@@ -67,7 +62,7 @@ public class StaticPagesController {
         String pageId = request.getParameter("pageId");
         // send it to the service to delete
         service.removeStaticPage(parseInt(pageId));
-        return "";
+        return "dashboard";
     }
     
 

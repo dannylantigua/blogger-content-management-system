@@ -7,7 +7,7 @@ package com.sg.blogcms.daoImpl;
 
 import com.sg.blogcms.dao.CategoriesDao;
 import com.sg.blogcms.mappers.Mappers.CategoriesMapper;
-import com.sg.blogcms.model.Categories;
+import com.sg.blogcms.model.Category;
 import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,7 +27,7 @@ public class CategoriesDaoDbImpl implements CategoriesDao {
     }
 
     private static final String SQL_INSERT_CATEGORY
-            = "insert into Categories (CategoryName) "
+            = "insert into Categories (categoryDesc) "
             + "values (?)";
     private static final String SQL_DELETE_CATEGORY
             = "delete from Categories where recordId = ?";
@@ -35,15 +35,15 @@ public class CategoriesDaoDbImpl implements CategoriesDao {
             = "select * from Categories where recordId = ?";
     private static final String SQL_UPDATE_CATEGORY
             = "update Categories set "
-            + "CategoryName = ? "
+            + "categoryDesc = ? "
             + "where recordId = ?";
     private static final String SQL_SELECT_ALL_CATEGORIES
             = "select * from Categories";
 
     @Override
-    public Categories addNewCategory(Categories category) {
+    public Category addNewCategory(Category category) {
         jdbcTemplate.update(SQL_INSERT_CATEGORY,
-                category.getCategoryName());
+                category.getCategoryDesc());
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()",
                 Integer.class);
@@ -52,9 +52,9 @@ public class CategoriesDaoDbImpl implements CategoriesDao {
     }
 
     @Override
-    public void updateCategory(Categories category) {
+    public void updateCategory(Category category) {
         jdbcTemplate.update(SQL_UPDATE_CATEGORY,
-                category.getCategoryName(),
+                category.getCategoryDesc(),
                 category.getRecordId());
     }
 
@@ -64,7 +64,7 @@ public class CategoriesDaoDbImpl implements CategoriesDao {
     }
 
     @Override
-    public Categories getCategoryById(int catId) {
+    public Category getCategoryById(int catId) {
         try {
             return jdbcTemplate.queryForObject(SQL_SELECT_CATEGORY_BY_ID,
                     new CategoriesMapper(), catId);
@@ -74,7 +74,7 @@ public class CategoriesDaoDbImpl implements CategoriesDao {
     }
 
     @Override
-    public List<Categories> getAllCategories() {
+    public List<Category> getAllCategories() {
         return jdbcTemplate.query(SQL_SELECT_ALL_CATEGORIES, new CategoriesMapper());
     }
 
