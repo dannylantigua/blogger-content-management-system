@@ -61,8 +61,13 @@ public class DashboardController {
             model.addAttribute("firstname", currentEntity.getFirstName());
             model.addAttribute("lastname", currentEntity.getLastName());
             model.addAttribute("email", currentEntity.getEmail());
-        }
+        }    
         return "createPost";
+    }
+    
+    @RequestMapping(value="submitPost", method = RequestMethod.POST)
+    public String submitPost(){
+        return "redirect:allBlogs";
     }
 
 }
