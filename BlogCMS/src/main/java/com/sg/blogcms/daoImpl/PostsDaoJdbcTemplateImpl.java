@@ -36,7 +36,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     private static final String SQL_GET_LATEST_4_POSTS = " SELECT * FROM POSTS order BY recordId DESC LIMIT 0 , 4 ";
 
     private static final String SQL_UPDATE_POST = " UPDATE Posts "
-            + " SET postTitle = ? ,postDate = ?, postBody = ? , expireDate = ? , likes = ? , isPending = ? , isApproved = ? , isRejected = ? "
+            + " SET postTitle = ?, postBody = ?,postDate = ? , expireDate = ? , likes = ? , isPending = ? , isApproved = ? , isRejected = ? "
             + " WHERE recordId = ? ";
 
     //SETTER INJECTION
