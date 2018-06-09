@@ -38,12 +38,16 @@ public class DashboardController {
 
             Entity currentEntity = ServiceDao.getEntityByUserName(username);
 
+            model.addAttribute("username", username);
+            
             model.addAttribute("firstname", currentEntity.getFirstName());
 
             model.addAttribute("lastname", currentEntity.getLastName());
 
             model.addAttribute("email", currentEntity.getEmail());
 
+            model.addAttribute("aboutme", currentEntity.getAboutMe());
+            
         }
 
         return "dashboard";
