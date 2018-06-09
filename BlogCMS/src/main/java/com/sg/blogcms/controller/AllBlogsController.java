@@ -72,7 +72,7 @@ public class AllBlogsController {
     public String submitPost(@ModelAttribute("post") Posts post, HttpServletRequest request) {
 
         
-        System.out.println(post.getUserId());
+       
         
 //        //requesting and getting the parameter of the title
 //        String title = request.getParameter("postTitle");
