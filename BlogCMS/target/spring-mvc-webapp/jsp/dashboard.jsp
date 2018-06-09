@@ -58,7 +58,8 @@
                             <p class="card-description">
                                 Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
                             </p>
-                            <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                            
+                            <a class="btn btn-primary btn-round" href="<c:url value="j_spring_security_logout" />" >Logout</a>
                         </div>
                     </div>
                 </div>
@@ -68,12 +69,15 @@
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                         <a class="btn btn-primary" href="${pageContext.request.contextPath}/editProfile"role="button">Edit Profile</a>
                         <a class="btn btn-primary" href="${pageContext.request.contextPath}/createPost"role="button">Create Blog Post</a>
+                        
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/"role="button">Add Category</a>
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/"role="button">Add Static Page</a>
 
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
                             <a class="btn btn-primary" href="${pageContext.request.contextPath}/adminSettings"role="button">Admin Settings</a>
                         </sec:authorize>
 
-                        <a class="btn btn-primary" href="<c:url value="j_spring_security_logout" />" >( Logout )</a>
+                        
 
                     </div>
 
@@ -137,9 +141,45 @@
                                 </div>
                                 <div class="card-body table-responsive">
                                     <table class="table table-hover">
-                                        <thead class="text-warning">
+                                        <thead class="text-info">
                                         <th>ID</th>
                                         <th>Category</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Dakota Rice</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Minerva Hooper</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Sage Rodriguez</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Philip Chaney</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <!-- Static Pages -->
+                        <div class="col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-success">
+                                    <h4 class="card-title">Static Pages</h4>
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="text-success">
+                                        <th>ID</th>
+                                        <th>Page Name</th>
                                         </thead>
                                         <tbody>
                                             <tr>
