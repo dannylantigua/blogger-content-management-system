@@ -61,7 +61,7 @@
                             <p class="card-category">Complete your profile</p>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form role="form" action="updateUser" method="POST">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
@@ -101,8 +101,8 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating" for="retypePassword">Retype Password</label>
-                                            <input type="password" class="form-control" id="retypePassword" name="password-repeat" required>
+                                            <label class="bmd-label-floating" for="aboutme">About Me</label>
+                                            <input type="text" class="form-control" id="aboutme" name="aboutme" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">

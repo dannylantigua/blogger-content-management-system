@@ -160,7 +160,7 @@ public class AccountController {
         currentEntity.setPassword(hashedPassword);
         currentEntity.setPhoneNumber(request.getParameter("phone"));
         currentEntity.setUserName(request.getParameter("username"));
-        
+        currentEntity.setAboutMe(request.getParameter("aboutme"));
     
         EntityServiceDao.updateEntity(currentEntity);
 
