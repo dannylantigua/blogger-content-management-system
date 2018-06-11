@@ -8,6 +8,7 @@ package com.sg.blogcms.mappers;
 import com.sg.blogcms.model.Authorities;
 import com.sg.blogcms.model.Category;
 import com.sg.blogcms.model.Entity;
+import com.sg.blogcms.model.EntitySocialProfiles;
 import com.sg.blogcms.model.Posts;
 import com.sg.blogcms.model.StaticPages;
 import com.sg.blogcms.model.postsTags;
@@ -26,8 +27,22 @@ public class Mappers {
         This class holds all of the mappers for the objects.
         
     ==========================================================*/
+    //mapper for social entity profiles
+    public static final class EntitySocialProfilesMapper implements RowMapper<EntitySocialProfiles> {
+        
+        @Override
+        public EntitySocialProfiles mapRow(ResultSet rs, int i) throws SQLException {
+            EntitySocialProfiles esp = new EntitySocialProfiles();
+            esp.setWebsiteName(rs.getString("WebName"));
+            esp.setWebSite(rs.getString("Website"));
+            esp.setEntityId(rs.getInt("EntityId"));
+            return esp;
+        }
+        
+    }
+    
     public static final class EntityMapper implements RowMapper<Entity> {
-
+        
         @Override
         public Entity mapRow(ResultSet rs, int i) throws SQLException {
             //converting entity from rows of database into an object
@@ -43,12 +58,12 @@ public class Mappers {
             currentEntityFromRow.setAboutMe(rs.getString("AboutMe"));
             return currentEntityFromRow;
         }
-
+        
     }
-    
+
     //authorities mapper
     public static final class AuthoritiesMapper implements RowMapper<Authorities> {
-
+        
         @Override
         public Authorities mapRow(ResultSet rs, int i) throws SQLException {
             Authorities au = new Authorities();
@@ -58,10 +73,10 @@ public class Mappers {
         }
         
     }
-    
+
     // TAGS MAPPER
     public static final class TagsMapper implements RowMapper<postsTags> {
-
+        
         @Override
         public postsTags mapRow(ResultSet rs, int i) throws SQLException {
             //converting entity from rows of database into an object
@@ -72,10 +87,10 @@ public class Mappers {
             return currentTag;
         }
     }
-    
+
     // CATEGORIES MAPPER
     public static final class CategoriesMapper implements RowMapper<Category> {
-
+        
         @Override
         public Category mapRow(ResultSet rs, int i) throws SQLException {
             //converting entity from rows of database into an object
@@ -86,10 +101,10 @@ public class Mappers {
             return currentCategory;
         }
     }
-    
+
     // STATIC PAGES MAPPER
     public static final class StaticPagesMapper implements RowMapper<StaticPages> {
-
+        
         @Override
         public StaticPages mapRow(ResultSet rs, int i) throws SQLException {
             //converting entity from rows of database into an object
@@ -102,43 +117,38 @@ public class Mappers {
         }
     }
     
-
-    public static final class PostsMapper implements RowMapper<Posts>  {
-
+    public static final class PostsMapper implements RowMapper<Posts> {
+        
         @Override
         public Posts mapRow(ResultSet rs, int i) throws SQLException {
             
-          Posts currentPost = new Posts();
-          
-          currentPost.setRecordId(rs.getInt("recordId"));
-          
-          currentPost.setPostTitle(rs.getString("postTitle"));
-          
-          currentPost.setPostBody(rs.getString("postBody"));
-          
-          currentPost.setUserId(rs.getInt("userId"));
-          
-          currentPost.setPostDate(rs.getDate("postDate"));
-          
-          currentPost.setExpireDate(rs.getDate("expireDate"));
-          
-          currentPost.setLikes(rs.getInt("likes"));
-          
-          currentPost.setIsPending(rs.getBoolean("isPending"));
-          
-          currentPost.setIsPending(rs.getBoolean("isPending"));
-          
-          currentPost.setIsApproved(rs.getBoolean("isApproved"));
-          
-          currentPost.setIsRejected(rs.getBoolean("isRejected"));
-          
-          return currentPost;
+            Posts currentPost = new Posts();
+            
+            currentPost.setRecordId(rs.getInt("recordId"));
+            
+            currentPost.setPostTitle(rs.getString("postTitle"));
+            
+            currentPost.setPostBody(rs.getString("postBody"));
+            
+            currentPost.setUserId(rs.getInt("userId"));
+            
+            currentPost.setPostDate(rs.getDate("postDate"));
+            
+            currentPost.setExpireDate(rs.getDate("expireDate"));
+            
+            currentPost.setLikes(rs.getInt("likes"));
+            
+            currentPost.setIsPending(rs.getBoolean("isPending"));
+            
+            currentPost.setIsPending(rs.getBoolean("isPending"));
+            
+            currentPost.setIsApproved(rs.getBoolean("isApproved"));
+            
+            currentPost.setIsRejected(rs.getBoolean("isRejected"));
+            
+            return currentPost;
         }
         
-    
-
-
     }
     
 }
-
