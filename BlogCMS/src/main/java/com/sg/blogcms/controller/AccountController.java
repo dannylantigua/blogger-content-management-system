@@ -201,5 +201,19 @@ public class AccountController {
         
         return "redirect:adminSettings";
     }
+    
+        @RequestMapping(value="/removeSocial" , method = RequestMethod.GET)
+    public String removeSocial(HttpServletRequest request){
+        
+        String currentUsersUsername = request.getRemoteUser();
+        Entity currentEntity = EntityServiceDao.getEntityByUserName(currentUsersUsername);
+        EntitySocialProfiles esp = esps.getEntitySocialProfilesById(currentEntity.getRecordId());
+    
+               esps.deleteEntitySocialProfiles(esp);
+       
+     
+        
+        return "redirect:adminSettings";
+    }
 
 }

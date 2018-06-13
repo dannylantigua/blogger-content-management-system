@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="com.sg.blogcms.dao.EntityDaoTest" time="1.445" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="com.sg.blogcms.dao.EntityDaoTest" time="2.753" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_152\jre\bin"/>
@@ -18,6 +18,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="C:\Users\kmlnd\Documents\TeamAwesome\Repo\blogcms\BlogCMS"/>
     <property name="java.runtime.version" value="1.8.0_152-b16"/>
+    <property name="netbeans.deploy" value="true"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_152\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
@@ -47,7 +48,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_152\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dnetbeans.deploy=true -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar package"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -64,9 +65,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testRemoveEntityById" time="0.162"/>
-  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testGetAllEntities" time="0.377"/>
-  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testUpdateEntityById" time="0.417"/>
-  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testEditEntity" time="0.337"/>
-  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testAddEntityAndGet" time="0.152"/>
+  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testRemoveEntityById" time="0.035"/>
+  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testGetAllEntities" time="0.208"/>
+  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testUpdateEntityById" time="0.218"/>
+  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testEditEntity" time="0.271"/>
+  <testcase classname="com.sg.blogcms.dao.EntityDaoTest" name="testAddEntityAndGet" time="2.021"/>
 </testsuite>

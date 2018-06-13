@@ -310,9 +310,18 @@
                                     <td><a href="${currentS.webSite}"><c:out value="${currentS.webSite}"/></a></td>
                                     <!--<td>-->  
 
-                                </tr>
 
+                                </tr>
+                             
                             </c:forEach>
+                                
+                                <!--WORK IN PROGRESS-->
+                                
+<!--                                   <tr>
+                                    <td>
+                                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/removeSocial" role="button">Remove All Social Media By Current User</a>
+                                    </td>
+                                </tr>-->
                         </tbody>
 
                         <hr>
@@ -334,6 +343,8 @@
                                     </div>
 
                                 </td>
+
+
 
                                 <td>
                                     <button type="submit" class="btn btn-primary pull-right">Save</button>
