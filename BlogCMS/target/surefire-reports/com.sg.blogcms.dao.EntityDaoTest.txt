@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.sg.blogcms.dao.EntityDaoTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.306 sec
+=======
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.756 sec
+>>>>>>> f2b0e8d4898e6001a843c73336bd1a821a21948f

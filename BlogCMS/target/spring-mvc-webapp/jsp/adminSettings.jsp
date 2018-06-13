@@ -15,7 +15,7 @@
         
         <!-- Nav Bar -->
             <jsp:include page="${request.contextPath}/jsp/navigationBar.jsp"></jsp:include>
-                    
+                   
 
         <div class="container mt-5">
 
@@ -191,12 +191,12 @@
                             </div>
                         </div>
                         <div class="row">
-<!--                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating" for="retypePassword">Retype Password</label>
-                                    <input type="password" class="form-control" id="retypePassword" name="password-repeat" required>
-                                </div>
-                            </div>-->
+                            <!--                            <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="bmd-label-floating" for="retypePassword">Retype Password</label>
+                                                                <input type="password" class="form-control" id="retypePassword" name="password-repeat" required>
+                                                            </div>
+                                                        </div>-->
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="bmd-label-floating" for="phone">Phone Number : ( ${user.lastName} )</label>
@@ -224,47 +224,115 @@
 
         <hr>
 
-<!--        <h1>Sign Up a User</h1>-->
-<!--
-        <form role="form" method="POST" action="createUser">
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
-            </div>
-            <div class="form-group">
-                <label for="first">First Name</label>
-                <input type="text" class="form-control" id="first" name="firstname" placeholder="First Name" required>
-            </div>
-            <div class="form-group">
-                <label for="last">Last Name</label>
-                <input type="text" class="form-control" id="last" name="lastname" placeholder="Last Name" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-            </div>
-                            <div class="form-group">
-                                <label for="retypePassword">Retype Password</label>
-                                <input type="password" class="form-control" id="retypePassword" name="password-repeat" placeholder="Password" required>
-                            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>-->
-
-       
-
+        <!--        <h1>Sign Up a User</h1>-->
+        <!--
+                <form role="form" method="POST" action="createUser">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="first">First Name</label>
+                        <input type="text" class="form-control" id="first" name="firstname" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last">Last Name</label>
+                        <input type="text" class="form-control" id="last" name="lastname" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    </div>
+                                    <div class="form-group">
+                                        <label for="retypePassword">Retype Password</label>
+                                        <input type="password" class="form-control" id="retypePassword" name="password-repeat" placeholder="Password" required>
+                                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
+                    </div>
         
-    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>-->
+
+
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-warning">
+                    <h4 class="card-title">Social Media</h4>
+                </div>
+                <div class="card-body table-responsive">
+                    <table>
+                        <thead class="text-warning">
+                        <th>Social Media Name</th>
+                        <th> URL </th>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="currentS" items="${socials}">
+                                <tr>
+
+                                    <td><c:out value="${currentS.websiteName}"/></td>
+                                    <td><a href="${currentS.webSite}"><c:out value="${currentS.webSite}"/></a></td>
+                                    <!--<td>-->  
+
+
+                                </tr>
+                             
+                            </c:forEach>
+                                
+                                <!--WORK IN PROGRESS-->
+                                
+<!--                                   <tr>
+                                    <td>
+                                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/removeSocial" role="button">Remove All Social Media By Current User</a>
+                                    </td>
+                                </tr>-->
+                        </tbody>
+
+                        <hr>
+                        <form role="form" method="POST" action="createSocialMedia" >
+                            <tr>
+
+
+
+
+                                <td>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="socialName" name="socialName" placeholder="Add Social Media Name" required>
+                                    </div>
+                                </td>
+                                <td>
+
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="socialURL" name="socialURL" placeholder="Add URL" required>
+                                    </div>
+
+                                </td>
+
+
+
+                                <td>
+                                    <button type="submit" class="btn btn-primary pull-right">Save</button>
+                                </td>
+
+
+                            </tr>
+                        </form>
+
+
+
+                </div>
+            </div>
+        </div>
+    </table>
+</div>
 
 <!-- JavaScript Libraries -->
         <jsp:include page="${request.contextPath}/jsp/jslibraries.jsp"></jsp:include>
+
 </body>
 </html>

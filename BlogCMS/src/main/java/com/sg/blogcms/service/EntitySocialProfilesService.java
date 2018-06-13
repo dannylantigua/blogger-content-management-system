@@ -3,26 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.blogcms.dao;
+package com.sg.blogcms.service;
 
-import com.sg.blogcms.model.Entity;
 import com.sg.blogcms.model.EntitySocialProfiles;
 import java.util.List;
 
 /**
  *
- * @author Kenny
+ * @author kmlnd
  */
-public interface EntitySocialProfilesDao {
-   
+public interface EntitySocialProfilesService {
+
     EntitySocialProfiles addEntitySocialProfiles(EntitySocialProfiles entitySocialProfiles);
-   
+
     void deleteEntitySocialProfiles(EntitySocialProfiles entitySocialProfiles);
-        
+
     void updateEntitySocialProfiles(EntitySocialProfiles entitySocialProfiles);
-    
+
     EntitySocialProfiles getEntitySocialProfilesById(int id);
-    
+
     List<EntitySocialProfiles> getAllEntitySocialProfiles();
-    
 }

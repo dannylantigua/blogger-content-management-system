@@ -8,7 +8,9 @@ package com.sg.blogcms.controller;
 import com.sg.blogcms.dao.EntityDao;
 import com.sg.blogcms.model.Authorities;
 import com.sg.blogcms.model.Entity;
+import com.sg.blogcms.model.EntitySocialProfiles;
 import com.sg.blogcms.service.EntityService;
+import com.sg.blogcms.service.EntitySocialProfilesService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -31,12 +33,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AccountController {
 
     EntityService EntityServiceDao;
+    EntitySocialProfilesService esps;
     private PasswordEncoder encoder;
 
     @Inject
-    public AccountController(EntityService EntityServiceDao, PasswordEncoder encoder) {
+    public AccountController(EntityService EntityServiceDao, PasswordEncoder encoder , EntitySocialProfilesService esps) {
         this.EntityServiceDao = EntityServiceDao;
         this.encoder = encoder;
+        this.esps = esps;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -117,6 +121,7 @@ public class AccountController {
 
         model.addAttribute("users", users);
 
+        model.addAttribute( "socials" , esps.getAllEntitySocialProfiles());
         return "adminSettings";
     }
 
@@ -176,6 +181,38 @@ public class AccountController {
         currentEntity.addAuthority("ROLE_USER");
         
         EntityServiceDao.updateEntity(currentEntity);
+        return "redirect:adminSettings";
+    }
+    
+    @RequestMapping(value="/createSocialMedia" , method = RequestMethod.POST)
+    public String createSocialMedia(HttpServletRequest request){
+        
+        String currentUsersUsername = request.getRemoteUser();
+        Entity currentEntity = EntityServiceDao.getEntityByUserName(currentUsersUsername);
+        
+        
+        EntitySocialProfiles esp = new EntitySocialProfiles();
+        esp.setEntityId(currentEntity.getRecordId());
+        esp.setWebsiteName(request.getParameter("socialName"));
+        esp.setWebSite(request.getParameter("socialURL"));
+        
+        
+        esps.addEntitySocialProfiles(esp);
+        
+        return "redirect:adminSettings";
+    }
+    
+        @RequestMapping(value="/removeSocial" , method = RequestMethod.GET)
+    public String removeSocial(HttpServletRequest request){
+        
+        String currentUsersUsername = request.getRemoteUser();
+        Entity currentEntity = EntityServiceDao.getEntityByUserName(currentUsersUsername);
+        EntitySocialProfiles esp = esps.getEntitySocialProfilesById(currentEntity.getRecordId());
+    
+               esps.deleteEntitySocialProfiles(esp);
+       
+     
+        
         return "redirect:adminSettings";
     }
 
