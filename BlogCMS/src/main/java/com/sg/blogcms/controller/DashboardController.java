@@ -8,6 +8,7 @@ package com.sg.blogcms.controller;
 import com.sg.blogcms.dao.EntityDao;
 import com.sg.blogcms.model.Category;
 import com.sg.blogcms.model.Entity;
+import com.sg.blogcms.model.Posts;
 import com.sg.blogcms.model.StaticPages;
 import com.sg.blogcms.model.postsTags;
 import com.sg.blogcms.service.CategoriesService;
@@ -15,6 +16,13 @@ import com.sg.blogcms.service.EntityService;
 import com.sg.blogcms.service.PostsService;
 import com.sg.blogcms.service.StaticPagesService;
 import com.sg.blogcms.service.TagsService;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import static java.time.temporal.TemporalQueries.localDate;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -87,18 +95,28 @@ public class DashboardController {
 
     @RequestMapping(value = "/createPost", method = RequestMethod.GET)
     public String createPost(HttpServletRequest request, Model model) {
-        if (request.getRemoteUser() != null) {
-            String username = request.getRemoteUser();
-            Entity currentEntity = ServiceDao.getEntityByUserName(username);
-            model.addAttribute("firstname", currentEntity.getFirstName());
-            model.addAttribute("lastname", currentEntity.getLastName());
-            model.addAttribute("email", currentEntity.getEmail());
-        }
+//        if (request.getRemoteUser() != null) {
+//            String username = request.getRemoteUser();
+//            Entity currentEntity = ServiceDao.getEntityByUserName(username);
+//            model.addAttribute("firstname", currentEntity.getFirstName());
+//            model.addAttribute("lastname", currentEntity.getLastName());
+//            model.addAttribute("email", currentEntity.getEmail());
+//        }
+
         return "createPost";
     }
 
     @RequestMapping(value = "submitPost", method = RequestMethod.POST)
-    public String submitPost() {
+    public String submitPost(HttpServletRequest request) {
+
+        Posts post = new Posts();
+        post.setPostTitle(request.getParameter("postTitle"));
+        post.setPostBody(request.getParameter("postBody"));
+
+        Date date = new Date();
+        post.setPostDate(date);
+
+        servicePost.createPost(post);
         return "redirect:allBlogs";
     }
 

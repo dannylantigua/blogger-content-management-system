@@ -37,7 +37,7 @@ public class HomepageController {
         
         model.addAttribute("posts", posts);
         if(!posts.isEmpty()){
-            model.addAttribute("latestPost", posts.get(posts.size() - 1));
+            model.addAttribute("latestPost", posts.get(0));
         }
         
         

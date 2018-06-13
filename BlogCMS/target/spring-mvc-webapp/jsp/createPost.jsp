@@ -25,11 +25,19 @@
                             </div>
                             <div class="card-body">
 
+                                <form role="form" action="submitPost" method="POST">
 
-                                <div class="form-group">
-                                    <textarea class="form-control tinymce">Input your post here!</textarea>
-                                </div>
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating" for="postTitle"> Title </label>
+                                        <input type="text" name="postTitle" class="form-control" id="postTitle" />
+                                    </div>
 
+                                    <div class="form-group">
+                                        <textarea name="postBody" class="form-control tinymce">Input your post here!</textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary pull-right">Save</button>
+                                </form>
 
                             </div>
                         </div>
