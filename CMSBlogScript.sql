@@ -53,6 +53,7 @@ FOREIGN KEY (postId) REFERENCES Posts (recordId) ON DELETE CASCADE ON UPDATE CAS
 CREATE TABLE StaticPages(
 recordId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 PageName Varchar(20),
+pageTitle Varchar(40),
 Content TEXT
 ) ENGINE=InnoDB ;
 
@@ -97,9 +98,9 @@ INSERT INTO Categories (recordId, categoryDesc) values
 -- 
 -- Data for Static Pages
 -- 
-INSERT INTO StaticPages (recordId, PageName, Content) VALUES
-(1, 'About Us', 'Some content....'),
-(2, 'Contact', 'Some content for contacting us....');
+INSERT INTO StaticPages (recordId, PageName, pageTitle, Content) VALUES
+(1, 'About Us', 'Page Title', 'Some content....'),
+(2, 'Contact', 'Page Title', 'Some content for contacting us....');
 -- 
 -- 
 -- Data for Posts
@@ -124,4 +125,7 @@ UPDATE Entity
 SET passwd = '$2a$10$tzNSD00b1lkRrEYNSVtbC.m7Vwhx/hjgdQZinBgIztFwis0./XTfq'
 where UserName = 'admin';
 
+UPDATE Entity
+SET passwd = '$2a$10$tzNSD00b1lkRrEYNSVtbC.m7Vwhx/hjgdQZinBgIztFwis0./XTfq'
+where UserName = 'user';
 

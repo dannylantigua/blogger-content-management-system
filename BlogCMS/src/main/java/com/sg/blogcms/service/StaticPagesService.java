@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface StaticPagesService {
     
-    StaticPages addNewStaticPage(StaticPages page);
+    StaticPages addNewStaticPage(StaticPages page, String path);
     
     void updateStaticPage(StaticPages page);
     

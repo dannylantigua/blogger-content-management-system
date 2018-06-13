@@ -27,6 +27,9 @@ public class TagsDaoDbImpl implements TagsDao {
 
     private static final String SQL_GET_ALL_TAGS
             = "select * from PostsTags where postId = ";
+    
+    private static final String SQL_GET_10_TAGS
+            = "select * from PostsTags limit 10";
 
     private static final String SQL_SAVE_TAGS
             = "insert into PostsTags (postId, Tag) values (?, ?)";
@@ -52,6 +55,11 @@ public class TagsDaoDbImpl implements TagsDao {
     @Override
     public void removeTag(postsTags tag) {
         jdbcTemplate.update(SQL_REMOVE_TAGS, tag.getPostId(), tag.getTag());
+    }
+
+    @Override
+    public List<postsTags> getLast10Tags() {
+        return jdbcTemplate.query(SQL_GET_10_TAGS, new TagsMapper());
     }
 
 }

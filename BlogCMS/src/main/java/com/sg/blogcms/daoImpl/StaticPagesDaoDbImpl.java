@@ -27,15 +27,15 @@ public class StaticPagesDaoDbImpl implements StaticPagesDao {
     }
 
     private static final String SQL_INSERT_PAGE
-            = "insert into StaticPages (PageName, Content) "
-            + "values (?, ?)";
+            = "insert into StaticPages (PageName, pageTitle, Content) "
+            + "values (?, ?, ?)";
     private static final String SQL_DELETE_PAGE
             = "delete from StaticPages where recordId = ?";
     private static final String SQL_SELECT_PAGE_BY_ID
             = "select * from StaticPages where recordId = ?";
     private static final String SQL_UPDATE_PAGE
             = "update StaticPages set "
-            + "PageName = ?, Content = ? "
+            + "PageName = ?, pageTitle = ?, Content = ? "
             + "where recordId = ?";
     private static final String SQL_SELECT_ALL_PAGES
             = "select * from StaticPages";
@@ -44,6 +44,7 @@ public class StaticPagesDaoDbImpl implements StaticPagesDao {
     public StaticPages addNewStaticPage(StaticPages page) {
         jdbcTemplate.update(SQL_INSERT_PAGE,
                 page.getPageName(),
+                page.getPageTitle(),
                 page.getContent());
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
@@ -55,6 +56,7 @@ public class StaticPagesDaoDbImpl implements StaticPagesDao {
     public void updateStaticPage(StaticPages page) {
         jdbcTemplate.update(SQL_UPDATE_PAGE,
                 page.getPageName(),
+                page.getPageTitle(),
                 page.getContent(),
                 page.getRecordId());
     }

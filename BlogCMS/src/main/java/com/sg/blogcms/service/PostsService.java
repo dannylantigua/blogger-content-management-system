@@ -28,4 +28,6 @@ public interface PostsService {
     
     void updatePost(Posts post);
     
+    int getPostCount(int userId);
+    
 }

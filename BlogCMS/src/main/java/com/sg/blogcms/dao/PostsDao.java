@@ -23,4 +23,6 @@ public interface PostsDao {
     List<Posts> getPostsByCategory(int theCategoryId);
 
     void updatePost(Posts post);
+    
+    int getPostCount(int userId);
 }

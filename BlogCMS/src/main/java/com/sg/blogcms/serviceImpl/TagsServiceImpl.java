@@ -36,5 +36,10 @@ public class TagsServiceImpl implements TagsService {
     public void removeTag(postsTags tag) {
         tagDao.removeTag(tag);
     }
+
+    @Override
+    public List<postsTags> getLast10Tags() {
+        return tagDao.getLast10Tags();
+    }
     
 }

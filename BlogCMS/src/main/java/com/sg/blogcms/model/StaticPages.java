@@ -15,6 +15,7 @@ public class StaticPages {
 
     private int recordId;
     private String pageName;
+    private String pageTitle;
     private String content;
 
     public int getRecordId() {
@@ -40,13 +41,22 @@ public class StaticPages {
     public void setContent(String content) {
         this.content = content;
     }
+    
+    public String getPageTitle() {
+        return pageTitle;
+    }
+
+    public void setPageTitle(String pageTitle) {
+        this.pageTitle = pageTitle;
+    }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 31 * hash + this.recordId;
-        hash = 31 * hash + Objects.hashCode(this.pageName);
-        hash = 31 * hash + Objects.hashCode(this.content);
+        hash = 41 * hash + this.recordId;
+        hash = 41 * hash + Objects.hashCode(this.pageName);
+        hash = 41 * hash + Objects.hashCode(this.pageTitle);
+        hash = 41 * hash + Objects.hashCode(this.content);
         return hash;
     }
 
@@ -68,11 +78,13 @@ public class StaticPages {
         if (!Objects.equals(this.pageName, other.pageName)) {
             return false;
         }
+        if (!Objects.equals(this.pageTitle, other.pageTitle)) {
+            return false;
+        }
         if (!Objects.equals(this.content, other.content)) {
             return false;
         }
         return true;
     }
-
     
 }

@@ -112,6 +112,7 @@ public class Mappers {
             StaticPages page = new StaticPages();
             page.setRecordId(rs.getInt("recordId"));
             page.setPageName(rs.getString("PageName"));
+            page.setPageTitle(rs.getString("pageTitle"));
             page.setContent(rs.getString("Content"));
             return page;
         }

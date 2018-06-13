@@ -9,9 +9,12 @@ import com.sg.blogcms.dao.EntityDao;
 import com.sg.blogcms.model.Category;
 import com.sg.blogcms.model.Entity;
 import com.sg.blogcms.model.StaticPages;
+import com.sg.blogcms.model.postsTags;
 import com.sg.blogcms.service.CategoriesService;
 import com.sg.blogcms.service.EntityService;
+import com.sg.blogcms.service.PostsService;
 import com.sg.blogcms.service.StaticPagesService;
+import com.sg.blogcms.service.TagsService;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -30,12 +33,18 @@ public class DashboardController {
     EntityService ServiceDao;
     CategoriesService serviceCat;
     StaticPagesService servicePage;
+    TagsService serviceTag;
+    PostsService servicePost;
+    Category cat;
 
     @Inject
-    public DashboardController(EntityService ServiceDao, CategoriesService serviceCat, StaticPagesService servicePage) {
+    public DashboardController(EntityService ServiceDao, CategoriesService serviceCat,
+            StaticPagesService servicePage, TagsService serivceTag, PostsService servicePost) {
         this.ServiceDao = ServiceDao;
         this.serviceCat = serviceCat;
         this.servicePage = servicePage;
+        this.serviceTag = serivceTag;
+        this.servicePost = servicePost;
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
@@ -49,17 +58,29 @@ public class DashboardController {
             model.addAttribute("lastname", currentEntity.getLastName());
             model.addAttribute("email", currentEntity.getEmail());
             model.addAttribute("aboutme", currentEntity.getAboutMe());
+
+            //For post count
+            int count = servicePost.getPostCount(currentEntity.getRecordId());
+            model.addAttribute("postCount", count);
         }
 
         // For Categories
         List<Category> categories = serviceCat.getAllCategories();
         // add it to the model
         model.addAttribute("catList", categories);
+        // initialize the class
+        cat = new Category();
+        model.addAttribute("cat", cat);
 
         // get a list from the service with all pages
         List<StaticPages> pages = servicePage.getAllStaticPages();
         // add it to the model
         model.addAttribute("pagesList", pages);
+
+        //get a lit of the last 10 tags
+        List<postsTags> tags = serviceTag.getLast10Tags();
+        // add it to the model
+        model.addAttribute("tagList", tags);
 
         return "dashboard";
     }

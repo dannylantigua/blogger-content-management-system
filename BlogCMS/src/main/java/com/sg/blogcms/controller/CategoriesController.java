@@ -11,8 +11,11 @@ import com.sg.blogcms.service.CategoriesService;
 import static java.lang.Integer.parseInt;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -22,33 +25,46 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class CategoriesController {
-    
+
     CategoriesService service;
+    Category cat;
 
     public CategoriesController(CategoriesService service) {
         this.service = service;
     }
-    
+
     @RequestMapping(value = "/addNewCategory", method = RequestMethod.POST)
     public String addNewcategory(HttpServletRequest request) {
-        // create the object
-        Category cat = new Category();
-        cat.setCategoryDesc(request.getParameter("categoryDesc"));
+        // create a new object
+        Category cat2 = new Category();
+        cat2.setCategoryDesc(request.getParameter("categoryName"));
         // send it to the service to save
-        service.addNewCategory(cat);
-        
-        return "";
+        service.addNewCategory(cat2);
+        return "redirect:dashboard";
     }
-    
+
+    @RequestMapping(value = "/displayEditCategory", method = RequestMethod.GET)
+    public String displayEditCategory(HttpServletRequest request, Model model) {
+        String catIdParameter = request.getParameter("catId");
+        int catId = parseInt(catIdParameter);
+        Category category = service.getCategoryById(catId);
+        model.addAttribute("category", category);
+        return "editCategoryForm";
+    }
+
+    @RequestMapping(value = "/updateCategory", method = RequestMethod.POST)
+    public String updateCategory(@ModelAttribute("category") Category caty) {
+        // send the object to the service layer
+        service.updateCategory(caty);
+        return "redirect:dashboard";
+    }
+
     @RequestMapping(value = "/deleteCategory", method = RequestMethod.GET)
     public String deleteCategory(HttpServletRequest request) {
         // get variables
         String catId = request.getParameter("catId");
         // send them to the service to delete
         service.removeCategory(parseInt(catId));
-        
-        return "dashboard";
+        return "redirect:dashboard";
     }
-    
-    
 }

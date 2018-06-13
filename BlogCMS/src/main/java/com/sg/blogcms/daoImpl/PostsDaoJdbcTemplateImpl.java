@@ -38,6 +38,8 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     private static final String SQL_UPDATE_POST = " UPDATE Posts "
             + " SET postTitle = ?, postBody = ?,postDate = ? , expireDate = ? , likes = ? , isPending = ? , isApproved = ? , isRejected = ? "
             + " WHERE recordId = ? ";
+    
+    private static final String SQL_GETPOSTCOUNT = "select COUNT(recordId) from Posts where userId = ?";
 
     //SETTER INJECTION
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -115,6 +117,13 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
                 post.isIsRejected(),
                 post.getRecordId()
         );
+    }
+
+    @Override
+    public int getPostCount(int userId) {
+        int count = jdbcTemplate.queryForObject(
+                        SQL_GETPOSTCOUNT, new Object[] { userId }, Integer.class);
+        return count;
     }
 
 }

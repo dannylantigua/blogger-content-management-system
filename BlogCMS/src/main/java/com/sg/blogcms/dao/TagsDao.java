@@ -16,6 +16,8 @@ public interface TagsDao {
     
     List<postsTags> getAllTagsByPosts(int postId);
     
+    List<postsTags> getLast10Tags();
+    
     void savePostTags(List<postsTags> tags);
     
     void removeTag(postsTags tag);

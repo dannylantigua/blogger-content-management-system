@@ -82,4 +82,9 @@ public class PostsServiceImpl implements PostsService {
         postsDao.updatePost(post);
     }
 
+    @Override
+    public int getPostCount(int userId) {
+        return postsDao.getPostCount(userId);
+    }
+
 }

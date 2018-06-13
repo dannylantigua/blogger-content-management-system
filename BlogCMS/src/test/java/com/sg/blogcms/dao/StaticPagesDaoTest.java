@@ -60,6 +60,7 @@ public class StaticPagesDaoTest {
         StaticPages page = new StaticPages();
         page.setRecordId(1);
         page.setPageName("About");
+        page.setPageTitle("Page Title");
         page.setContent("Content for About page...");
         stDao.addNewStaticPage(page);
         
@@ -78,6 +79,7 @@ public class StaticPagesDaoTest {
         StaticPages page = new StaticPages();
         page.setRecordId(2);
         page.setPageName("Contact Us");
+        page.setPageTitle("Page Title");
         page.setContent("Content for Contact Us page...");
         stDao.addNewStaticPage(page);
         
@@ -95,12 +97,14 @@ public class StaticPagesDaoTest {
         StaticPages page = new StaticPages();
         page.setRecordId(1);
         page.setPageName("About");
+        page.setPageTitle("Page Title");
         page.setContent("Content for About page...");
         stDao.addNewStaticPage(page);
         
         StaticPages page2 = new StaticPages();
         page2.setRecordId(2);
         page2.setPageName("Contact Us");
+        page2.setPageTitle("Page Title");
         page2.setContent("Content for Contact Us page...");
         stDao.addNewStaticPage(page2);
         
