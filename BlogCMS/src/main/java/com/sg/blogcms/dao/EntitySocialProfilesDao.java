@@ -21,7 +21,7 @@ public interface EntitySocialProfilesDao {
         
     void updateEntitySocialProfiles(EntitySocialProfiles entitySocialProfiles);
     
-    EntitySocialProfiles getEntitySocialProfilesById(EntitySocialProfiles entitySocialProfiles);
+    EntitySocialProfiles getEntitySocialProfilesById(int id);
     
     List<EntitySocialProfiles> getAllEntitySocialProfiles();
     

@@ -29,7 +29,7 @@ public class EntitySocialProfilesJdbcTemplateImpl implements EntitySocialProfile
     }
 
     //prepared statements
-    private static final String SQL_ADD_SEP = " INSERT (WebName , Website , EntityId) VALUES ( ? , ? , ?) ";
+    private static final String SQL_ADD_SEP = " INSERT INTO  EntitySocialProfiles (WebName , Website , EntityId) VALUES ( ? , ? , ?) ";
 
     private static final String SQL_REMOVE_SEP = " DELETE FROM  EntitySocialProfiles WHERE EntityId = ?";
 
@@ -63,9 +63,9 @@ public class EntitySocialProfilesJdbcTemplateImpl implements EntitySocialProfile
     }
 
     @Override
-    public EntitySocialProfiles getEntitySocialProfilesById(EntitySocialProfiles entitySocialProfiles) {
+    public EntitySocialProfiles getEntitySocialProfilesById(int id) {
         try {
-            return jdbcTemplate.queryForObject(SQL_GET_SEP_BY_ID, new EntitySocialProfilesMapper(), entitySocialProfiles.getEntityId());
+            return jdbcTemplate.queryForObject(SQL_GET_SEP_BY_ID, new EntitySocialProfilesMapper(), id);
         } catch (DataAccessException ex) {
             return null;
         }

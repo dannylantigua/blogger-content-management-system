@@ -84,4 +84,8 @@
         <constructor-arg ref="StaticPagesDao"/>
     </bean>
     
+    <bean id="entitySocialProfiles" class="com.sg.blogcms.daoImpl.EntitySocialProfilesJdbcTemplateImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
 </beans>
