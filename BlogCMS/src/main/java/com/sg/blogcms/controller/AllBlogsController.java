@@ -8,9 +8,11 @@ package com.sg.blogcms.controller;
 import com.sg.blogcms.model.Category;
 import com.sg.blogcms.model.Entity;
 import com.sg.blogcms.model.Posts;
+import com.sg.blogcms.model.StaticPages;
 import com.sg.blogcms.service.CategoriesService;
 import com.sg.blogcms.service.EntityService;
 import com.sg.blogcms.service.PostsService;
+import com.sg.blogcms.service.StaticPagesService;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -29,13 +31,16 @@ public class AllBlogsController {
 
     PostsService postsService;
     CategoriesService serviceCat;
-      EntityService EntityServiceDao;
+    EntityService EntityServiceDao;
+    StaticPagesService servicePage;
 
     @Inject
-    public AllBlogsController(PostsService postsService, CategoriesService serviceCat ,   EntityService EntityServiceDao) {
+    public AllBlogsController(PostsService postsService, CategoriesService serviceCat,
+            EntityService EntityServiceDao, StaticPagesService servicePage) {
         this.postsService = postsService;
         this.serviceCat = serviceCat;
         this.EntityServiceDao = EntityServiceDao;
+        this.servicePage = servicePage;
     }
 
     @RequestMapping(value = "/allBlogs", method = RequestMethod.GET)
@@ -44,6 +49,11 @@ public class AllBlogsController {
         List<Posts> posts = postsService.getAllPosts();
         model.addAttribute("posts", posts);
         model.addAttribute("categories", categories);
+
+        // get a list from the service with all pages
+        List<StaticPages> pages = servicePage.getAllStaticPages();
+        // add it to the model
+        model.addAttribute("pagesList", pages);
 
         return "allBlogs";
     }
@@ -55,9 +65,15 @@ public class AllBlogsController {
             return "redirect:homepage";
         } else {
             Posts currentPost = postsService.getPostsById(Integer.parseInt(currentIdForPost));
-           Category currentCategory = serviceCat.getCategoryById(currentPost.getCategoryId());
-           model.addAttribute("currentCategory", currentCategory);
+            Category currentCategory = serviceCat.getCategoryById(currentPost.getCategoryId());
+            model.addAttribute("currentCategory", currentCategory);
             model.addAttribute("currentPost", currentPost);
+
+            // get a list from the service with all pages
+            List<StaticPages> pages = servicePage.getAllStaticPages();
+            // add it to the model
+            model.addAttribute("pagesList", pages);
+
             return "displayChosenBlogPost";
         }
     }
@@ -78,6 +94,12 @@ public class AllBlogsController {
         model.addAttribute("currentCategory", c);
         model.addAttribute("post", post);
         model.addAttribute("cList", categories);
+        
+        // get a list from the service with all pages
+        List<StaticPages> pages = servicePage.getAllStaticPages();
+        // add it to the model
+        model.addAttribute("pagesList", pages);
+
         return "updatePost";
     }
 
@@ -93,21 +115,15 @@ public class AllBlogsController {
         String body = request.getParameter("postBody");
         post.setPostBody(body);
         post.setPostBody(request.getParameter("postBody"));
-    
-        
-        
-        
-        
-            String id = request.getParameter("chooseCategory");
-            //get category by id
-          
-          
-            Category c = serviceCat.getCategoryById(Integer.parseInt(id));
-         
-            // this references categories (is category id)
-            post.setCategoryId(c.getRecordId());
 
-        
+        String id = request.getParameter("chooseCategory");
+        //get category by id
+
+        Category c = serviceCat.getCategoryById(Integer.parseInt(id));
+
+        // this references categories (is category id)
+        post.setCategoryId(c.getRecordId());
+
         postsService.updatePost(post);
         return "redirect:allBlogs";
     }

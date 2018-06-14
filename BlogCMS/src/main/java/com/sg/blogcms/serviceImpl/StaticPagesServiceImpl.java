@@ -30,11 +30,11 @@ public class StaticPagesServiceImpl implements StaticPagesService {
     @Override
     public StaticPages addNewStaticPage(StaticPages page, String path) {
         dao.addNewStaticPage(page);
-        try {
-            createNewFileForPages(page, path);
-        } catch (IOException ex) {
-            Logger.getLogger(StaticPagesServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            createNewFileForPages(page, path);
+//        } catch (IOException ex) {
+//            Logger.getLogger(StaticPagesServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         return page;
     }
 
@@ -58,49 +58,49 @@ public class StaticPagesServiceImpl implements StaticPagesService {
         return dao.getAllStaticPages();
     }
 
-    private void createNewFileForPages(StaticPages page, String path)
-            throws FileNotFoundException, IOException {
-
-        String data = "<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\n"
-                + "<%@ taglib prefix=\"s\" uri=\"http://www.springframework.org/tags\"%>\n"
-                + "<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>\n"
-                + "<%@ taglib prefix=\"sec\" uri=\"http://www.springframework.org/security/tags\" %>\n"
-                + "<%@page contentType=\"text/html\" pageEncoding=\"windows-1252\"%>\n"
-                + "<!DOCTYPE html>\n"
-                + "<html>\n"
-                + "    <head>\n"
-                + "        <title>Index Page</title>\n"
-                + "        <!-- CSS Libraries -->\n"
-                + "        <jsp:include page=\"${request.contextPath}/jsp/csslibraries.jsp\"></jsp:include>"
-                + "    </head>\n"
-                + "    <body>\n"
-                + ""
-                + ""
-                + ""
-                + "<!--  NAVVVV -->"
-                + "<!-- Nav Bar -->\n"
-                + "<jsp:include page=\"${request.contextPath}/jsp/navigationBar2.jsp\"></jsp:include>"
-                + ""
-                + ""
-                + "<div class=\"container\">"
-                + ""
-                + "<div style=\"margin-top: 100px;\">\n"
-                + "                <h1>${currentPage.pageTitle} </h1>\n"
-                + "                <hr>\n"
-                + "\n"
-                + "                ${currentPage.content}"
-                + ""
-                + "</div>"
-                + ""
-                + "<!-- JavaScript Libraries -->\n"
-                + "<jsp:include page=\"${request.contextPath}/jsp/jslibraries.jsp\"></jsp:include>"
-                + "    </body>\n"
-                + "</html>\n"
-                + "";
-
-        FileOutputStream out = new FileOutputStream(path + "//" + page.getPageName() + ".jsp");
-        out.write(data.getBytes());
-        out.close();
-    }
+//    private void createNewFileForPages(StaticPages page, String path)
+//            throws FileNotFoundException, IOException {
+//
+//        String data = "<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\n"
+//                + "<%@ taglib prefix=\"s\" uri=\"http://www.springframework.org/tags\"%>\n"
+//                + "<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>\n"
+//                + "<%@ taglib prefix=\"sec\" uri=\"http://www.springframework.org/security/tags\" %>\n"
+//                + "<%@page contentType=\"text/html\" pageEncoding=\"windows-1252\"%>\n"
+//                + "<!DOCTYPE html>\n"
+//                + "<html>\n"
+//                + "    <head>\n"
+//                + "        <title>Index Page</title>\n"
+//                + "        <!-- CSS Libraries -->\n"
+//                + "        <jsp:include page=\"${request.contextPath}/jsp/csslibraries.jsp\"></jsp:include>"
+//                + "    </head>\n"
+//                + "    <body>\n"
+//                + ""
+//                + ""
+//                + ""
+//                + "<!--  NAVVVV -->"
+//                + "<!-- Nav Bar -->\n"
+//                + "<jsp:include page=\"${request.contextPath}/jsp/navigationBar2.jsp\"></jsp:include>"
+//                + ""
+//                + ""
+//                + "<div class=\"container\">"
+//                + ""
+//                + "<div style=\"margin-top: 100px;\">\n"
+//                + "                <h1>${currentPage.pageTitle} </h1>\n"
+//                + "                <hr>\n"
+//                + "\n"
+//                + "                ${currentPage.content}"
+//                + ""
+//                + "</div>"
+//                + ""
+//                + "<!-- JavaScript Libraries -->\n"
+//                + "<jsp:include page=\"${request.contextPath}/jsp/jslibraries.jsp\"></jsp:include>"
+//                + "    </body>\n"
+//                + "</html>\n"
+//                + "";
+//
+//        FileOutputStream out = new FileOutputStream(path + "//" + page.getPageName() + ".jsp");
+//        out.write(data.getBytes());
+//        out.close();
+//    }
 
 }

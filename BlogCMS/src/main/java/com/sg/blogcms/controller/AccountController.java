@@ -9,8 +9,10 @@ import com.sg.blogcms.dao.EntityDao;
 import com.sg.blogcms.model.Authorities;
 import com.sg.blogcms.model.Entity;
 import com.sg.blogcms.model.EntitySocialProfiles;
+import com.sg.blogcms.model.StaticPages;
 import com.sg.blogcms.service.EntityService;
 import com.sg.blogcms.service.EntitySocialProfilesService;
+import com.sg.blogcms.service.StaticPagesService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -34,13 +36,16 @@ public class AccountController {
 
     EntityService EntityServiceDao;
     EntitySocialProfilesService esps;
+    StaticPagesService servicePage;
     private PasswordEncoder encoder;
 
     @Inject
-    public AccountController(EntityService EntityServiceDao, PasswordEncoder encoder , EntitySocialProfilesService esps) {
+    public AccountController(EntityService EntityServiceDao, PasswordEncoder encoder , 
+            EntitySocialProfilesService esps, StaticPagesService servicePage) {
         this.EntityServiceDao = EntityServiceDao;
         this.encoder = encoder;
         this.esps = esps;
+        this.servicePage = servicePage;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -85,6 +90,11 @@ public class AccountController {
         Entity currentEntity = EntityServiceDao.getEntityByUserName(userName);
         
         model.addAttribute("user", currentEntity);
+        
+        // get a list from the service with all pages
+        List<StaticPages> pages = servicePage.getAllStaticPages();
+        // add it to the model
+        model.addAttribute("pagesList", pages);
 
         return "editProfile";
     }
@@ -120,6 +130,11 @@ public class AccountController {
         }
 
         model.addAttribute("users", users);
+        
+        // get a list from the service with all pages
+        List<StaticPages> pages = servicePage.getAllStaticPages();
+        // add it to the model
+        model.addAttribute("pagesList", pages);
 
         model.addAttribute( "socials" , esps.getAllEntitySocialProfiles());
         return "adminSettings";

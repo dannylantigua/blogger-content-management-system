@@ -6,8 +6,10 @@
 package com.sg.blogcms.controller;
 
 import com.sg.blogcms.model.Category;
+import com.sg.blogcms.model.StaticPages;
 import com.sg.blogcms.model.postsTags;
 import com.sg.blogcms.service.CategoriesService;
+import com.sg.blogcms.service.StaticPagesService;
 import static java.lang.Integer.parseInt;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -28,9 +30,11 @@ public class CategoriesController {
 
     CategoriesService service;
     Category cat;
+    StaticPagesService servicePage;
 
-    public CategoriesController(CategoriesService service) {
+    public CategoriesController(CategoriesService service, StaticPagesService servicePage) {
         this.service = service;
+        this.servicePage = this.servicePage;
     }
 
     @RequestMapping(value = "/addNewCategory", method = RequestMethod.POST)
@@ -49,6 +53,12 @@ public class CategoriesController {
         int catId = parseInt(catIdParameter);
         Category category = service.getCategoryById(catId);
         model.addAttribute("category", category);
+        
+//        // get a list from the service with all pages
+//        List<StaticPages> pages = servicePage.getAllStaticPages();
+//        // add it to the model
+//        model.addAttribute("pagesList", pages);
+
         return "editCategoryForm";
     }
 

@@ -7,8 +7,10 @@ package com.sg.blogcms.controller;
 
 import com.sg.blogcms.model.Category;
 import com.sg.blogcms.model.Posts;
+import com.sg.blogcms.model.StaticPages;
 import com.sg.blogcms.service.CategoriesService;
 import com.sg.blogcms.service.PostsService;
+import com.sg.blogcms.service.StaticPagesService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -26,11 +28,13 @@ public class HomepageController {
 
     PostsService postsService;
     CategoriesService serviceCat;
+    StaticPagesService servicePage;
 
     @Inject
-    public HomepageController(PostsService postsService, CategoriesService serviceCat) {
+    public HomepageController(PostsService postsService, CategoriesService serviceCat, StaticPagesService servicePage) {
         this.postsService = postsService;
         this.serviceCat = serviceCat;
+        this.servicePage = servicePage;
     }
 
     @RequestMapping(value = "/homepage", method = RequestMethod.GET)
@@ -39,10 +43,12 @@ public class HomepageController {
         List<Posts> posts = postsService.getLatestPosts();
         List<Category> categories = serviceCat.getAllCategories();
         model.addAttribute("posts", posts);
-        model.addAttribute("categories",categories);
-        
-       
-       
+        model.addAttribute("categories", categories);
+
+        // get a list from the service with all pages
+        List<StaticPages> pages = servicePage.getAllStaticPages();
+        // add it to the model
+        model.addAttribute("pagesList", pages);
 
         if (!posts.isEmpty()) {
             model.addAttribute("latestPost", posts.get(0));
