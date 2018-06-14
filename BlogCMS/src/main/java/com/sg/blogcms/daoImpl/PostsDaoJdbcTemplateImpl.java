@@ -24,8 +24,8 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
 
     //PREPARE STATMENTS
     private static final String SQL_ADD_POST = " "
-            + " INSERT INTO Posts (postTitle, postBody, postDate, expireDate,likes,isPending , isApproved, isRejected ,userId)"
-            + " VALUES (?,?,?,?,?,?,?,?,?) ";
+            + " INSERT INTO Posts (postTitle, postBody, postDate, expireDate,likes,isPending , isApproved, isRejected ,userId, categoryId) "
+            + " VALUES (?,?,?,?,?,?,?,?,?,?) ";
 
     private static final String SQL_GET_ALL_POSTS = " SELECT * FROM POSTS ";
 
@@ -38,7 +38,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     private static final String SQL_GET_LATEST_6_POSTS = " SELECT * FROM POSTS order BY recordId DESC LIMIT 0 , 6 ";
 
     private static final String SQL_UPDATE_POST = " UPDATE Posts "
-            + " SET postTitle = ?, postBody = ?,postDate = ? , expireDate = ? , likes = ? , isPending = ? , isApproved = ? , isRejected = ? , userId = ? "
+            + " SET postTitle = ?, postBody = ?,postDate = ? , expireDate = ? , likes = ? , isPending = ? , isApproved = ? , isRejected = ? , userId = ?, categoryId = ? "
             + " WHERE recordId = ? ";
     
     private static final String SQL_GETPOSTCOUNT = "select COUNT(recordId) from Posts where userId = ?";
@@ -93,7 +93,8 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
                 currentPosts.isIsApproved(),
                 currentPosts.isIsRejected()
                 ,
-                currentPosts.getUserId()
+                currentPosts.getUserId(),
+                currentPosts.getCategoryId()
         );
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()",
@@ -121,6 +122,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
                 post.isIsApproved(),
                 post.isIsRejected(),
                 post.getUserId(),
+                post.getCategoryId(),
                 post.getRecordId()
                 
         );

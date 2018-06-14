@@ -133,6 +133,8 @@ public class Mappers {
             
             currentPost.setUserId(rs.getInt("userId"));
             
+            currentPost.setCategoryId(rs.getInt("categoryId"));
+            
             currentPost.setPostDate(rs.getDate("postDate"));
             
             currentPost.setExpireDate(rs.getDate("expireDate"));

@@ -6,7 +6,9 @@
 package com.sg.blogcms.service;
 
 import com.sg.blogcms.dao.CategoriesDao;
+import com.sg.blogcms.dao.EntityDao;
 import com.sg.blogcms.model.Category;
+import com.sg.blogcms.model.Entity;
 import com.sg.blogcms.model.Posts;
 import java.time.LocalDate;
 import java.util.Date;
@@ -29,6 +31,7 @@ public class PostsServiceTest {
 
     PostsService postService;
     CategoriesDao CatDao;
+    EntityDao eDao;
 
     public PostsServiceTest() {
     }
@@ -53,11 +56,18 @@ public class PostsServiceTest {
         }
 
         CatDao = ctx.getBean("categoriesDao", CategoriesDao.class);
-//        List<Category> categories = CatDao.getAllCategories();
-//
-//        for (Category currentCat : categories) {
-//            CatDao.removeCategory(currentCat.getRecordId());
-//        }
+        List<Category> categories = CatDao.getAllCategories();
+
+        for (Category currentCat : categories) {
+            CatDao.removeCategory(currentCat.getRecordId());
+        }
+
+        eDao = ctx.getBean("entityDao", EntityDao.class);
+        List<Entity> entities = eDao.getAllEntities();
+
+        for (Entity currentEntity : entities) {
+            eDao.removeEntityById(currentEntity.getRecordId());
+        }
 
     }
 
@@ -70,9 +80,19 @@ public class PostsServiceTest {
      */
     @Test
     public void testGetAllPosts() {
+        Entity user = dummyEntity();
+        Category category = dummyCategory();
 
-        Posts post = dummyPost();
-        Posts post2 = dummyPost2();
+        System.out.println(user.getRecordId());
+        
+        
+        eDao.addEntity(user);
+        CatDao.addNewCategory(category);
+        CatDao.getCategoryById(category.getRecordId());
+        System.out.println(eDao.getEntityById(user.getRecordId()).getRecordId());
+ 
+        Posts post = dummyPost(eDao.getEntityById(user.getRecordId()).getRecordId() , CatDao.getCategoryById(category.getRecordId()).getRecordId());
+        Posts post2 = dummyPost2(eDao.getEntityById(user.getRecordId()).getRecordId() , CatDao.getCategoryById(category.getRecordId()).getRecordId());
         postService.createPost(post);
         postService.createPost(post2);
 
@@ -83,29 +103,56 @@ public class PostsServiceTest {
 
     @Test
     public void testaddPostsGetPost() {
-        Category c = new Category();
-        c.setRecordId(5);
-        c.setCategoryDesc("Food");
-        CatDao.addNewCategory(c);
+           Entity user = dummyEntity();
+        Category category = dummyCategory();
 
-        Posts p = postService.createPost(dummyPost());
-        assertEquals(postService.getPostsById(p.getRecordId()).getPostTitle(), "Cooking with Danny");
+        System.out.println(user.getRecordId());
+        
+        
+        eDao.addEntity(user);
+        CatDao.addNewCategory(category);
+        CatDao.getCategoryById(category.getRecordId());
+        System.out.println(eDao.getEntityById(user.getRecordId()).getRecordId());
+ 
+        Posts post = dummyPost(eDao.getEntityById(user.getRecordId()).getRecordId() , CatDao.getCategoryById(category.getRecordId()).getRecordId());
+        Posts post2 = dummyPost2(eDao.getEntityById(user.getRecordId()).getRecordId() , CatDao.getCategoryById(category.getRecordId()).getRecordId());
+        postService.createPost(post);
+        postService.createPost(post2);
+        
+        assertEquals(postService.getPostsById(post.getRecordId()).getPostTitle(), "Cooking with Danny");
     }
 
     @Test
     public void updatePost() {
-        Posts dPost = dummyPost();
-        postService.createPost(dPost);
+           Entity user = dummyEntity();
+        Category category = dummyCategory();
 
-        Posts updatedPost = postService.getPostsById(dPost.getRecordId());
-        updatedPost.setPostTitle("I hate cooking");
-        postService.updatePost(updatedPost);
-
+        System.out.println(user.getRecordId());
         
-        assertEquals(updatedPost.getPostTitle(),postService.getPostsById(updatedPost.getRecordId()).getPostTitle());
+        
+        eDao.addEntity(user);
+        CatDao.addNewCategory(category);
+        CatDao.getCategoryById(category.getRecordId());
+        System.out.println(eDao.getEntityById(user.getRecordId()).getRecordId());
+ 
+        Posts post = dummyPost(eDao.getEntityById(user.getRecordId()).getRecordId() , CatDao.getCategoryById(category.getRecordId()).getRecordId());
+        Posts post2 = dummyPost2(eDao.getEntityById(user.getRecordId()).getRecordId() , CatDao.getCategoryById(category.getRecordId()).getRecordId());
+        postService.createPost(post);
+        postService.createPost(post2);
+
+        Posts currentPost = postService.getPostsById(post2.getRecordId());
+        System.out.println(currentPost.getPostTitle());
+        
+        assertEquals(currentPost.getRecordId(),post2.getRecordId());
+        assertEquals(currentPost.getPostTitle(),post2.getPostTitle());
+        currentPost.setPostTitle("test");
+        postService.updatePost(currentPost);
+        
+        assertEquals(postService.getPostsById(currentPost.getRecordId()).getPostTitle(),"test");
+     
     }
 
-    public Posts dummyPost() {
+    public Posts dummyPost(int userId, int categoryId) {
 
         Posts post = new Posts();
         Date date = new Date();
@@ -118,11 +165,12 @@ public class PostsServiceTest {
         post.setIsPending(false);
         post.setIsApproved(true);
         post.setIsRejected(false);
-        post.setUserId(1);
+        post.setUserId(userId);
+        post.setCategoryId(categoryId);
         return post;
     }
 
-    public Posts dummyPost2() {
+    public Posts dummyPost2(int userId, int categoryId) {
 
         Posts post = new Posts();
         Date date = new Date();
@@ -135,8 +183,25 @@ public class PostsServiceTest {
         post.setIsPending(false);
         post.setIsApproved(true);
         post.setIsRejected(false);
-        post.setUserId(1);
+        post.setUserId(userId);
+        post.setCategoryId(categoryId);
         return post;
+    }
+
+    public Entity dummyEntity() {
+        Entity currentEntity = new Entity();
+        currentEntity.setUserName("kenny");
+        currentEntity.setFirstName("Kenneth");
+        currentEntity.setLastName("Melendez");
+        currentEntity.setPassword("password");
+        return currentEntity;
+    }
+
+    public Category dummyCategory() {
+        Category c = new Category();
+        c.setRecordId(0);
+        c.setCategoryDesc("Health");
+        return c;
     }
 
 }

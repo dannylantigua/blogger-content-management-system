@@ -23,6 +23,7 @@ public class Posts {
     private String postTitle;
     private String postBody;
     private int userId;
+    private int categoryId;
     private Date postDate;
     private Date expireDate;
     private int likes;
@@ -63,15 +64,21 @@ public class Posts {
         this.userId = userId;
     }
 
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public Date getPostDate() {
         return postDate;
-
     }
 
     public void setPostDate(Date postDate) {
         this.postDate = postDate;
     }
-
 
     public Date getExpireDate() {
         return expireDate;
@@ -124,17 +131,18 @@ public class Posts {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + this.recordId;
-        hash = 29 * hash + Objects.hashCode(this.postTitle);
-        hash = 29 * hash + Objects.hashCode(this.postBody);
-        hash = 29 * hash + this.userId;
-        hash = 29 * hash + Objects.hashCode(this.postDate);
-        hash = 29 * hash + Objects.hashCode(this.expireDate);
-        hash = 29 * hash + this.likes;
-        hash = 29 * hash + (this.isRejected ? 1 : 0);
-        hash = 29 * hash + (this.isApproved ? 1 : 0);
-        hash = 29 * hash + (this.isPending ? 1 : 0);
-        hash = 29 * hash + Objects.hashCode(this.postTags);
+        hash = 37 * hash + this.recordId;
+        hash = 37 * hash + Objects.hashCode(this.postTitle);
+        hash = 37 * hash + Objects.hashCode(this.postBody);
+        hash = 37 * hash + this.userId;
+        hash = 37 * hash + this.categoryId;
+        hash = 37 * hash + Objects.hashCode(this.postDate);
+        hash = 37 * hash + Objects.hashCode(this.expireDate);
+        hash = 37 * hash + this.likes;
+        hash = 37 * hash + (this.isRejected ? 1 : 0);
+        hash = 37 * hash + (this.isApproved ? 1 : 0);
+        hash = 37 * hash + (this.isPending ? 1 : 0);
+        hash = 37 * hash + Objects.hashCode(this.postTags);
         return hash;
     }
 
@@ -154,6 +162,9 @@ public class Posts {
             return false;
         }
         if (this.userId != other.userId) {
+            return false;
+        }
+        if (this.categoryId != other.categoryId) {
             return false;
         }
         if (this.likes != other.likes) {
@@ -185,6 +196,8 @@ public class Posts {
         }
         return true;
     }
+
+   
 }
 
 

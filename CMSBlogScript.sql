@@ -4,7 +4,7 @@ CREATE DATABASE BlogCMS;
 
 USE BlogCMS;
 
-#SET foreign_key_checks=0;
+SET foreign_key_checks=0;
 
 CREATE TABLE IF NOT EXISTS Entity (
 recordId INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
