@@ -110,11 +110,12 @@ public class DashboardController {
 
     @RequestMapping(value = "submitPost", method = RequestMethod.POST)
     public String submitPost(HttpServletRequest request) {
-
+        String currentUserName = request.getRemoteUser();
+        Entity currentEntity = ServiceDao.getEntityByUserName(currentUserName);
         Posts post = new Posts();
         post.setPostTitle(request.getParameter("postTitle"));
         post.setPostBody(request.getParameter("postBody"));
-
+        post.setUserId(currentEntity.getRecordId());
         Date date = new Date();
         post.setPostDate(date);
 
@@ -126,7 +127,7 @@ public class DashboardController {
             Category c = serviceCat.getCategoryById(Integer.parseInt(id));
          
             // this references categories (is category id)
-            post.setUserId(c.getRecordId());
+            post.setCategoryId(c.getRecordId());
 //        } catch (NumberFormatException ex) {
 //        }
 

@@ -47,7 +47,7 @@ public class HomepageController {
         if (!posts.isEmpty()) {
             model.addAttribute("latestPost", posts.get(0));
             Posts latestPost = posts.get(0);
-            int id = latestPost.getUserId();
+            int id = latestPost.getCategoryId();
             Category c = serviceCat.getCategoryById(id);
             model.addAttribute("mainCategory", c);
         }
