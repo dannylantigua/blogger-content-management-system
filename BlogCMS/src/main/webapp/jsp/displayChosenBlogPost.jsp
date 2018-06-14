@@ -25,6 +25,8 @@
             <div class="container">
 
                 <div style="margin-top: 100px;">
+                    
+                    <span class="badge badge-dark" style="margin-bottom: 20px;">${currentCategory.categoryDesc}</span>
                     <h1>${currentPost.postTitle} </h1>
                 <h4>${currentPost.postDate}</h4>
                 <hr>

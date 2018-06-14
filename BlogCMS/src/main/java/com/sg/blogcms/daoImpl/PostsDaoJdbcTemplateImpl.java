@@ -11,6 +11,8 @@ import com.sg.blogcms.model.Posts;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -22,8 +24,8 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
 
     //PREPARE STATMENTS
     private static final String SQL_ADD_POST = " "
-            + " INSERT INTO Posts (postTitle, postBody, postDate, expireDate,likes,isPending , isApproved, isRejected )"
-            + " VALUES (?,?,?,?,?,?,?,?) ";
+            + " INSERT INTO Posts (postTitle, postBody, postDate, expireDate,likes,isPending , isApproved, isRejected ,userId)"
+            + " VALUES (?,?,?,?,?,?,?,?,?) ";
 
     private static final String SQL_GET_ALL_POSTS = " SELECT * FROM POSTS ";
 
@@ -33,10 +35,10 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
 
     private static final String SQL_GET_POSTS_BY_CATEGORY = " SELECT * FROM Posts WHERE userId = ? ";
 
-    private static final String SQL_GET_LATEST_4_POSTS = " SELECT * FROM POSTS order BY recordId DESC LIMIT 0 , 4 ";
+    private static final String SQL_GET_LATEST_6_POSTS = " SELECT * FROM POSTS order BY recordId DESC LIMIT 0 , 6 ";
 
     private static final String SQL_UPDATE_POST = " UPDATE Posts "
-            + " SET postTitle = ?, postBody = ?,postDate = ? , expireDate = ? , likes = ? , isPending = ? , isApproved = ? , isRejected = ? "
+            + " SET postTitle = ?, postBody = ?,postDate = ? , expireDate = ? , likes = ? , isPending = ? , isApproved = ? , isRejected = ? , userId = ? "
             + " WHERE recordId = ? ";
     
     private static final String SQL_GETPOSTCOUNT = "select COUNT(recordId) from Posts where userId = ?";
@@ -60,7 +62,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
     @Override
     public List<Posts> getLatestPosts() {
         try {
-            return jdbcTemplate.query(SQL_GET_LATEST_4_POSTS, new PostsMapper());
+            return jdbcTemplate.query(SQL_GET_LATEST_6_POSTS, new PostsMapper());
         } catch (DataAccessException ex) {
             return null;
         }
@@ -78,6 +80,7 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
 
     ///jonathan's work//
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Posts createPost(Posts currentPosts) {
 
         jdbcTemplate.update(SQL_ADD_POST,
@@ -89,6 +92,8 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
                 currentPosts.isIsPending(),
                 currentPosts.isIsApproved(),
                 currentPosts.isIsRejected()
+                ,
+                currentPosts.getUserId()
         );
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()",
@@ -115,7 +120,9 @@ public class PostsDaoJdbcTemplateImpl implements PostsDao {
                 post.isIsPending(),
                 post.isIsApproved(),
                 post.isIsRejected(),
+                post.getUserId(),
                 post.getRecordId()
+                
         );
     }
 

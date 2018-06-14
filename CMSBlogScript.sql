@@ -4,6 +4,8 @@ CREATE DATABASE BlogCMS;
 
 USE BlogCMS;
 
+#SET foreign_key_checks=0;
+
 CREATE TABLE IF NOT EXISTS Entity (
 recordId INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
 FirstName VARCHAR(20),
@@ -16,52 +18,54 @@ passwd VARCHAR(300),
 isAdmin boolean,
 `enabled` tinyint(1) NOT NULL,
  KEY `UserName` (`UserName`) 
-) ENGINE=InnoDB ;
+) ;
 
 CREATE TABLE IF NOT EXISTS EntitySocialProfiles(
 EntityId INT,
 WebName VARCHAR(20),
 Website VARCHAR(100),
 FOREIGN KEY (EntityId) REFERENCES Entity(recordId) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB;
+) ;
 
 CREATE TABLE IF NOT EXISTS Categories(
-recordId INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
+recordId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 categoryDesc VARCHAR(20)
-) ENGINE=InnoDB ;
+) ;
 
 CREATE TABLE IF NOT EXISTS Posts(
 recordId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 postTitle TEXT,
 postBody TEXT,
 userId INT,
+categoryId INT,
 postDate DateTime,
 expireDate DateTime NULL,
 likes INT,
 isPending boolean,
 isApproved boolean,
 isRejected boolean,
-FOREIGN KEY (userId) REFERENCES Categories (recordId) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB ;
+FOREIGN KEY (userId) REFERENCES Entity (recordId) ON UPDATE CASCADE ON DELETE CASCADE ,
+FOREIGN KEY (categoryId) REFERENCES Categories (recordId) ON UPDATE CASCADE ON DELETE CASCADE
+) ;
 
 CREATE TABLE IF NOT EXISTS PostsTags(
 postId INT,
 Tag VARCHAR(30),
 FOREIGN KEY (postId) REFERENCES Posts (recordId) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB ;
+)  ;
 
 CREATE TABLE StaticPages(
 recordId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 PageName Varchar(20),
 pageTitle Varchar(40),
 Content TEXT
-) ENGINE=InnoDB ;
+);
 
 CREATE TABLE IF NOT EXISTS `authorities` (
 `UserName` varchar(20) NOT NULL ,
 `authority` varchar(20) NOT NULL,
 KEY `UserName` (`UserName`) 
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) DEFAULT CHARSET=latin1;
 
 
 ALTER TABLE `authorities`
@@ -106,10 +110,10 @@ INSERT INTO StaticPages (recordId, PageName, pageTitle, Content) VALUES
 -- Data for Posts
 -- 
 INSERT INTO Posts VALUES (1, 'What is a Method? A real controversy in the LGACC-Java Team', 
-	'Google it', 1, '9999-12-31 23:59:59', '9999-12-31 23:59:59' , 0, 0, 1, 0);
+	'Google it', 1, 1,'9999-12-31 23:59:59', '9999-12-31 23:59:59' , 0, 0, 1, 0);
     
     INSERT INTO Posts VALUES (2, 'What is a Function?', 
-	'Google it too', 2, '9999-12-31 23:59:59', '9999-12-31 23:59:59' , 0, 0, 1, 0);
+	'Google it too', 2, 1,'9999-12-31 23:59:59', '9999-12-31 23:59:59' , 0, 0, 1, 0);
 -- 
 -- 
 -- Data for Tags

@@ -36,6 +36,17 @@
                                         <textarea name="postBody" class="form-control tinymce">Input your post here!</textarea>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Select a Category</label>
+                                        <select class="form-control" name="chooseCategory" id="exampleFormControlSelect1">
+                                        <c:forEach var="category" items="${cList}">
+                                            <option value="${category.recordId}"><c:out value="${category.categoryDesc}"/></option>
+                                        </c:forEach>
+                                            
+                                          
+                                        </select>
+                                    </div>
+
                                     <button type="submit" class="btn btn-primary pull-right">Save</button>
                                 </form>
 

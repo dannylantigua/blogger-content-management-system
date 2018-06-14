@@ -5,6 +5,8 @@
  */
 package com.sg.blogcms.service;
 
+import com.sg.blogcms.dao.CategoriesDao;
+import com.sg.blogcms.model.Category;
 import com.sg.blogcms.model.Posts;
 import java.time.LocalDate;
 import java.util.Date;
@@ -15,6 +17,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.experimental.categories.Categories;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -25,7 +28,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class PostsServiceTest {
 
     PostsService postService;
-    ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
+    CategoriesDao CatDao;
 
     public PostsServiceTest() {
     }
@@ -40,7 +43,7 @@ public class PostsServiceTest {
 
     @Before
     public void setUp() {
-
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
         postService = ctx.getBean("postsService", PostsService.class);
 
         List<Posts> posts = postService.getAllPosts();
@@ -48,6 +51,13 @@ public class PostsServiceTest {
         for (Posts currentPost : posts) {
             postService.removePostsById(currentPost.getRecordId());
         }
+
+        CatDao = ctx.getBean("categoriesDao", CategoriesDao.class);
+//        List<Category> categories = CatDao.getAllCategories();
+//
+//        for (Category currentCat : categories) {
+//            CatDao.removeCategory(currentCat.getRecordId());
+//        }
 
     }
 
@@ -73,21 +83,30 @@ public class PostsServiceTest {
 
     @Test
     public void testaddPostsGetPost() {
-    Posts p = postService.createPost(dummyPost());
-        assertEquals(postService.getPostsById(p.getRecordId()).getPostTitle(),"Cooking with Danny");
+        Category c = new Category();
+        c.setRecordId(5);
+        c.setCategoryDesc("Food");
+        CatDao.addNewCategory(c);
+
+        Posts p = postService.createPost(dummyPost());
+        assertEquals(postService.getPostsById(p.getRecordId()).getPostTitle(), "Cooking with Danny");
     }
-    
+
     @Test
-    public void updatePost(){
-        Posts post = postService.createPost(dummyPost());
+    public void updatePost() {
+        Posts dPost = dummyPost();
+        postService.createPost(dPost);
+
+        Posts updatedPost = postService.getPostsById(dPost.getRecordId());
+        updatedPost.setPostTitle("I hate cooking");
+        postService.updatePost(updatedPost);
+
         
-        post.setPostTitle("no more cooking");
-        postService.updatePost(post);
-        assertEquals(post.getPostTitle(),postService.getPostsById(post.getRecordId()).getPostTitle());
-        
+        assertEquals(updatedPost.getPostTitle(),postService.getPostsById(updatedPost.getRecordId()).getPostTitle());
     }
 
     public Posts dummyPost() {
+
         Posts post = new Posts();
         Date date = new Date();
         post.setPostTitle("Cooking with Danny");
@@ -99,10 +118,12 @@ public class PostsServiceTest {
         post.setIsPending(false);
         post.setIsApproved(true);
         post.setIsRejected(false);
+        post.setUserId(1);
         return post;
     }
 
     public Posts dummyPost2() {
+
         Posts post = new Posts();
         Date date = new Date();
         post.setPostTitle("Cooking with Kenny");
@@ -114,6 +135,7 @@ public class PostsServiceTest {
         post.setIsPending(false);
         post.setIsApproved(true);
         post.setIsRejected(false);
+        post.setUserId(1);
         return post;
     }
 

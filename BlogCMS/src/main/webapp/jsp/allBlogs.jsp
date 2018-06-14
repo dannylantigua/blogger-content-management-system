@@ -28,8 +28,14 @@
                 <br>
                 <div class="card" >
                     <div class="card-body" >
+
+                      
+
                         <a href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${post.recordId}" style="color:black; text-decoration:none;">
-                            <div class="post">   
+                            <div class="post">
+                                
+                          
+                            
                                 <span class="add-overflow"><h1> <c:out value="${post.postTitle}"></c:out></h1></span>
                                 <span class="add-overflow">${post.postBody}</span>
                             </div> 
@@ -40,6 +46,7 @@
             </c:forEach>
 
         </div>
+            
 
         <!-- JavaScript Libraries -->
         <jsp:include page="${request.contextPath}/jsp/jslibraries.jsp"></jsp:include>

@@ -103,6 +103,8 @@ public class DashboardController {
 //            model.addAttribute("email", currentEntity.getEmail());
 //        }
 
+        List<Category> cList = serviceCat.getAllCategories();
+        model.addAttribute("cList", cList);
         return "createPost";
     }
 
@@ -115,6 +117,18 @@ public class DashboardController {
 
         Date date = new Date();
         post.setPostDate(date);
+
+//        try {
+            String id = request.getParameter("chooseCategory");
+            //get category by id
+          
+          
+            Category c = serviceCat.getCategoryById(Integer.parseInt(id));
+         
+            // this references categories (is category id)
+            post.setUserId(c.getRecordId());
+//        } catch (NumberFormatException ex) {
+//        }
 
         servicePost.createPost(post);
         return "redirect:allBlogs";
