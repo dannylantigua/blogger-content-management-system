@@ -42,25 +42,25 @@
                                         <c:forEach var="category" items="${cList}">
                                             <option value="${category.recordId}"><c:out value="${category.categoryDesc}"/></option>
                                         </c:forEach>
-                                            
-                                          
-                                        </select>
-                                    </div>
+                                    </select>
+                                </div>
 
-                                    <button type="submit" class="btn btn-primary pull-right">Save</button>
-                                </form>
 
-                            </div>
+
+                                <button type="submit" class="btn btn-primary pull-right">Save</button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <script src='https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=scmd53yww1lj74aj6vs54kvv2d5zj06bxs2snlu2l51l0835'></script>
-            <script>tinymce.init({selector: "textarea.tinymce",
-                    themes: "modern"});</script>
+        <script src='https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=scmd53yww1lj74aj6vs54kvv2d5zj06bxs2snlu2l51l0835'></script>
+        <script>tinymce.init({selector: "textarea.tinymce",
+                themes: "modern"});</script>
 
-            <!-- JavaScript Libraries -->
+        <!-- JavaScript Libraries -->
         <jsp:include page="${request.contextPath}/jsp/jslibraries.jsp"></jsp:include>
     </body>
 </html>
