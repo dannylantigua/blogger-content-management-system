@@ -15,17 +15,19 @@
         <title>Index Page</title>
         <!-- CSS Libraries -->
         <jsp:include page="${request.contextPath}/jsp/csslibraries.jsp"></jsp:include>
-    </head>
-    <body>
+        </head>
+        <body>
 
-        <!-- Nav Bar -->
-            <jsp:include page="${request.contextPath}/jsp/navigationBar2.jsp"></jsp:include>
+            <!-- Nav Bar -->
+        <jsp:include page="${request.contextPath}/jsp/navigationBar2.jsp"></jsp:include>
 
-        <!--content-->
+            <!--content-->
 
-        <div class="container">
-            <!--            <div class="card">-->
-            <div style="padding:100px;">
+            <div class="container">
+
+                <!--            <div class="card">-->
+                <div style="padding:100px;">
+                    <span class="badge badge-dark" style="margin-bottom: 20px;">${currentCategory.categoryDesc}</span>
                 <h1>${post.postTitle} </h1>
                 <h4>${post.postDate}</h4>
                 <hr>
@@ -68,6 +70,29 @@
                     <sf:input type="text" path="postTitle" class="form-control" id="postTitle" />
                 </div>
 
+<!--
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select a Category</label>
+                    <select class="form-control" name="chooseCategory" id="exampleFormControlSelect1">
+                        <c:forEach var="category" items="${cList}">
+                            <option value="${category.recordId}"><c:out value="${category.categoryDesc}"/></option>
+                        </c:forEach>
+
+
+                    </select>
+                </div>-->
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select a Category</label>
+                    <select class="form-control" name="chooseCategory" id="exampleFormControlSelect1">
+                        <c:forEach var="category" items="${cList}">
+                            <option value="${category.recordId}"><c:out value="${category.categoryDesc}"/></option>
+                        </c:forEach>
+
+
+                    </select>
+                </div>
+
 
 
                 <textarea name="postBody" class="form-control"></textarea>
@@ -84,7 +109,7 @@
 
 
         </div>
-       <!-- JavaScript Libraries -->
+        <!-- JavaScript Libraries -->
         <jsp:include page="${request.contextPath}/jsp/jslibraries.jsp"></jsp:include>
     </body>
 </html>

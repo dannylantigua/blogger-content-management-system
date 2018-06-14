@@ -6,8 +6,10 @@
 package com.sg.blogcms.controller;
 
 import com.sg.blogcms.model.Category;
+import com.sg.blogcms.model.Entity;
 import com.sg.blogcms.model.Posts;
 import com.sg.blogcms.service.CategoriesService;
+import com.sg.blogcms.service.EntityService;
 import com.sg.blogcms.service.PostsService;
 import java.util.List;
 import javax.inject.Inject;
@@ -27,11 +29,13 @@ public class AllBlogsController {
 
     PostsService postsService;
     CategoriesService serviceCat;
+      EntityService EntityServiceDao;
 
     @Inject
-    public AllBlogsController(PostsService postsService, CategoriesService serviceCat) {
+    public AllBlogsController(PostsService postsService, CategoriesService serviceCat ,   EntityService EntityServiceDao) {
         this.postsService = postsService;
         this.serviceCat = serviceCat;
+        this.EntityServiceDao = EntityServiceDao;
     }
 
     @RequestMapping(value = "/allBlogs", method = RequestMethod.GET)
@@ -51,7 +55,7 @@ public class AllBlogsController {
             return "redirect:homepage";
         } else {
             Posts currentPost = postsService.getPostsById(Integer.parseInt(currentIdForPost));
-           Category currentCategory = serviceCat.getCategoryById(Integer.parseInt(currentIdForPost));
+           Category currentCategory = serviceCat.getCategoryById(currentPost.getCategoryId());
            model.addAttribute("currentCategory", currentCategory);
             model.addAttribute("currentPost", currentPost);
             return "displayChosenBlogPost";
@@ -69,21 +73,41 @@ public class AllBlogsController {
     public String updatePost(HttpServletRequest request, Model model) {
         String id = request.getParameter("currentId");
         Posts post = postsService.getPostsById(Integer.parseInt(id));
+        List<Category> categories = serviceCat.getAllCategories();
+        Category c = serviceCat.getCategoryById(post.getCategoryId());
+        model.addAttribute("currentCategory", c);
         model.addAttribute("post", post);
+        model.addAttribute("cList", categories);
         return "updatePost";
     }
 
     // wont work
     @RequestMapping(value = "/submitUpdatedPost", method = RequestMethod.POST)
     public String submitPost(@ModelAttribute("post") Posts post, HttpServletRequest request) {
-
-//        //requesting and getting the parameter of the title
-//        String title = request.getParameter("postTitle");
-//        post.setPostTitle(title);
-//        //requesting and getting the parameter of the post body
-//        String body = request.getParameter("postBody");
-//        post.setPostBody(body);
+        Entity entity = EntityServiceDao.getEntityByUserName(request.getRemoteUser());
+        post.setUserId(entity.getRecordId());
+        //requesting and getting the parameter of the title
+        String title = request.getParameter("postTitle");
+        post.setPostTitle(title);
+        //requesting and getting the parameter of the post body
+        String body = request.getParameter("postBody");
+        post.setPostBody(body);
         post.setPostBody(request.getParameter("postBody"));
+    
+        
+        
+        
+        
+            String id = request.getParameter("chooseCategory");
+            //get category by id
+          
+          
+            Category c = serviceCat.getCategoryById(Integer.parseInt(id));
+         
+            // this references categories (is category id)
+            post.setCategoryId(c.getRecordId());
+
+        
         postsService.updatePost(post);
         return "redirect:allBlogs";
     }
