@@ -105,6 +105,12 @@ public class DashboardController {
 
         List<Category> cList = serviceCat.getAllCategories();
         model.addAttribute("cList", cList);
+        
+        // get a list from the service with all pages
+        List<StaticPages> pages = servicePage.getAllStaticPages();
+        // add it to the model
+        model.addAttribute("pagesList", pages);
+                
         return "createPost";
     }
 
@@ -134,5 +140,19 @@ public class DashboardController {
         servicePost.createPost(post);
         return "redirect:allBlogs";
     }
-
+    
+    @RequestMapping(value = "/displayStaticPage", method = RequestMethod.GET)
+    public String displayStaticPage(HttpServletRequest request, Model model) {
+        String param = request.getParameter("pageId");
+        StaticPages page = servicePage.getStaticPageById(Integer.parseInt(param));
+        model.addAttribute("currentPage", page);
+        
+        // get a list from the service with all pages
+        List<StaticPages> pages = servicePage.getAllStaticPages();
+        // add it to the model
+        model.addAttribute("pagesList", pages);
+        
+        
+        return "displayStaticPage";
+    }
 }

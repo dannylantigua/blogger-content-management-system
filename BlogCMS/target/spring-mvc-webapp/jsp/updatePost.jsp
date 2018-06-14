@@ -18,8 +18,15 @@
         </head>
         <body>
 
-            <!-- Nav Bar -->
-        <jsp:include page="${request.contextPath}/jsp/navigationBar2.jsp"></jsp:include>
+           <!-- Nav Bar -->
+        <jsp:include page="${request.contextPath}/jsp/NavBarTop.jsp"></jsp:include>
+        <c:forEach var="currentPageN" items="${pagesList}">
+        <li class="nav-item">
+            <a class="nav-link" href="${pageContext.request.contextPath}/displayStaticPage?pageId=${currentPageN.recordId}">
+                ${currentPageN.pageTitle}</a>
+        </li>
+        </c:forEach>
+        <jsp:include page="${request.contextPath}/jsp/NavBarBottom.jsp"></jsp:include>
 
             <!--content-->
 

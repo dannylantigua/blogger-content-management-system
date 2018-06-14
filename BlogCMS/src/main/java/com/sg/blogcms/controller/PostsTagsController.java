@@ -6,6 +6,7 @@
 package com.sg.blogcms.controller;
 
 import com.sg.blogcms.model.postsTags;
+import com.sg.blogcms.service.StaticPagesService;
 import com.sg.blogcms.serviceImpl.TagsServiceImpl;
 import static java.lang.Integer.parseInt;
 import java.util.List;
@@ -24,9 +25,11 @@ public class PostsTagsController {
     
     TagsServiceImpl service;
     List<postsTags> postTagsForSaving;
+    StaticPagesService servicePage;
 
-    public PostsTagsController(TagsServiceImpl service) {
+    public PostsTagsController(TagsServiceImpl service, StaticPagesService servicePage) {
         this.service = service;
+        this.servicePage = servicePage;
     }
     
     @RequestMapping(value = "/getAllTagsByPost", method = RequestMethod.GET)

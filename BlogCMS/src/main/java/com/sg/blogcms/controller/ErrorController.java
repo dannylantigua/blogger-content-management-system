@@ -21,10 +21,7 @@ public class ErrorController {
     @RequestMapping(value = "/error")
     public String customError(HttpServletRequest request,
             HttpServletResponse response,
-            Model mode) {
-        
-        
-        
+            Model model) {
         return "customError";
     }
 }

@@ -103,8 +103,8 @@ INSERT INTO Categories (recordId, categoryDesc) values
 -- Data for Static Pages
 -- 
 INSERT INTO StaticPages (recordId, PageName, pageTitle, Content) VALUES
-(1, 'About Us', 'Page Title', 'Some content....'),
-(2, 'Contact', 'Page Title', 'Some content for contacting us....');
+(1, 'About Us', 'About Us', 'Some content....'),
+(2, 'Contact', 'Contact', 'Some content for contacting us....');
 -- 
 -- 
 -- Data for Posts

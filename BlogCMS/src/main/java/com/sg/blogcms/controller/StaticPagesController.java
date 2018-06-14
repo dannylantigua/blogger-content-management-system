@@ -52,6 +52,12 @@ public class StaticPagesController {
         int pageId = parseInt(pageIdParameter);
         StaticPages page = service.getStaticPageById(pageId);
         model.addAttribute("staticpage", page);
+        
+        // get a list from the service with all pages
+        List<StaticPages> pages = service.getAllStaticPages();
+        // add it to the model
+        model.addAttribute("pagesList", pages);
+        
         return "editStaticPageForm";
     }
     
