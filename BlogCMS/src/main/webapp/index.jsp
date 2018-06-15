@@ -22,7 +22,7 @@
                     </div>
 
 
-                    <a class="btn btn-primary" href="${pageContext.request.contextPath}/signUp" role="button">Sign Up</a>
+                    <!--<a class="btn btn-primary" href="${pageContext.request.contextPath}/signUp" role="button">Sign Up</a>-->
                     <a class="btn btn-primary" href="${pageContext.request.contextPath}/login" role="button">Login</a>
                 </div>
 

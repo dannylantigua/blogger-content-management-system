@@ -262,10 +262,21 @@
             <!-- end of container -->
         </div>
 
-<!--        <script src='https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=scmd53yww1lj74aj6vs54kvv2d5zj06bxs2snlu2l51l0835'></script>
+                                    <!--GETTING RID OF ANNOYING POPUPS FROM MCU-->
+                                    <style>
+                                        .mce-notification-inner {
+                                            display:none;
+                                        }
+                                        
+                                        #mceu_31 {
+                                            display:none;
+                                        }
+                                    </style>
+                                    
+        <script src='https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=scmd53yww1lj74aj6vs54kvv2d5zj06bxs2snlu2l51l0835'></script>
         <script>tinymce.init({selector: "textarea",
-                themes: "modern"});</script>-->
-        <!-- JavaScript Libraries -->
+                themes: "modern"});</script>
+         <!--JavaScript Libraries--> 
         <jsp:include page="${request.contextPath}/jsp/jslibraries.jsp"></jsp:include>
     </body>
 </html>
