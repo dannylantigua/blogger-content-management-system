@@ -40,6 +40,10 @@
         <intercept-url pattern="/login.jsp"
                        access="IS_AUTHENTICATED_ANONYMOUSLY" />    
                        
+         <intercept-url pattern="/displayBlogsByTag"
+                       access="IS_AUTHENTICATED_ANONYMOUSLY" />    
+        
+        
         
         <intercept-url pattern="/dashboard" 
                        access="ROLE_USER" />

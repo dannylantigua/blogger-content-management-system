@@ -15,7 +15,7 @@
         <div class="container" style="width:20%;margin-top:160px;">
 
             <c:if test="${param.login_error == 1}">
-                <h3>Wrong id or password!</h3>
+                <h3>Wrong username or password!</h3>
             </c:if>
 
 
