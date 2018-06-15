@@ -4,70 +4,78 @@ CREATE DATABASE BlogCMS;
 
 USE BlogCMS;
 
-CREATE TABLE Entity(
-recordId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+SET foreign_key_checks=0;
+
+CREATE TABLE IF NOT EXISTS Entity (
+recordId INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
 FirstName VARCHAR(20),
 LastName VARCHAR(20),
 EMAIL VARCHAR(25),
 PhoneNumber VARCHAR(10),
 AboutMe TEXT,
 UserName VARCHAR(30),
-passwd VARCHAR(50),
+passwd VARCHAR(300),
 isAdmin boolean,
 `enabled` tinyint(1) NOT NULL,
- KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+ KEY `UserName` (`UserName`) 
+) ;
 
-CREATE TABLE EntitySocialProfiles(
+CREATE TABLE IF NOT EXISTS EntitySocialProfiles(
 EntityId INT,
 WebName VARCHAR(20),
 Website VARCHAR(100),
-FOREIGN KEY (EntityId) REFERENCES Entity(recordId)
-);
+FOREIGN KEY (EntityId) REFERENCES Entity(recordId) ON DELETE CASCADE ON UPDATE CASCADE
+) ;
 
-CREATE TABLE Categories(
+CREATE TABLE IF NOT EXISTS Categories(
 recordId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-CategoryName VARCHAR(20)
-);
+categoryDesc VARCHAR(20)
+) ;
 
-CREATE TABLE Posts(
+CREATE TABLE IF NOT EXISTS Posts(
 recordId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-postTittle TEXT,
+postTitle TEXT,
 postBody TEXT,
 userId INT,
+categoryId INT,
 postDate DateTime,
-expireDate DateTime,
+expireDate DateTime NULL,
 likes INT,
 isPending boolean,
 isApproved boolean,
 isRejected boolean,
-FOREIGN KEY (userId) REFERENCES Categories (recordId)
-);
+FOREIGN KEY (userId) REFERENCES Entity (recordId) ON UPDATE CASCADE ON DELETE CASCADE ,
+FOREIGN KEY (categoryId) REFERENCES Categories (recordId) ON UPDATE CASCADE ON DELETE CASCADE
+) ;
 
-CREATE TABLE PostsTags(
+CREATE TABLE IF NOT EXISTS PostsTags(
 postId INT,
 Tag VARCHAR(30),
-FOREIGN KEY (postId) REFERENCES Posts (recordId)
-);
+FOREIGN KEY (postId) REFERENCES Posts (recordId) ON DELETE CASCADE ON UPDATE CASCADE
+)  ;
 
 CREATE TABLE StaticPages(
 recordId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 PageName Varchar(20),
+pageTitle Varchar(40),
 Content TEXT
 );
 
 CREATE TABLE IF NOT EXISTS `authorities` (
-`username` varchar(20) NOT NULL,
+`UserName` varchar(20) NOT NULL ,
 `authority` varchar(20) NOT NULL,
-KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+KEY `UserName` (`UserName`) 
+) DEFAULT CHARSET=latin1;
+
 
 ALTER TABLE `authorities`
- ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `Entity` (`username`) ON DELETE CASCADE;
+ ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`UserName`) REFERENCES `Entity` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE;
+
  
 --
 -- Dumping data for table `users`
 --
+
 INSERT INTO `Entity` (`recordId`, `username`, `passwd`, `enabled`) VALUES
 (1, 'admin', 'password', 1),
 (2, 'user', 'password', 1);
@@ -77,7 +85,51 @@ INSERT INTO `Entity` (`recordId`, `username`, `passwd`, `enabled`) VALUES
 --
 -- Dumping data for table `authorities`
 --
+
 INSERT INTO `authorities` (`username`, `authority`) VALUES
 ('admin', 'ROLE_ADMIN'),
 ('admin', 'ROLE_USER'),
 ('user', 'ROLE_USER');
+-- 
+-- 
+-- Data For Categories
+-- 
+INSERT INTO Categories (recordId, categoryDesc) values 
+(1, 'Health'),
+(2, 'Fitness'),
+(3, 'Science');
+-- 
+-- 
+-- Data for Static Pages
+-- 
+INSERT INTO StaticPages (recordId, PageName, pageTitle, Content) VALUES
+(1, 'About Us', 'About Us', 'Some content....'),
+(2, 'Contact', 'Contact', 'Some content for contacting us....');
+-- 
+-- 
+-- Data for Posts
+-- 
+INSERT INTO Posts VALUES (1, 'What is a Method? A real controversy in the LGACC-Java Team', 
+	'Google it', 1, 1,'9999-12-31 23:59:59', '9999-12-31 23:59:59' , 0, 0, 1, 0);
+    
+    INSERT INTO Posts VALUES (2, 'What is a Function?', 
+	'Google it too', 2, 1,'9999-12-31 23:59:59', '9999-12-31 23:59:59' , 0, 0, 1, 0);
+-- 
+-- 
+-- Data for Tags
+-- 
+INSERT INTO PostsTags VALUES (1, 'ForRealWhatsAMethod'), (1, 'ThisHasToStop');
+
+INSERT INTO `authorities` (`UserName`, `authority`) VALUES
+('admin', 'ROLE_ADMIN'),
+('admin', 'ROLE_USER'),
+('user', 'ROLE_USER');
+
+UPDATE Entity
+SET passwd = '$2a$10$tzNSD00b1lkRrEYNSVtbC.m7Vwhx/hjgdQZinBgIztFwis0./XTfq'
+where UserName = 'admin';
+
+UPDATE Entity
+SET passwd = '$2a$10$tzNSD00b1lkRrEYNSVtbC.m7Vwhx/hjgdQZinBgIztFwis0./XTfq'
+where UserName = 'user';
+

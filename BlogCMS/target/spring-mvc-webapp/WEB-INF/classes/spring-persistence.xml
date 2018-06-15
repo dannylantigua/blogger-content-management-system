@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
-              xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/mvc
@@ -15,7 +15,7 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd"> 
 
     <!-- Bean definitions go here -->
-     <tx:annotation-driven/>
+    <tx:annotation-driven/>
 
     <context:component-scan base-package="com.sg.blogcms.dao" />
     <bean id="dataSource"
@@ -30,7 +30,7 @@
     </bean>
     
     <bean id="transactionManager"
-      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
@@ -44,12 +44,52 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     
+    <bean id="categoriesDao" 
+          class="com.sg.blogcms.daoImpl.CategoriesDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="TagsDao" 
+          class="com.sg.blogcms.daoImpl.TagsDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="StaticPagesDao" 
+          class="com.sg.blogcms.daoImpl.StaticPagesDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
     <bean id="entityService" class="com.sg.blogcms.serviceImpl.EntityServiceImpl">
         <constructor-arg ref="entityDao"/>
     </bean>
     
-<!--    <bean id="ssPhoneInfoServiceLayer" class="com.sg.supersighting.serviceLayerImpl.SSPhoneInfoServiceLayerImpl">
-        <constructor-arg ref="ssPhoneInfoDao"/>
-    </bean>-->
+   
+   <bean id="postsDao" class="com.sg.blogcms.daoImpl.PostsDaoJdbcTemplateImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean> 
+    
+    <bean id="postsService" class="com.sg.blogcms.serviceImpl.PostsServiceImpl">
+        <constructor-arg ref="postsDao"/>
+    </bean> 
+    
+    <bean id="categoriesService" class="com.sg.blogcms.serviceImpl.CategoriesServiceImpl">
+        <constructor-arg ref="categoriesDao"/>
+    </bean>
+    
+    <bean id="tagsService" class="com.sg.blogcms.serviceImpl.TagsServiceImpl">
+        <constructor-arg ref="TagsDao"/>
+    </bean>
+    
+    <bean id="staticPagesService"  class="com.sg.blogcms.serviceImpl.StaticPagesServiceImpl">
+        <constructor-arg ref="StaticPagesDao"/>
+    </bean>
+    
+     <bean id="entitySocialProfiles" class="com.sg.blogcms.daoImpl.EntitySocialProfilesJdbcTemplateImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="entitySocialProfilesService" class="com.sg.blogcms.serviceImpl.EntitySocialProfilesServiceImpl">
+        <constructor-arg ref="entitySocialProfiles"/>
+    </bean>
     
 </beans>

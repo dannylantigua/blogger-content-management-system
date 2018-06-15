@@ -23,7 +23,8 @@
     <http auto-config="true" use-expressions="false">
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/login"
-                    authentication-failure-url="/login?login_error=1"/>
+                    authentication-failure-url="/login?login_error=1"
+                    default-target-url="/dashboard"/>
        
         <intercept-url pattern="/" 
                        access="IS_AUTHENTICATED_ANONYMOUSLY" />
@@ -36,13 +37,21 @@
         <intercept-url pattern="/signUp.jsp"
                        access="IS_AUTHENTICATED_ANONYMOUSLY" />               
                        
-        <intercept-url pattern="/dashboard.jsp"
-                       access="IS_AUTHENTICATED_ANONYMOUSLY" />
-        
+        <intercept-url pattern="/login.jsp"
+                       access="IS_AUTHENTICATED_ANONYMOUSLY" />    
                        
         
         <intercept-url pattern="/dashboard" 
                        access="ROLE_USER" />
+        
+        <intercept-url pattern="/createPost" 
+                       access="ROLE_USER" />
+        
+        <intercept-url pattern="/editProfile"
+                       access="ROLE_USER"/>
+        
+        <intercept-url pattern="/editProfile"
+                       access="ROLE_USER"/>
                        
                        <!--
         <intercept-url pattern="/deleteContact" 
@@ -69,9 +78,9 @@
             <jdbc-user-service id="userService"
                                data-source-ref="dataSource"
                                users-by-username-query=
- "select username, passwd enabled from Entity where username=?"
+ "select UserName, passwd, enabled from entity where UserName= ? "
                                authorities-by-username-query=
- "select username, authority from authorities where username=?" />
+ "select UserName, authority from authorities where UserName= ? " />
         </authentication-provider>
     </authentication-manager>
 </beans:beans>
