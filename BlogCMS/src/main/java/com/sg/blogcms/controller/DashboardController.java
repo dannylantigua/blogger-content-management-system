@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import static java.time.temporal.TemporalQueries.localDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -103,14 +104,24 @@ public class DashboardController {
 //            model.addAttribute("email", currentEntity.getEmail());
 //        }
 
+
+
+        List<postsTags> tagList = serviceTag.getLast10Tags();
+
+        
+       
+   
+        
+        model.addAttribute("tagList", tagList);
+
         List<Category> cList = serviceCat.getAllCategories();
         model.addAttribute("cList", cList);
-        
+
         // get a list from the service with all pages
         List<StaticPages> pages = servicePage.getAllStaticPages();
         // add it to the model
         model.addAttribute("pagesList", pages);
-                
+
         return "createPost";
     }
 
@@ -125,34 +136,50 @@ public class DashboardController {
         Date date = new Date();
         post.setPostDate(date);
 
-//        try {
-            String id = request.getParameter("chooseCategory");
-            //get category by id
-          
-          
-            Category c = serviceCat.getCategoryById(Integer.parseInt(id));
-         
-            // this references categories (is category id)
-            post.setCategoryId(c.getRecordId());
-//        } catch (NumberFormatException ex) {
-//        }
+        String id = request.getParameter("chooseCategory");
+        //get category by id
 
+        Category c = serviceCat.getCategoryById(Integer.parseInt(id));
+
+        // this references categories (is category id)
+        post.setCategoryId(c.getRecordId());
+
+        
+
+        //post.setPostTags(postTags);
         servicePost.createPost(post);
+        
+        
+        String[] chosenTags = request.getParameterValues("chooseTags");
+
+        List<postsTags> postTags = new ArrayList<>();
+
+        for (String tag : chosenTags) {
+            postsTags pt = new postsTags();
+            pt.setTag(tag);
+            pt.setPostId(post.getRecordId());
+            postTags.add(pt);
+
+        }
+        serviceTag.savePostTags(postTags);
+        
+
+        
+
         return "redirect:allBlogs";
     }
-    
+
     @RequestMapping(value = "/displayStaticPage", method = RequestMethod.GET)
     public String displayStaticPage(HttpServletRequest request, Model model) {
         String param = request.getParameter("pageId");
         StaticPages page = servicePage.getStaticPageById(Integer.parseInt(param));
         model.addAttribute("currentPage", page);
-        
+
         // get a list from the service with all pages
         List<StaticPages> pages = servicePage.getAllStaticPages();
         // add it to the model
         model.addAttribute("pagesList", pages);
-        
-        
+
         return "displayStaticPage";
     }
 }

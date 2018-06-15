@@ -5,6 +5,7 @@
  */
 package com.sg.blogcms.service;
 
+import com.sg.blogcms.model.Posts;
 import com.sg.blogcms.model.postsTags;
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface TagsService {
     
     void removeTag(postsTags tag);
 
+    List<Posts> getPostsByTag(int id);
+    
 }

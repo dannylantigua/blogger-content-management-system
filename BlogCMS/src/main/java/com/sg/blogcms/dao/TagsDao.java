@@ -5,6 +5,7 @@
  */
 package com.sg.blogcms.dao;
 
+import com.sg.blogcms.model.Posts;
 import com.sg.blogcms.model.postsTags;
 import java.util.List;
 
@@ -21,5 +22,7 @@ public interface TagsDao {
     void savePostTags(List<postsTags> tags);
     
     void removeTag(postsTags tag);
+    
+    List<Posts> getPostsByTag(int id);
 
 }

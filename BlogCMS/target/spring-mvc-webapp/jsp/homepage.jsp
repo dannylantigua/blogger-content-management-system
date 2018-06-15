@@ -17,69 +17,72 @@
         </head>
         <body>
 
-           <!-- Nav Bar -->
+            <!-- Nav Bar -->
         <jsp:include page="${request.contextPath}/jsp/NavBarTop.jsp"></jsp:include>
         <c:forEach var="currentPageN" items="${pagesList}">
         <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/displayStaticPage?pageId=${currentPageN.recordId}">
                 ${currentPageN.pageTitle}</a>
         </li>
-        </c:forEach>
-        <jsp:include page="${request.contextPath}/jsp/NavBarBottom.jsp"></jsp:include>
+    </c:forEach>
+    <jsp:include page="${request.contextPath}/jsp/NavBarBottom.jsp"></jsp:include>
 
-            <main role="main">
+        <main role="main">
 
-                <!-- Main jumbotron for a primary marketing message or call to action -->
-                <div class="jumbotron">
-                    <div class="container">
-                        <!--category-->
-                        <span class="badge badge-dark" style="margin-bottom:20px;">${mainCategory.categoryDesc}</span>
+            <!-- Main jumbotron for a primary marketing message or call to action -->
+           
+                    <div class="jumbotron">
+                        <div class="container">
+                            <!--category-->
+                            <span class="badge badge-dark" style="margin-bottom:20px;">${mainCategory.categoryDesc}</span>
 
-                    <h1 class="display-3">${latestPost.postTitle}</h1>
-                    <p>${latestPost.postBody}</p>
-                    <p><a class="btn btn-dark btn-lg" href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${latestPost.recordId}" role="button">Learn more &raquo;</a></p>
+                        <h1 class="display-3">${latestPost.postTitle}</h1>
+                        <p>${latestPost.postBody}</p>
+                        <p><a class="btn btn-dark btn-lg" href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${latestPost.recordId}" role="button">Learn more &raquo;</a></p>
+                    </div>
                 </div>
+          
+
+
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+
+                <c:forEach var="post" items="${posts}">
+
+
+
+
+
+                    <div class="col-md-4">
+                        <c:forEach var="cat" items="${categories}">
+                            <!--category-->
+                            <c:if test="${post.categoryId == cat.recordId}">
+
+
+                                <span class="badge badge-dark" style="margin-bottom:20px;"><c:out value="${cat.categoryDesc}"/></span>
+                            </c:if>
+                        </c:forEach>
+                        <h2><c:out value="${post.postTitle}"></c:out></h2>
+                        <p>${post.postBody}</p>
+                        <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${post.recordId}" role="button">View details &raquo;</a></p>
+                    </div>
+
+                </c:forEach>
+
             </div>
 
-            <div class="container">
-                <!-- Example row of columns -->
-                <div class="row">
+            <hr>
 
-                    <c:forEach var="post" items="${posts}">
+        </div> <!-- /container -->
 
+    </main>
 
+    <footer class="container">
+        <p>&copy; Company 2017-2018</p>
+    </footer>
 
-
-
-                        <div class="col-md-4">
-                            <c:forEach var="cat" items="${categories}">
-                                <!--category-->
-                                <c:if test="${post.categoryId == cat.recordId}">
-
-
-                                    <span class="badge badge-dark" style="margin-bottom:20px;"><c:out value="${cat.categoryDesc}"/></span>
-                                </c:if>
-                            </c:forEach>
-                            <h2><c:out value="${post.postTitle}"></c:out></h2>
-                            <p>${post.postBody}</p>
-                            <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/displayChosenBlogPost?currentPostId=${post.recordId}" role="button">View details &raquo;</a></p>
-                        </div>
-
-                    </c:forEach>
-
-                </div>
-
-                <hr>
-
-            </div> <!-- /container -->
-
-        </main>
-
-        <footer class="container">
-            <p>&copy; Company 2017-2018</p>
-        </footer>
-
-        <!-- JavaScript Libraries -->
-        <jsp:include page="${request.contextPath}/jsp/jslibraries.jsp"></jsp:include>
-    </body>
+    <!-- JavaScript Libraries -->
+    <jsp:include page="${request.contextPath}/jsp/jslibraries.jsp"></jsp:include>
+</body>
 </html>

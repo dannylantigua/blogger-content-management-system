@@ -6,6 +6,7 @@
 package com.sg.blogcms.serviceImpl;
 
 import com.sg.blogcms.dao.TagsDao;
+import com.sg.blogcms.model.Posts;
 import com.sg.blogcms.model.postsTags;
 import com.sg.blogcms.service.TagsService;
 import java.util.List;
@@ -40,6 +41,11 @@ public class TagsServiceImpl implements TagsService {
     @Override
     public List<postsTags> getLast10Tags() {
         return tagDao.getLast10Tags();
+    }
+
+    @Override
+    public List<Posts> getPostsByTag(int id) {
+        return tagDao.getPostsByTag(id);
     }
     
 }

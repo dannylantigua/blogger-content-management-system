@@ -135,10 +135,10 @@
 
 
 
-            Company Settings
+<!--            Company Settings
         </h1>
 
-        <p>form and add logo for company goes here</p>
+        <p>form and add logo for company goes here</p>-->
 
 
 
@@ -266,7 +266,7 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>-->
 
-
+<!--
         <div class="col-lg-6 col-md-12">
             <div class="card">
                 <div class="card-header card-header-warning">
@@ -284,23 +284,23 @@
 
                                     <td><c:out value="${currentS.websiteName}"/></td>
                                     <td><a href="${currentS.webSite}"><c:out value="${currentS.webSite}"/></a></td>
-                                    <!--<td>-->  
+                                    <td>  
 
 
                                 </tr>
                              
                             </c:forEach>
                                 
-                                <!--WORK IN PROGRESS-->
+                                WORK IN PROGRESS
                                 
-<!--                                   <tr>
+                                   <tr>
                                     <td>
                                         <a class="btn btn-danger" href="${pageContext.request.contextPath}/removeSocial" role="button">Remove All Social Media By Current User</a>
                                     </td>
-                                </tr>-->
-                        </tbody>
+                                </tr>
+                        </tbody>-->
 
-                        <hr>
+<!--                        <hr>
                         <form role="form" method="POST" action="createSocialMedia" >
                             <tr>
 
@@ -328,7 +328,7 @@
 
 
                             </tr>
-                        </form>
+                        </form>-->
 
 
 

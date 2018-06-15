@@ -7,9 +7,7 @@ package com.sg.blogcms.daoImpl;
 
 import com.sg.blogcms.dao.EntitySocialProfilesDao;
 import com.sg.blogcms.mappers.Mappers.EntitySocialProfilesMapper;
-import com.sg.blogcms.model.Entity;
 import com.sg.blogcms.model.EntitySocialProfiles;
-import static com.sun.jmx.snmp.SnmpStatusException.readOnly;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

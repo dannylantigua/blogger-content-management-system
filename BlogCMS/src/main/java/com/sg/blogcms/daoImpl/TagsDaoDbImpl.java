@@ -6,7 +6,9 @@
 package com.sg.blogcms.daoImpl;
 
 import com.sg.blogcms.dao.TagsDao;
+import com.sg.blogcms.mappers.Mappers.PostsMapper;
 import com.sg.blogcms.mappers.Mappers.TagsMapper;
+import com.sg.blogcms.model.Posts;
 import com.sg.blogcms.model.postsTags;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -37,10 +39,18 @@ public class TagsDaoDbImpl implements TagsDao {
     private static final String SQL_REMOVE_TAGS
             = "delete from PostsTags where postId = ? and Tag = ?";
 
+    private static final String SQL_GET_POSTS_BY_TAG
+            = " SELECT * FROM Posts p JOIN postsTags pt ON p.recordId = pt.postId WHERE pt.postId = ";
+    
     @Override
     public List<postsTags> getAllTagsByPosts(int postId) {
         final String newGetAllTagsSQL = SQL_GET_ALL_TAGS + postId;
         return jdbcTemplate.query(newGetAllTagsSQL, new TagsMapper());
+    }
+    
+    @Override
+    public List<Posts> getPostsByTag(int id){
+        return jdbcTemplate.query(SQL_GET_POSTS_BY_TAG + id, new PostsMapper());
     }
 
     @Override

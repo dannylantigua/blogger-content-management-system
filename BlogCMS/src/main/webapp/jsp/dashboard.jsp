@@ -30,11 +30,11 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="card card-profile">
-                        <div class="card-avatar">
+<!--                        <div class="card-avatar">
                             <a href="#">
                                 <img class="img" src="${pageContext.request.contextPath}/images/faces/marc.jpg" />
                             </a>
-                        </div>
+                        </div>-->
                         <div class="card-body">
                             <h6 class="card-category text-gray"> ${username }</h6>
                             <h4 class="card-title"> ${firstname} ${lastname}</h4>
@@ -262,9 +262,9 @@
             <!-- end of container -->
         </div>
 
-        <script src='https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=scmd53yww1lj74aj6vs54kvv2d5zj06bxs2snlu2l51l0835'></script>
+<!--        <script src='https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=scmd53yww1lj74aj6vs54kvv2d5zj06bxs2snlu2l51l0835'></script>
         <script>tinymce.init({selector: "textarea",
-                themes: "modern"});</script>
+                themes: "modern"});</script>-->
         <!-- JavaScript Libraries -->
         <jsp:include page="${request.contextPath}/jsp/jslibraries.jsp"></jsp:include>
     </body>
