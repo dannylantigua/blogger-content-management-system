@@ -10,7 +10,6 @@ import com.sg.blogcms.model.Authorities;
 import com.sg.blogcms.model.Entity;
 import com.sg.blogcms.model.StaticPages;
 import com.sg.blogcms.service.EntityService;
-import com.sg.blogcms.service.EntitySocialProfilesService;
 import com.sg.blogcms.service.StaticPagesService;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,16 +33,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AccountController {
 
     EntityService EntityServiceDao;
-    EntitySocialProfilesService esps;
+//    EntitySocialProfilesService esps;
     StaticPagesService servicePage;
     private PasswordEncoder encoder;
 
     @Inject
-    public AccountController(EntityService EntityServiceDao, PasswordEncoder encoder , 
-            EntitySocialProfilesService esps, StaticPagesService servicePage) {
+    public AccountController(EntityService EntityServiceDao, PasswordEncoder encoder , StaticPagesService servicePage) {
         this.EntityServiceDao = EntityServiceDao;
         this.encoder = encoder;
-        this.esps = esps;
+        
         this.servicePage = servicePage;
     }
 
